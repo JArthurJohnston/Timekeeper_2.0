@@ -1,0 +1,46 @@
+/**
+ * Created by arthur on 9/29/15.
+ */
+
+var MenubarController = (function(){
+    var isMenuVisible, menuBar, menuDropdown;
+
+    function initialize() {
+        isMenuVisible = false;
+        menuBar = document.querySelector('#menu-bar');
+        menuDropdown = document.querySelector('#menu-dropdown');
+        wireUpMenuButton();
+    }
+
+    function wireUpMenuButton(){
+        menuBar.querySelector('#menu-dropdown-button').onclick = toggleMenu;
+    }
+
+    function setMenuTitle(titleString){
+        menuBar.querySelector('#menu-bar-title').innerHTML = titleString;
+    }
+
+    function showMenu(){
+        menuDropdown.setAttribute('class', 'visible');
+        isMenuVisible = true;
+    }
+
+    function hideMenu(){
+        menuDropdown.setAttribute('class', 'invisible');
+        isMenuVisible = false;
+    }
+
+    function toggleMenu(){
+        if(isMenuVisible){
+            hideMenu();
+        } else {
+            showMenu();
+        }
+    }
+
+    return {
+        initialize: initialize,
+        setPageTitle: setMenuTitle,
+        toggleMenu: toggleMenu
+    }
+}());

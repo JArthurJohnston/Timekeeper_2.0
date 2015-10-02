@@ -1,0 +1,21 @@
+.menu-dropdown-option {
+    width: 100%;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: xx-large;
+}
+
+.menu-dropdown-option:hover {
+    color: aquamarine;
+    cursor: pointer;
+}
+
+#menu-dropdown-button {
+    display: inline;
+    float: right;
+    vertical-align: top;
+    margin-right: 2%;
+}

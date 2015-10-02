@@ -1,0 +1,37 @@
+class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+  respond_to :html, :js
+
+  before_action :find_user
+
+  def create
+  end
+
+  def show
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  def find_all
+    raise 'subclass responsibility'
+  end
+
+  def model_class
+    raise 'subclass responsibility'
+  end
+
+  def index_partial
+    raise 'subclass responsibility'
+  end
+
+  def find_user
+    @user = User.find params[:user_id]
+  end
+
+end

@@ -1,0 +1,6 @@
+(function(){
+    var pageBody = $('#page-body');
+    pageBody.html("");
+    pageBody.append("<%= j (render 'main') %>");
+    MenubarController.toggleMenu();
+}());
