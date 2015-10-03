@@ -198,8 +198,19 @@ class TimesheetTest < ModelTestCase
 
   test 'start and end dates are today when activities are empty' do
     timesheet = Timesheet.create()
-    assert_equal DateTime.new, timesheet.start_date
-    assert_equal DateTime.new, timesheet.through_date
+    expected_date = DateTime.now
+
+    assert_equal expected_date.to_date, timesheet.start_date.to_date
+    assert_equal expected_date.to_date, timesheet.through_date.to_date
+  end
+
+  test 'display string' do
+    timesheet = Timesheet.create
+
+    Activity.create(timesheet_id: timesheet.id, start_time: time_on(5, 15))
+    Activity.create(timesheet_id: timesheet.id, start_time: time_on(8, 30))
+
+    assert_equal 'Thu Jan 1 to Thu Jan 1', timesheet.display_string
   end
 
 end

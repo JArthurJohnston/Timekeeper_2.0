@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   respond_to :html, :js
 
-  before_action :find_user
+  before_action :find_user, only:[:create, :show, :update, :destroy]
 
   def create
   end

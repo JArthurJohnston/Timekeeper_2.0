@@ -1,4 +1,0 @@
-class TimesheetDisplay
-
-
-end

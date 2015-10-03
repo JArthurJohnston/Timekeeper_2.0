@@ -1,8 +1,8 @@
 class TimesheetsController < ApplicationController
 
   def index
-    @timesheets = Timesheet.all
-    # render :partial => 'timesheet/main', :locals => {:user => @user}
+    find_user
+    @timesheets = @user.timesheets
   end
 
 end

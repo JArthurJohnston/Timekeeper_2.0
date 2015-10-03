@@ -28,4 +28,17 @@ class UserTest < ModelTestCase
     assert user.activities.include? activity
   end
 
+  test 'add timesheet to user' do
+    user = User.create
+
+    timesheet = user.create_new_timesheet
+
+    assert_equal user, timesheet.user
+
+    actual_timesheet = Timesheet.find(timesheet.id)
+
+    assert_equal timesheet, actual_timesheet
+    assert_equal timesheet, user.current_timesheet
+  end
+
 end

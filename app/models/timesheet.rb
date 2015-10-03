@@ -1,10 +1,5 @@
-require_relative '../../app/models/modules/attribute_handler'
-require_relative '../models/modules/timesheet/current_activity'
-require_relative '../../app/models/modules/date_time_helper'
-
 class Timesheet < ActiveRecord::Base
-  include AttributeHandler,
-          CurrentActivity
+  include CurrentActivity, TimesheetDisplay
   extend DateTimeHelper
 
   has_many :activities, -> { order(:start_time) }, dependent: :destroy
@@ -15,13 +10,7 @@ class Timesheet < ActiveRecord::Base
       self.current_activity.set_end_time anActivity.start_time
     end
     anActivity.set_timesheet self
-    setAttribute :current_activity_id, anActivity.id
-  end
-
-  def create attributes
-    attributes[:start_date] = parse_date_string attributes[:start_date]
-    attributes[:through_date] = parse_date_string attributes[:through_date]
-    super
+    update_attributes current_activity_id: anActivity.id
   end
 
   def days
@@ -54,14 +43,14 @@ class Timesheet < ActiveRecord::Base
     unless activities.empty?
       return activities.first.start_time
     end
-    DateTime.new
+    DateTime.now
   end
 
   def through_date
     unless activities.empty?
       return activities.last.start_time
     end
-    DateTime.new
+    DateTime.now
   end
 
 end

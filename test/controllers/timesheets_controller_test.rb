@@ -8,10 +8,10 @@ class TimesheetsControllerTest < ActionController::TestCase
     timesheet2 = Timesheet.create user_id: user.id
     timesheet3 = Timesheet.create user_id: user.id
 
-    get :index, user_id: user.id, remote: true
+    get :index, user_id: user.id, format: :js
 
     assert_response :success
-    assert_template 'timesheet/index.js'
+    assert_template 'application/_main'
   end
 
 end

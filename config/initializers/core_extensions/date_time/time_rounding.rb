@@ -1,6 +1,6 @@
 
 
-class DateTime
+module TimeRounding
   FIFTEEN_MINUTES = 60 * 15.0
   ONE_HOUR = 60 * 60
   ONE_DAY = ONE_HOUR * 24
@@ -17,5 +17,8 @@ class DateTime
     daysToAdd = ONE_DAY * aNumber
     return Time.at(timestamp + daysToAdd).to_datetime
   end
+end
 
+class DateTime
+  include TimeRounding
 end

@@ -15,5 +15,29 @@
  */
 
 body {
-    font-family: "Lucida Grande";
+    font-family: "sans-serif";
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: aquamarine;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited:hover {
+    color: aquamarine;
+}
+
+a:active {
+    text-decoration: none;
+    color: aquamarine;
 }

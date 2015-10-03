@@ -1,0 +1,8 @@
+<div>
+  <%= link_to user_timesheet_path(@user.id, @user.current_timesheet_id), remote: true do %>
+      <div>
+        <h4>Current Timesheet</h4>
+        <p><%= @user.current_timesheet.display_string %></p>
+      </div>
+  <% end %>
+</div>

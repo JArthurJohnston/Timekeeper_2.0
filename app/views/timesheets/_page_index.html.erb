@@ -1,0 +1,18 @@
+<ul>
+  <% @timesheets.each do |each_timesheet| %>
+      <li>
+        <%= link_to user_timesheet_path(@user.id, each_timesheet.id), remote: true do %>
+            <div>
+              <%= each_timesheet.display_string %>
+            </div>
+        <% end %>
+      </li>
+  <% end %>
+  <li>
+    <div>
+      <%= link_to new_user_timesheet_path(@user.id), remote: true do %>
+          <div class="new-button">+</div>
+      <% end %>
+    </div>
+  </li>
+</ul>
