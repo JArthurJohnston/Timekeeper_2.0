@@ -32,7 +32,7 @@ class Activity < ActiveRecord::Base
     return self.range.overlaps? another_activity.range
   end
 
-  def timeDisplayString
+  def display_string
     return self.range.display_string
   end
 

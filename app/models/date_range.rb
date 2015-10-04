@@ -38,4 +38,17 @@ class DateRange
                                    :end => time_string_for(@end)}
   end
 
+  def total_time_in_minutes
+    return time_in_minutes(finish) - time_in_minutes(start)
+  end
+
+    private
+      def time_or_now_for  aTime
+        if aTime.nil?
+          return DateTime.now
+        else
+          return aTime
+        end
+      end
+
 end

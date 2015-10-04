@@ -2,6 +2,7 @@ require_relative 'model_test_case'
 require_relative '../../app/models/date_range'
 
 class DateRangeTest < ModelTestCase
+  include DateTimeHelper
 
   test 'initialize' do
     time1 = time_on(5, 15)
@@ -87,9 +88,29 @@ class DateRangeTest < ModelTestCase
     assert_equal DateTime.new(1,1,1, 0, 0, 0), DateRange::MIN_DATE
     assert_equal DateTime.new(9999,12,31, 0, 0, 0), DateRange::MAX_DATE
 
-    finish = time_on(8, 45)
     start = time_on(5, 45)
+    finish = time_on(8, 45)
     d_range = DateRange.new(start, finish)
+
+    assert_equal start, d_range.start
+    assert_equal finish, d_range.finish
   end
+
+  test 'total time in minutes' do
+    start_time = time_on(6, 0)
+    end_time = time_on(8, 15)
+    expected_total_time = 135
+
+    date_range = DateRange.new(start_time, end_time)
+
+    assert_equal expected_total_time, date_range.total_time_in_minutes
+
+    assert_equal 0, DateRange.new(nil, nil).total_time_in_minutes
+
+
+
+  end
+
+
 
 end

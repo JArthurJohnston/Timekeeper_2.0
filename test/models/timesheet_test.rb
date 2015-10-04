@@ -213,4 +213,11 @@ class TimesheetTest < ModelTestCase
     assert_equal 'Thu Jan 1 to Thu Jan 1', timesheet.display_string
   end
 
+  test 'total hours' do
+    timesheet = Timesheet.create
+    act1 = Activity.create(timesheet_id: timesheet.id, start_time: time_on(5, 15), end_time: time_on(7, 45))
+    act2 = Activity.create(timesheet_id: timesheet.id, start_time: time_on(7, 45), end_time: time_on(10, 45))
+    assert_equal 5.5, timesheet.total_hours
+  end
+
 end

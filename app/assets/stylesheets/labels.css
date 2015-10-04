@@ -1,0 +1,25 @@
+
+.summary {
+    text-align: left;
+    display: inline;
+    margin: 3%;
+    font-size: 2em;
+}
+
+.summary-labels {
+    text-align: right;
+    font-size: 1em;
+    display: inline-block;
+    margin-right: 3%;
+}
+
+.summary-content {
+    text-align: left;
+    font-size: 1em;
+    display: inline-block;
+    width: 45%;
+}
+
+.summary-title {
+    margin-left: 3%;
+}

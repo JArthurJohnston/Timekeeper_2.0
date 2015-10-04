@@ -55,6 +55,9 @@ Rails.application.routes.draw do
   #   end
 
   resources :users do
-    resources :timesheets, :projects, :statements_of_work
+    resources :projects, :statements_of_work
+    resources :timesheets do
+      resources :activities
+    end
   end
 end

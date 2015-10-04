@@ -1,1 +1,33 @@
-<h1>A Timesheet</h1>
+<div class="summary">
+  <div class="summary-title">Summary</div>
+  <div class="summary-labels">
+    <p>Project:</p>
+    <p>Story Card:</p>
+    <p>Estimate:</p>
+    <p>Total Hours:</p>
+  </div>
+  <div class="summary-content">
+    <% current_activity = @timesheet.current_activity %>
+    <p><%= current_activity.story_card.project.name %></p>
+    <p><%= current_activity.story_card.name %></p>
+    <p><%= current_activity.story_card.estimate %></p>
+    <p><%= @timesheet.total_hours %></p>
+  </div>
+</div>
+<h1>Activities</h1>
+<ul>
+  <% @timesheet.activities.each do |each_activity| %>
+    <li>
+      <%= link_to user_timesheet_activity_path(@user.id, @timesheet.id, each_activity.id), remote: true do %>
+        <div>
+          <%= each_activity.display_string %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to new_user_timesheet_activity_path(@user.id, @timesheet.id), remote: true do %>
+        <div class="new-button">+</div>
+    <% end %>
+  </li>
+</ul>

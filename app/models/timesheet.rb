@@ -53,4 +53,13 @@ class Timesheet < ActiveRecord::Base
     DateTime.now
   end
 
+  def total_hours
+    total = 0
+    activities.each do
+    |each_activity|
+      total += each_activity.total_time
+    end
+    total
+  end
+
 end

@@ -31,4 +31,5 @@ li:hover {
 .new-button:hover {
     color: aquamarine;
     background-color: cadetblue;
+    font-weight: bolder;
 }
