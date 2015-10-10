@@ -4,31 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   respond_to :html, :js
 
-  before_action :find_user, only:[:create, :show, :update, :destroy]
-
-  def create
-  end
-
-  def show
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
-  def find_all
-    raise 'subclass responsibility'
-  end
-
-  def model_class
-    raise 'subclass responsibility'
-  end
-
-  def index_partial
-    raise 'subclass responsibility'
-  end
+  before_action :find_user
 
   def find_user
     @user = User.find params[:user_id]

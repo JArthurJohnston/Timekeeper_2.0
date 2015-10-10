@@ -106,11 +106,15 @@ class DateRangeTest < ModelTestCase
     assert_equal expected_total_time, date_range.total_time_in_minutes
 
     assert_equal 0, DateRange.new(nil, nil).total_time_in_minutes
-
-
-
   end
 
 
+  test 'display string ' do
+    start_time = time_on(6, 0)
+    end_time = time_on(8, 15)
+
+    date_range = DateRange.new(start_time, end_time)
+    assert_equal '06:00 to 08:15', date_range.display_string
+  end
 
 end

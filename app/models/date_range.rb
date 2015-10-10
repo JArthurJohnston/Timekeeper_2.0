@@ -35,7 +35,7 @@ class DateRange
 
   def display_string
     return '%{start} to %{end}' % {:start => time_string_for(@start),
-                                   :end => time_string_for(@end)}
+                                   :end => time_string_for(@finish)}
   end
 
   def total_time_in_minutes

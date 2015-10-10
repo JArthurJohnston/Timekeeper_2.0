@@ -155,4 +155,9 @@ class ActivityTest < ModelTestCase
     assert_equal finish, range.finish
   end
 
+  test 'display string ' do
+    act1 = Activity.create(start_time: time_on(5, 15), end_time: time_on(6, 0))
+    assert_equal '05:15 to 06:00', act1.display_string
+  end
+
 end

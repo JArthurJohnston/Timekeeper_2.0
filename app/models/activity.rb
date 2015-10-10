@@ -1,6 +1,3 @@
-require_relative 'date_range'
-require_relative '../../app/models/modules/date_time_helper'
-
 class Activity < ActiveRecord::Base
   include DateTimeHelper
 
@@ -10,10 +7,8 @@ class Activity < ActiveRecord::Base
 
   BILLING_CYCLE = 15.0 * 60
 
-  class << self
-    def now
-        return self.new(start_time: DateTime.now)
-    end
+  def self.now
+    return self.new(start_time: DateTime.now)
   end
 
   def initialize attributes = nil, options = {}

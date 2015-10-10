@@ -1,12 +1,7 @@
 <ul>
   <% @timesheets.each do |each_timesheet| %>
-      <li>
-        <%= link_to user_timesheet_path(@user.id, each_timesheet.id) do %>
-            <div>
-              <%= each_timesheet.display_string %>
-            </div>
-        <% end %>
-      </li>
+      <%= list_item_to_path_named user_timesheet_path(@user.id, each_timesheet.id),
+                                  each_timesheet.display_string %>
   <% end %>
   <li>
       <%= link_to user_timesheets_path(@user.id), method: :post do %>
