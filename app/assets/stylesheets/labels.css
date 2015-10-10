@@ -3,19 +3,19 @@
     text-align: left;
     display: inline;
     margin: 3%;
-    font-size: 2em;
+    font-size: xx-large;
 }
 
 .summary-labels {
     text-align: right;
-    font-size: 1em;
+    font-size: xx-large;
     display: inline-block;
     margin-right: 3%;
 }
 
 .summary-content {
     text-align: left;
-    font-size: 1em;
+    font-size: x-large;
     display: inline-block;
     width: 45%;
 }

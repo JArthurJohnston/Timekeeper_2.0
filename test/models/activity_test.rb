@@ -88,20 +88,20 @@ class ActivityTest < ModelTestCase
     startingTime = time_on(5, 45)
     endingTime = time_on(7, 30)
     activity = Activity.create(start_time: startingTime, end_time: endingTime)
-    assert_equal 1.75, activity.totalTime
+    assert_equal 1.75, activity.total_time
 
     activity.end_time= nil
     activity.save
-    assert_equal Float::INFINITY, activity.totalTime
+    assert_equal Float::INFINITY, activity.total_time
 
     activity.start_time= startingTime
     activity.save
-    assert_equal Float::INFINITY, activity.totalTime
+    assert_equal Float::INFINITY, activity.total_time
 
     activity.start_time= nil
     activity.end_time= nil
     activity.save
-    assert_equal Float::INFINITY, activity.totalTime
+    assert_equal Float::INFINITY, activity.total_time
   end
 
   test 'activity has project' do

@@ -1,0 +1,9 @@
+<div class="summary">
+  <div class="summary-content">
+    <% current_activity = @timesheet.current_activity %>
+    <p><%= @activity.story_card.project.name %></p>
+    <p><%= @activity.story_card.title %></p>
+    <p><%= @activity.story_card.estimate %></p>
+    <p><%= @activity.total_time %></p>
+  </div>
+</div>

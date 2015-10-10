@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :activities
   has_many :statements_of_work
 
-  def create_new_timesheet
+  def create_timesheet
     new_timesheet = Timesheet.create user_id: self.id
     self.update_attributes current_timesheet_id: new_timesheet.id
     new_timesheet

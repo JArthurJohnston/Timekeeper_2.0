@@ -36,7 +36,7 @@ class Activity < ActiveRecord::Base
     return self.range.display_string
   end
 
-  def totalTime
+  def total_time
     end_time = self.end_time
     start_time = self.start_time
     unless end_time.nil? || start_time.nil?

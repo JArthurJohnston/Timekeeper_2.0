@@ -6,8 +6,8 @@ class StoryCard < ActiveRecord::Base
     billable_hours = 0.0
     self.activities.each do
       |eachActivity|
-      unless eachActivity.totalTime.eql? Float::INFINITY
-        billable_hours += eachActivity.totalTime
+      unless eachActivity.total_time.eql? Float::INFINITY
+        billable_hours += eachActivity.total_time
       end
     end
     return billable_hours

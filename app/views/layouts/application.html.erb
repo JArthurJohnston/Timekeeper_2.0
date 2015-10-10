@@ -10,18 +10,22 @@
 </head>
 <body>
     <div id="menu-bar">
-      <i id="home-menu-button" class="fa fa-home w3-xxxlarge"></i>
+      <%= link_to user_path(@user.id) do %>
+          <i id="home-menu-button" class="fa fa-home w3-xxxlarge"></i>
+      <% end %>
       <div id="menu-bar-title">Home</div>
       <i id="menu-dropdown-button" class="fa fa-bars w3-xxxlarge"></i>
     </div>
     <div id="menu-dropdown" class="invisible">
-      <%= link_to user_timesheets_path(@user.id), remote: true do %>
+      <%= link_to user_timesheets_path(@user.id) do %>
           <div class="menu-dropdown-option">Timesheets</div>
       <% end %>
       <div class="menu-dropdown-option">Story Cards</div>
       <div class="menu-dropdown-option">SOWs</div>
     </div>
-    <div id="page-body"></div>
+    <div id="page-body">
+      <%= yield %>
+    </div>
     <div id="buttons-bar"></div>
     <script type="text/javascript">
       MenubarController.initialize();

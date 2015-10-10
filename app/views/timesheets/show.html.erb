@@ -1,0 +1,21 @@
+<div class="summary">
+  <div class="summary-title">Summary</div>
+  <%= summary_div_for @timesheet.current_activity %>
+</div>
+<h1>Activities</h1>
+<ul>
+  <% @timesheet.activities.each do |each_activity| %>
+    <li>
+      <%= link_to edit_user_timesheet_activity_path(@user.id, @timesheet.id, each_activity.id) do %>
+        <div>
+          <%= each_activity.display_string %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to new_user_timesheet_activity_path(@user.id, @timesheet.id) do %>
+        <div class="new-button">+</div>
+    <% end %>
+  </li>
+</ul>

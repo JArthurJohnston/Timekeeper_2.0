@@ -31,7 +31,7 @@ class UserTest < ModelTestCase
   test 'add timesheet to user' do
     user = User.create
 
-    timesheet = user.create_new_timesheet
+    timesheet = user.create_timesheet
 
     assert_equal user, timesheet.user
 
