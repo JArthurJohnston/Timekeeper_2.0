@@ -1,4 +1,5 @@
 class StoryCard < ActiveRecord::Base
+  include StoryCardDisplay
   belongs_to :project
   has_many :activities, -> {order(:start_time)}
 

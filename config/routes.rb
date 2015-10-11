@@ -54,10 +54,16 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+
   resources :users do
-    resources :projects, :statements_of_work
+    resources :statements_of_work
+    resources :story_cards, only: :index
+    resources :projects do
+      resources :story_cards, only:[:edit, :create, :update, :new, :destroy]
+    end
     resources :timesheets do
       resources :activities
     end
   end
+
 end

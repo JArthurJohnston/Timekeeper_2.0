@@ -7,7 +7,7 @@ module ActivitiesHelper
                concat f.time_select :start_time
              end)
       concat (content_tag :div, class: 'label-with-input' do
-               concat f.label 'End:'
+               concat (content_tag :div, 'End:')
                concat f.time_select :end_time
              end)
       concat (content_tag :div, class: 'form-buttons' do

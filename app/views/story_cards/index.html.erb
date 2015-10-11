@@ -1,0 +1,13 @@
+<ul>
+  <% @story_cards.each do |each_story_card| %>
+      <%= list_item_to_path_named user_story_cards_path(@user.id,
+                                                               each_story_card.project_id,
+                                                               each_story_card.id),
+                                  each_story_card.display_string %>
+  <% end %>
+  <li>
+    <%= link_to '#', method: :post do %>
+        <div class="new-button">+</div>
+    <% end %>
+  </li>
+</ul>

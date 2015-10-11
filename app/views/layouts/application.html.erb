@@ -9,20 +9,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <div id="menu-bar">
-      <%= link_to user_path(@user.id) do %>
-          <i id="home-menu-button" class="fa fa-home w3-xxxlarge"></i>
-      <% end %>
-      <div id="menu-bar-title">Home</div>
-      <i id="menu-dropdown-button" class="fa fa-bars w3-xxxlarge"></i>
-    </div>
-    <div id="menu-dropdown" class="invisible">
-      <%= link_to user_timesheets_path(@user.id) do %>
-          <div class="menu-dropdown-option">Timesheets</div>
-      <% end %>
-      <div class="menu-dropdown-option">Story Cards</div>
-      <div class="menu-dropdown-option">SOWs</div>
-    </div>
+    <%= render 'layouts/menu_bar' %>
+    <%= render 'layouts/menu_bar_dropdown' %>
     <div id="page-body">
       <%= yield %>
     </div>
