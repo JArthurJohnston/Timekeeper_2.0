@@ -1,5 +1,8 @@
 class Activity < ActiveRecord::Base
   include DateTimeHelper
+  include ActivityValidator
+
+  validate :start_comes_before_end
 
   belongs_to :story_card
   belongs_to :timesheet
@@ -42,8 +45,7 @@ class Activity < ActiveRecord::Base
 
   def set_end_time aDateTime
     if self.end_time.nil?
-      self.end_time= aDateTime
-      self.save
+      update end_time: aDateTime
     end
   end
 

@@ -1,0 +1,18 @@
+<div class="summary">
+    <%= @story_card.actual_estimate_string %>
+</div>
+<h1>Activities</h1>
+<ul>
+  <% @story_card.activities.each do |each_activity| %>
+      <li>
+        <div>
+          <%= each_activity.display_string %>
+        </div>
+      </li>
+  <% end %>
+  <li>
+    <%= link_to new_user_project_story_card_path(@user.id, params[:project_id]) do %>
+        <div class="new-button">+</div>
+    <% end %>
+  </li>
+</ul>

@@ -11,4 +11,10 @@ module StoryCardDisplay
                                                     estimate: estimate}
   end
 
+  def actual_estimate_string
+    "Actual/Estimate: %{actual}/%{estimate}" %
+        {actual: billable_hours, estimate: estimate}
+  end
+
+
 end

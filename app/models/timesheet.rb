@@ -10,7 +10,7 @@ class Timesheet < ActiveRecord::Base
       self.current_activity.set_end_time anActivity.start_time
     end
     anActivity.set_timesheet self
-    update_attributes current_activity_id: anActivity.id
+    update current_activity_id: anActivity.id
   end
 
   def days

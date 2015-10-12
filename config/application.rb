@@ -12,8 +12,11 @@ module Timekeeper20
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    #add modules directory to autoload paths
-    config.autoload_paths += %W(#{config.root}/app/models/modules)
+    #add model sub-directories to autoload paths
+    ['display', 'helpers', 'validators'].each do
+    |each_directory|
+      config.autoload_paths += %W(#{config.root}/app/models/#{each_directory})
+    end
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -26,4 +29,5 @@ module Timekeeper20
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
+
 end

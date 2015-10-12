@@ -12,7 +12,8 @@
     user_project_story_cards POST   /users/:user_id/projects/:project_id/story_cards(.:format)             story_cards#create
  new_user_project_story_card GET    /users/:user_id/projects/:project_id/story_cards/new(.:format)         story_cards#new
 edit_user_project_story_card GET    /users/:user_id/projects/:project_id/story_cards/:id/edit(.:format)    story_cards#edit
-     user_project_story_card PATCH  /users/:user_id/projects/:project_id/story_cards/:id(.:format)         story_cards#update
+     user_project_story_card GET    /users/:user_id/projects/:project_id/story_cards/:id(.:format)         story_cards#show
+                             PATCH  /users/:user_id/projects/:project_id/story_cards/:id(.:format)         story_cards#update
                              PUT    /users/:user_id/projects/:project_id/story_cards/:id(.:format)         story_cards#update
                              DELETE /users/:user_id/projects/:project_id/story_cards/:id(.:format)         story_cards#destroy
                user_projects GET    /users/:user_id/projects(.:format)                                     projects#index

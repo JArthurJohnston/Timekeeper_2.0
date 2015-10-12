@@ -1,5 +1,4 @@
 require_relative 'model_test_case'
-require_relative '../../app/models/modules/date_time_helper'
 
 class DateTimeHelperTest < ModelTestCase
   include DateTimeHelper

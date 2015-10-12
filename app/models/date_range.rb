@@ -1,4 +1,3 @@
-require_relative '../../app/models/modules/date_time_helper'
 
 class DateRange
   include DateTimeHelper

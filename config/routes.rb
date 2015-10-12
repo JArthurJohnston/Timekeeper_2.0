@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     resources :statements_of_work
     resources :story_cards, only: :index
     resources :projects do
-      resources :story_cards, only:[:edit, :create, :update, :new, :destroy]
+      resources :story_cards, only:[:show, :edit, :create, :update, :new, :destroy]
     end
     resources :timesheets do
       resources :activities

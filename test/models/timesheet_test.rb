@@ -48,13 +48,11 @@ class TimesheetTest < ModelTestCase
   end
 
   test 'adding an activty sets end of previous activity' do
-    currentActivity = Activity.new
-    currentActivity.save
+    currentActivity = Activity.create(start_time: time_on(4, 30))
     @timesheet.add_activity currentActivity
 
-    expectedTime = DateTime.new(2015, 6, 15, 5, 30, 0)
-    newActivity = Activity.new(start_time: expectedTime)
-    newActivity.save
+    expectedTime = time_on 5, 30
+    newActivity = Activity.create(start_time: expectedTime)
 
     @timesheet.add_activity newActivity
 
