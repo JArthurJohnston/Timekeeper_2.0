@@ -1,4 +1,5 @@
 <div class="summary">
+    <%= @story_card.display_string %>
     <%= @story_card.actual_estimate_string %>
 </div>
 <h1>Activities</h1>
@@ -11,8 +12,8 @@
       </li>
   <% end %>
   <li>
-    <%= link_to new_user_project_story_card_path(@user.id, params[:project_id]) do %>
-        <div class="new-button">+</div>
+    <%= link_to edit_user_project_story_card_path(@user.id, @story_card.project_id, @story_card.id) do %>
+        <div class="new-button">Edit</div>
     <% end %>
   </li>
 </ul>

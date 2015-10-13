@@ -13,7 +13,7 @@ class StoryCardsControllerTest < ActionController::TestCase
     assert_template 'index'
   end
 
-  test "should get show" do
+  test 'should get show' do
     user = User.create
     project = Project.create(user_id: user.id)
     story = StoryCard.create(project_id: project.id)
@@ -45,7 +45,7 @@ class StoryCardsControllerTest < ActionController::TestCase
 
     submit_path_from_controller = @controller.instance_variable_get(:@submit_path)
     assert_not_nil submit_path_from_controller
-    assert_equal user_project_story_cards_path(user.id, project.id), submit_path_from_controller
+    assert_equal user_story_cards_path(user.id), submit_path_from_controller
 
     new_story_card = @controller.instance_variable_get(:@story_card)
     assert_equal story_params[:title], new_story_card.title
@@ -54,18 +54,12 @@ class StoryCardsControllerTest < ActionController::TestCase
     assert_equal story_params[:number], new_story_card.number
   end
 
-
   test 'should get edit' do
     user = User.create
     project = Project.create(user_id: user.id)
     story = StoryCard.create(project_id: project.id)
 
-    story_params = {title: 'All your base',
-                    description: 'are belong to us',
-                    estimate: 16,
-                    number: 'G123'}
-
-    get :new, {user_id: user.id, project_id: project.id, story_card: story_params }
+    get :edit, user_id: user.id, project_id: project.id, id: story.id
 
     assert_response :success
     assert assigns :story_card
@@ -76,12 +70,46 @@ class StoryCardsControllerTest < ActionController::TestCase
     submit_path_from_controller = @controller.instance_variable_get(:@submit_path)
     assert_not_nil submit_path_from_controller
     assert_equal user_project_story_card_path(user.id, project.id), submit_path_from_controller
+  end
+
+  test 'should post create' do
+    user = User.create
+    story_params = {title: 'All your base',
+                    description: 'are belong to us',
+                    estimate: 16,
+                    number: 'G123'}
+
+    post :create, {user_id: user.id, story_card: story_params}
 
     new_story_card = @controller.instance_variable_get(:@story_card)
     assert_equal story_params[:title], new_story_card.title
     assert_equal story_params[:description], new_story_card.description
     assert_equal story_params[:estimate], new_story_card.estimate
     assert_equal story_params[:number], new_story_card.number
+  end
+
+  test 'should post update' do
+    user = User.create
+    project = Project.create(user_id: user.id)
+    story = StoryCard.create(project_id: project.id)
+
+    story_params = {title: 'All your base',
+                    description: 'are belong to us',
+                    estimate: 16,
+                    number: 'G123'}
+
+    post :create, {user_id: user.id, story_card: story_params}
+
+    new_story_card = @controller.instance_variable_get(:@story_card)
+
+    assert_equal story_params[:title], new_story_card.title
+    assert_equal story_params[:description], new_story_card.description
+    assert_equal story_params[:estimate], new_story_card.estimate
+    assert_equal story_params[:number], new_story_card.number
+  end
+
+  test 'get show' do
+    fail();
   end
 
 end

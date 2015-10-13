@@ -1,4 +1,4 @@
-C:\jruby-9.0.0.0\bin\jruby.exe -e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift) C:/Users/Arthur/Projects/Timekeeper_2.0/bin/rake routes
+/opt/jruby-9.0.1.0/bin/jruby -e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift) "/home/arthur/RubymineProjects/Timekeeper 2.0/bin/rake" routes
                       Prefix Verb   URI Pattern                                                            Controller#Action
      user_statements_of_work GET    /users/:user_id/statements_of_work(.:format)                           statements_of_work#index
                              POST   /users/:user_id/statements_of_work(.:format)                           statements_of_work#create
