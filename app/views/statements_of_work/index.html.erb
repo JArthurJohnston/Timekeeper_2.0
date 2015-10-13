@@ -1,0 +1,13 @@
+<ul>
+  <% @story_cards.each do |each_story_card| %>
+      <%= list_item_to_path_named user_project_story_card_path(@user.id,
+                                                               each_story_card.project_id,
+                                                               each_story_card.id),
+                                  each_story_card.display_string %>
+  <% end %>
+  <li>
+    <%= link_to new_user_story_card_path(@user.id, params[:project_id]) do %>
+        <div class="new-button">+</div>
+    <% end %>
+  </li>
+</ul>

@@ -1,0 +1,18 @@
+<div class="summary">
+    <%= @statement_of_work.display_string %>
+</div>
+<h1>Activities</h1>
+<ul>
+  <% @statement_of_work.projects.each do |each_project| %>
+      <li>
+        <div>
+          <%= each_project.display_string %>
+        </div>
+      </li>
+  <% end %>
+  <li>
+    <%= link_to edit_user_statement_of_work_path(@user.id, @statement_of_work.id) do %>
+        <div class="new-button">Edit</div>
+    <% end %>
+  </li>
+</ul>
