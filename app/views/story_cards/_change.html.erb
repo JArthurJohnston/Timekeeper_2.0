@@ -1,0 +1,28 @@
+<div>
+  <%= form_for @story_card, url: @submit_path do |f| %>
+      <div>
+        <div>Title:</div>
+        <%= f.text_field :title %>
+      </div>
+      <div>
+        <div>Number:</div>
+        <%= f.text_field :number %>
+      </div>
+      <div>
+        <div>Estimate:</div>
+        <%= f.text_field :estimate %>
+      </div>
+      <div>
+        <div>Description:</div>
+        <%= f.text_area :description %>
+      </div>
+      <div>
+        <div>Project:</div>
+        <%= f.collection_select(:project_id, Project.all, :id, :name) %>
+      </div>
+      <div>
+        <%= f.submit 'Save' %>
+        <%= cancel_button %>
+      </div>
+  <% end %>
+</div>

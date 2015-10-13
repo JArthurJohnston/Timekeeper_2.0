@@ -1,4 +1,4 @@
-/opt/jruby-9.0.1.0/bin/jruby -e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift) "/home/arthur/RubymineProjects/Timekeeper 2.0/bin/rake" routes
+C:\jruby-9.0.0.0\bin\jruby.exe -e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift) C:/Users/Arthur/Projects/Timekeeper_2.0/bin/rake routes
                       Prefix Verb   URI Pattern                                                            Controller#Action
      user_statements_of_work GET    /users/:user_id/statements_of_work(.:format)                           statements_of_work#index
                              POST   /users/:user_id/statements_of_work(.:format)                           statements_of_work#create
@@ -9,8 +9,8 @@
                              PUT    /users/:user_id/statements_of_work/:id(.:format)                       statements_of_work#update
                              DELETE /users/:user_id/statements_of_work/:id(.:format)                       statements_of_work#destroy
             user_story_cards GET    /users/:user_id/story_cards(.:format)                                  story_cards#index
-    user_project_story_cards POST   /users/:user_id/projects/:project_id/story_cards(.:format)             story_cards#create
- new_user_project_story_card GET    /users/:user_id/projects/:project_id/story_cards/new(.:format)         story_cards#new
+                             POST   /users/:user_id/story_cards(.:format)                                  story_cards#create
+         new_user_story_card GET    /users/:user_id/story_cards/new(.:format)                              story_cards#new
 edit_user_project_story_card GET    /users/:user_id/projects/:project_id/story_cards/:id/edit(.:format)    story_cards#edit
      user_project_story_card GET    /users/:user_id/projects/:project_id/story_cards/:id(.:format)         story_cards#show
                              PATCH  /users/:user_id/projects/:project_id/story_cards/:id(.:format)         story_cards#update
