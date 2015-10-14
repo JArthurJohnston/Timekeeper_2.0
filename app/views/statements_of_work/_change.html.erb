@@ -1,0 +1,24 @@
+<div>
+  <%= form_for @statement_of_work, url: @submit_path do |f| %>
+      <div>
+        <div>Number:</div>
+        <%= f.text_field :number %>
+      </div>
+      <div>
+        <div>PO Number:</div>
+        <%= f.text_field :purchase_order_number %>
+      </div>
+      <div>
+        <div>Client:</div>
+        <%= f.text_field :client %>
+      </div>
+      <div>
+        <div>Nickname:</div>
+        <%= f.text_area :nickname %>
+      </div>
+      <div>
+        <%= f.submit 'Save' %>
+        <%= cancel_button %>
+      </div>
+  <% end %>
+</div>

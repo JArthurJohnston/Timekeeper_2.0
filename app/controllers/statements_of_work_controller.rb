@@ -4,8 +4,33 @@ class StatementsOfWorkController < ApplicationController
     @statement_of_work = find_sow
   end
 
-  def sow_params
+  def index
+    @statements_of_work = @user.statements_of_work
+  end
 
+  def new
+    @statement_of_work = StatementOfWork.new
+    @submit_path = user_statements_of_work_path(@user.id)
+  end
+
+  def edit
+    @statement_of_work = find_sow
+    @submit_path = user_statement_of_work_path(@user.id, @statement_of_work.id)
+  end
+
+  def update
+    @statement_of_work = find_sow
+    @statement_of_work.update(sow_params)
+    redirect_to user_statement_of_work_path(@user.id, params[:id])
+  end
+
+  def create
+    @statement_of_work = StatementOfWork.create(sow_params)
+    redirect_to user_statements_of_work_path(@user.id, @statement_of_work.id)
+  end
+
+  def sow_params
+    params.require(:statement_of_work).permit(:number, :purchase_order_number, :client, :nickname)
   end
 
   def find_sow

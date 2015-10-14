@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  include ProjectDisplay
+
   has_many :story_cards, -> {order(:number)}
   belongs_to :statement_of_work
   belongs_to :user
