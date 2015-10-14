@@ -50,4 +50,8 @@ body {
 #page-body {
     text-align: center;
     overflow: scroll;
+    height: 80%;
+    width: 100%;
+    position: fixed;
+    top: 10%;
 }

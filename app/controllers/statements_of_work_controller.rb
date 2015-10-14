@@ -20,13 +20,16 @@ class StatementsOfWorkController < ApplicationController
 
   def update
     @statement_of_work = find_sow
-    @statement_of_work.update(sow_params)
+    @statement_of_work.update!(sow_params)
     redirect_to user_statement_of_work_path(@user.id, params[:id])
   end
 
   def create
-    @statement_of_work = StatementOfWork.create(sow_params)
-    redirect_to user_statements_of_work_path(@user.id, @statement_of_work.id)
+    @statement_of_work = StatementOfWork.new(sow_params)
+    @statement_of_work.user_id = @user.id
+    @statement_of_work.save!
+    redirect_to action: :show, id: @statement_of_work.id, user_id: @user.id
+    # redirect_to user_statements_of_work_path(@user.id, @statement_of_work.id)
   end
 
   def sow_params

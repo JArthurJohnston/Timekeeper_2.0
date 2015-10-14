@@ -8,12 +8,15 @@
 
 #menu-bar {
     width: 100%;
+    position: fixed;
+    top: 0%;
     background-color: black;
     color: white;
     font-size: xx-large;
     text-align: center;
     padding-top: 2%;
     padding-bottom: 2%;
+    height: 10%;
 }
 
 #home-menu-button {
