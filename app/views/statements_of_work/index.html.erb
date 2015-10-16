@@ -2,9 +2,13 @@
   <% @statements_of_work.each do |each_sow| %>
       <%= list_item_to_path_named user_statement_of_work_path(@user.id, each_sow.id), each_sow.display_string %>
   <% end %>
-  <li>
-    <%= link_to new_user_statement_of_work_path(@user.id) do %>
-        <div class="new-button">+</div>
-    <% end %>
-  </li>
 </ul>
+
+<% content_for :buttons_bar do %>
+    <%= link_to new_user_statement_of_work_path(@user.id) do %>
+        <div class="add-button">+</div>
+    <% end %>
+    <%= link_to new_user_statement_of_work_path(@user.id) do %>
+        <div class="add-button">+</div>
+    <% end %>
+<% end %>

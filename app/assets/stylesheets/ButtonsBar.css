@@ -4,4 +4,24 @@
     position: fixed;
     top: 90%;
     width: 100%;
+    text-align: center;
+}
+
+#buttons-bar-popup {
+    background-color: black;
+    position: fixed;
+    top: 82%;
+    width: 100%;
+    text-align: center;
+}
+
+.add-button {
+    background-color: deepskyblue;   
+    width: 85%;
+    height: 20%;
+    border-radius: 5%;
+}
+
+#buttons-menu-icon {
+    color: white;
 }
