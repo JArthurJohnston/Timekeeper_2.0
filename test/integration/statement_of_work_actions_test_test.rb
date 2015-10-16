@@ -99,4 +99,17 @@ class StatementOfWorkActionsTestTest < ActionDispatch::IntegrationTest
     assert_equal user.id, actual_sow.user_id
   end
 
+  test 'destroy sow action' do
+    user = User.create
+    sow = StatementOfWork.create(user_id: user.id)
+
+    delete user_statement_of_work_path(user.id, sow.id)
+
+    assert_nil StatementOfWork.find_by(id: sow.id)
+    assert_response :success
+    assert_template 'index'
+
+
+  end
+
 end

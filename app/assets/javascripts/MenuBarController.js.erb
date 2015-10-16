@@ -3,17 +3,15 @@
  */
 
 var MenubarController = (function(){
-    var isMenuVisible, menuBar, menuDropdown;
+    var isMenuVisible, menuBar, menuDropdown, menuBarEventDelegator;
 
     function initialize() {
         isMenuVisible = false;
         menuBar = document.querySelector('#menu-bar');
         menuDropdown = document.querySelector('#menu-dropdown');
-        wireUpMenuButton();
-    }
-
-    function wireUpMenuButton(){
-        menuBar.querySelector('#menu-dropdown-button').onclick = toggleMenu;
+        menuBar.onclick = toggleMenu;
+//        menuBarEventDelegator = new EventDelegator('#menu-bar');
+//        menuBarEventDelegator.handleCommand('show-menu-dropdown', toggleMenu);
     }
 
     function setMenuTitle(titleString){

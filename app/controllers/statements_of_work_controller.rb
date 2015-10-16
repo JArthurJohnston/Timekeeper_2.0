@@ -32,6 +32,12 @@ class StatementsOfWorkController < ApplicationController
     # redirect_to user_statements_of_work_path(@user.id, @statement_of_work.id)
   end
 
+  def destroy
+    @statement_of_work = find_sow
+    @statement_of_work.destroy!
+    redirect_to user_statements_of_work_path(@user.id)
+  end
+
   def sow_params
     params.require(:statement_of_work).permit(:number, :purchase_order_number, :client, :nickname)
   end

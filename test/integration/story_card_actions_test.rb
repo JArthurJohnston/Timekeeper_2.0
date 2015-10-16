@@ -20,5 +20,18 @@ class StoryCardActionsTest < ActionDispatch::IntegrationTest
     assert_equal expected_path, @controller.instance_variable_get(:@submit_path)
   end
 
+  test 'destroy story card action' do
+    user = User.id
+    projet = Project.create
+    story = StoryCard.create(user_id: user.id, project_id: project.id)
+
+    delete user_project_story_card_path(user.id, project.id, story.id)
+
+    assert_nil StoryCard.find_by(id: story.id)
+
+    assert_response :success
+    assert_template 'index'
+  end
+
 
 end

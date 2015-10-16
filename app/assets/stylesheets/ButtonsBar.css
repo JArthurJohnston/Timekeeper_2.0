@@ -10,10 +10,38 @@
 #buttons-bar-popup {
     background-color: black;
     position: fixed;
-    top: 82%;
+    top: 50%;
+    height: 50%;
     width: 100%;
     text-align: center;
 }
+
+.add-button {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.delete-button {
+    background-color: lightcoral;
+    color: #730E15;
+}
+
+.edit-button {
+    background-color: #DADADA;
+    color: black;
+}
+
+#buttons-bar-popup a div {
+    color: white;
+    width: 80%;
+    text-align: center;
+    height: 14%;
+    margin: 10%;
+    border-radius: 8px;
+    padding-top: 5%;
+}
+
+
 
 .add-button {
     background-color: deepskyblue;   

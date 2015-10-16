@@ -3,9 +3,10 @@
       <%= list_item_to_path_named user_timesheet_path(@user.id, each_timesheet.id),
                                   each_timesheet.display_string %>
   <% end %>
-  <li>
-      <%= link_to user_timesheets_path(@user.id), method: :post do %>
-          <div class="new-button">+</div>
-      <% end %>
-  </li>
 </ul>
+
+<% content_for :buttons_bar do %>
+    <%= link_to user_timesheets_path(@user.id), method: :post do %>
+        <div class="add-button">+</div>
+    <% end %>
+<% end %>

@@ -10,9 +10,13 @@
         </div>
       </li>
   <% end %>
-  <li>
-    <%= link_to edit_user_statement_of_work_path(@user.id, @statement_of_work.id) do %>
-        <div class="new-button">Edit</div>
-    <% end %>
-  </li>
 </ul>
+
+<% content_for :buttons_bar do %>
+    <%= link_to edit_user_statement_of_work_path(@user.id, @statement_of_work.id) do %>
+        <div class="add-button">Edit</div>
+    <% end %>
+    <%= link_to user_statement_of_work_path(@user.id, @statement_of_work.id), method: :delete do %>
+        <div class="delete-button">Delete</div>
+    <% end %>
+<% end %>

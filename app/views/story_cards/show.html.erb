@@ -11,9 +11,13 @@
         </div>
       </li>
   <% end %>
-  <li>
-    <%= link_to edit_user_project_story_card_path(@user.id, @story_card.project_id, @story_card.id) do %>
-        <div class="new-button">Edit</div>
-    <% end %>
-  </li>
 </ul>
+
+<% content_for :buttons_bar do %>
+    <%= link_to edit_user_project_story_card_path(@user.id, @story_card.project_id, @story_card.id) do %>
+        <div class="edit-button">Edit</div>
+    <% end %>
+    <%= link_to user_project_story_card_path(@user.id, params[:project_id], @story_card.id), method: :delete do %>
+        <div class="delete-button">Delete</div>
+    <% end %>
+<% end %>

@@ -29,6 +29,12 @@ class StoryCardsController < ApplicationController
     redirect_to story_card_path
   end
 
+  def delete
+    @story_card = find_story_card
+    @story_card.destroy!
+    redirect_to action: :index
+  end
+
   def story_card_path
     user_project_story_card_path(@user.id, @story_card.project_id, @story_card.id)
   end

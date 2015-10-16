@@ -23,6 +23,12 @@ class ActivitiesController < ApplicationController
     redirect_to user_timesheet_path(@user.id, timesheet.id)
   end
 
+  def destroy
+    activity = find_activity
+    activity.destroy!
+    redirect_to user_timesheet_path(@user.id, params[:timesheet_id])
+  end
+
   def activity_params
     params.require(:activity).permit(:start_time, :end_time, :story_card_id)
   end

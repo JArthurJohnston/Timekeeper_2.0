@@ -5,9 +5,10 @@
                                                                each_story_card.id),
                                   each_story_card.display_string %>
   <% end %>
-  <li>
-    <%= link_to new_user_story_card_path(@user.id, params[:project_id]) do %>
-        <div class="new-button">+</div>
-    <% end %>
-  </li>
 </ul>
+
+<% content_for :buttons_bar do %>
+    <%= link_to new_user_story_card_path(@user.id, params[:project_id]) do %>
+        <div class="add-button">+</div>
+    <% end %>
+<% end %>
