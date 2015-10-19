@@ -1,0 +1,26 @@
+<div class="project-select">
+  <!-- Might have to put the select tag into a form, the form submission will include the proper project id-->
+  <%= form_for user_project_story_cards_path(@user.id, params[:project_id]) do |f| %>
+    <%= f.collection_select(:project_id, Project.all, :id, :name, onchange: "$(this).parent('form').submit();") %>
+  <% end %>
+  <%= select_tag 'project-selector',
+                 options_from_collection_for_select(@projects, :id, :name),
+                 data_url: user_story_card_select_path(@user.id)%>
+</div>
+
+<div class="selected-project-story-cards">
+  <% @story_cards.each do |each_story_card| %>
+      <li>
+        <%= link_to user_project_story_card_path(@user.id, params[:project_id], each_story_card.id) do %>
+            <div>
+              <%= each_story_card.display_string %>
+            </div>
+        <% end %>
+      </li>
+  <% end %>
+</div>
+
+<% content_for :buttons_bar do %>
+    <%= link_to new_user_project_story_card_path(@user.id, @selected_project_id) do %>
+    <% end %>
+<% end %>

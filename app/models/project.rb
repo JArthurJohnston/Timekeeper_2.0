@@ -5,6 +5,8 @@ class Project < ActiveRecord::Base
   belongs_to :statement_of_work
   belongs_to :user
 
+  NULL = NullProject.new
+
   def purchase_order_number
     return self.statement_of_work.purchase_order_number
   end

@@ -14,7 +14,7 @@
     </li>
   <% end %>
   <li>
-    <%= link_to new_user_timesheet_activity_path(@user.id, @timesheet.id) do %>
+    <%= link_to user_story_card_select_path(@user.id) do %>
         <div class="new-button">+</div>
     <% end %>
   </li>
@@ -22,7 +22,7 @@
 
 <% content_for :buttons_bar do %>
     <%= link_to new_user_timesheet_activity_path(@user.id, @timesheet.id) do %>
-        <div class="add-button">+</div>
+        <div class="add-button">Create Activity</div>
     <% end %>
     <%= link_to user_timesheets_path(@user.id), method: :delete do %>
         <div class="delete-button">Delete</div>

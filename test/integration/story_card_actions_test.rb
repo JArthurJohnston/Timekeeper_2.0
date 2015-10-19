@@ -33,5 +33,46 @@ class StoryCardActionsTest < ActionDispatch::IntegrationTest
     assert_template 'index'
   end
 
+  test 'get select' do
+    user = User.create
+    project1 = Project.create
+    project2 = Project.create
+    story1 = StoryCard.create(project_id: project1.id)
+    story2 = StoryCard.create(project_id: project1.id)
+    story3 = StoryCard.create(project_id: project2.id)
+
+    get user_project_story_card_select_path(user.id, project1.id)
+
+    assert_response :success
+    assert_template 'select'
+    assert assigns :projects
+    assert assigns :story_cards
+    assert assigns :selected_project
+
+    assert_equal [story1, story2], @controller.instance_variable_get(:@story_cards)
+    assert_equal [project1, project2], @controller.instance_variable_get(:@projects)
+    assert_equal project1, @controller.instance_variable_get(:@selected_project)
+  end
+
+  test 'index gets story cards for a project' do
+    user = User.create
+    project1 = Project.create
+    project2 = Project.create
+    story1 = StoryCard.create(project_id: project1.id)
+    story2 = StoryCard.create(project_id: project1.id)
+    story3 = StoryCard.create(project_id: project2.id)
+
+    get user_project_story_cards_path(user.id, project1.id)
+
+    assert_response :success
+    assert_template 'index'
+    assert assigns :story_cards
+    assert assigns :projects
+    assert assigns :selected_project
+
+    assert_equal [story1, story2], @controller.instance_variable_get(:@story_cards)
+    assert_equal [project1, project2], @controller.instance_variable_get(:@projects)
+    assert_equal project1, @controller.instance_variable_get(:@selected_project)
+  end
 
 end

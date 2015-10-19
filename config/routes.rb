@@ -54,16 +54,20 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-
   resources :users do
     resources :statements_of_work
-    resources :story_cards, only: [:index, :new, :create]
+    resources :story_cards, only: :new
     resources :projects do
-      resources :story_cards, only:[:show, :edit, :update, :destroy]
+      resources :story_cards
     end
     resources :timesheets do
       resources :activities
     end
   end
+
+  match 'users/:user_id/projects/:project_id/story_cards/select' => 'story_cards#select',
+        via: :get,
+        as: 'user_project_story_card_select'
+
 
 end

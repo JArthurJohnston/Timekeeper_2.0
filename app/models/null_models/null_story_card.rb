@@ -1,0 +1,2 @@
+class NullStoryCard < StoryCard
+end

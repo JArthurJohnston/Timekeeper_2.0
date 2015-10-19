@@ -1,6 +1,7 @@
 class StoryCardsController < ApplicationController
   def index
-    @story_cards = StoryCard.all
+    project = Project.find params[:project_id]
+    @story_cards = project.story_cards
   end
 
   def show
@@ -33,6 +34,10 @@ class StoryCardsController < ApplicationController
     @story_card = find_story_card
     @story_card.destroy!
     redirect_to action: :index
+  end
+
+  def select
+    @projects = Project.all
   end
 
   def story_card_path

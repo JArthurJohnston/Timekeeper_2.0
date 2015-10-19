@@ -2,6 +2,8 @@ class Timesheet < ActiveRecord::Base
   include CurrentActivity, TimesheetDisplay
   extend DateTimeHelper
 
+  NULL = NullTimesheet.new
+
   has_many :activities, -> { order(:start_time) }, dependent: :destroy
   belongs_to :user
 

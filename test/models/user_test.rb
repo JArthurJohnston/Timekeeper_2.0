@@ -41,4 +41,41 @@ class UserTest < ModelTestCase
     assert_equal timesheet, user.current_timesheet
   end
 
+  test 'user has current project' do
+    expected_project = Project.create
+    story_card = StoryCard.create(project_id: expected_project.id)
+    user = User.create
+    timesheet = Timesheet.create(user_id: user.id)
+    user.update(current_timesheet_id: timesheet.id)
+    activity = Activity.create(timesheet_id: timesheet.id, story_card_id: story_card.id)
+    timesheet.add_activity activity
+
+    assert_equal expected_project, user.current_project
+  end
+
+  test 'current project is nil if activity is nil' do
+    user = User.create
+    timesheet = Timesheet.create(user_id: user.id)
+    user.update(current_timesheet_id: timesheet.id)
+
+    assert_nil user.current_project
+  end
+
+  test 'current story card is nil if activity is nil' do
+    user = User.create
+    timesheet = Timesheet.create(user_id: user.id)
+    user.update(current_timesheet_id: timesheet.id)
+
+    assert_nil user.current_story_card
+  end
+
+  test 'current timesheet returns null timesheet when nil' do
+    user = User.create
+    assert_equal User::NULL, user.current_timesheet
+
+    timesheet = Timesheet.create(user_id: user.id)
+    user.update(current_timesheet_id: timesheet.id)
+
+    assert_equal timesheet, user.current_timesheet
+  end
 end
