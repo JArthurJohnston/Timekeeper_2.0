@@ -12,5 +12,11 @@ class NullTimesheet < Timesheet
     DateTime.now
   end
 
+  def current_activity
+    Activity::NULL
+  end
 
+  def days
+    [TimesheetDay.new(self, DateTime.now)]
+  end
 end

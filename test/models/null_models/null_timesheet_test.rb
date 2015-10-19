@@ -14,8 +14,8 @@ class NullTimesheetTest < ModelTestCase
   end
 
   test 'dates are both today' do
-    assert_equal DateTime.now, @null_timesheet.start_date
-    assert_equal DateTime.now, @null_timesheet.through_date
+    assert DateTime.now.eql? @null_timesheet.start_date
+    assert DateTime.now.eql? @null_timesheet.through_date
   end
 
   test 'story cards are empty' do

@@ -58,24 +58,30 @@ class UserTest < ModelTestCase
     timesheet = Timesheet.create(user_id: user.id)
     user.update(current_timesheet_id: timesheet.id)
 
-    assert_nil user.current_project
+    assert_equal Project::NULL, user.current_project
   end
 
-  test 'current story card is nil if activity is nil' do
+  test 'current story card is NULL sotry card if activity is nil' do
     user = User.create
     timesheet = Timesheet.create(user_id: user.id)
     user.update(current_timesheet_id: timesheet.id)
 
-    assert_nil user.current_story_card
+    assert_equal StoryCard::NULL, user.current_story_card
   end
 
   test 'current timesheet returns null timesheet when nil' do
     user = User.create
-    assert_equal User::NULL, user.current_timesheet
+    assert_equal Timesheet::NULL, user.current_timesheet
 
-    timesheet = Timesheet.create(user_id: user.id)
-    user.update(current_timesheet_id: timesheet.id)
+    timesheet = user.create_timesheet
 
     assert_equal timesheet, user.current_timesheet
   end
+
+  test 'current activity is NULL activity when nil' do
+    user = User.create
+
+    assert_equal Activity::NULL, user.current_activity
+  end
+
 end

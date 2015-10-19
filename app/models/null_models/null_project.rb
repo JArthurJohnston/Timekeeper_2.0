@@ -8,4 +8,8 @@ class NullProject < Project
   def statement_of_work
     StatementOfWork::NULL
   end
+
+  def name
+    ''
+  end
 end

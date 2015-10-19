@@ -130,7 +130,7 @@ class ActivityTest < ModelTestCase
 
     act3.destroy
 
-    assert_nil timesheet.current_activity
+    assert_equal Activity::NULL, timesheet.current_activity
 
     assert_nil Timesheet.find(timesheet.id).current_activity_id
   end

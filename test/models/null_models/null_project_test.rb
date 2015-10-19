@@ -17,4 +17,8 @@ class NullProjectTest < ModelTestCase
   test 'statement of work returns null sow' do
     assert_equal StatementOfWork::NULL, @null_project.statement_of_work
   end
+
+  test 'name is empty' do
+    assert_equal '', @null_project.name
+  end
 end

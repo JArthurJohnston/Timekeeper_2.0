@@ -8,6 +8,7 @@ class Activity < ActiveRecord::Base
   belongs_to :timesheet
   belongs_to :user
 
+  NULL = NullActivity.new
   BILLING_CYCLE = 15.0 * 60
 
   def self.now

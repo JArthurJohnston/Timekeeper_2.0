@@ -71,7 +71,7 @@ class TimesheetTest < ModelTestCase
     story_card = StoryCard.create(project_id: project.id)
     activity = Activity.create(story_card_id: story_card.id)
 
-    assert_equal nil, timesheet.current_project
+    assert_equal Project::NULL, timesheet.current_project
     timesheet.add_activity(activity)
 
     assert_equal(project, timesheet.current_project)
@@ -216,6 +216,13 @@ class TimesheetTest < ModelTestCase
     act1 = Activity.create(timesheet_id: timesheet.id, start_time: time_on(5, 15), end_time: time_on(7, 45))
     act2 = Activity.create(timesheet_id: timesheet.id, start_time: time_on(7, 45), end_time: time_on(10, 45))
     assert_equal 5.5, timesheet.total_hours
+  end
+
+  test 'returns null activity if current activity is nil' do
+    timesheet = Timesheet.create
+    assert_equal Activity::NULL, timesheet.current_activity
+    assert_equal Project::NULL, timesheet.current_project
+    assert_equal StoryCard::NULL, timesheet.current_story_card
   end
 
 end

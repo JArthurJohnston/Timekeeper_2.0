@@ -1,21 +1,19 @@
 module CurrentActivity
 
   def current_activity
-    return Activity.find_by(id: self.current_activity_id)
+    found_activity = Activity.find_by(id: self.current_activity_id)
+    if found_activity.nil?
+      return Activity::NULL
+    end
+    return found_activity
   end
 
   def current_project
-    currentActivity = self.current_activity
-    unless currentActivity.nil?
-      return currentActivity.project
-    end
+      return current_activity.project
   end
 
   def current_story_card
-    currentActivity = self.current_activity
-    unless currentActivity.nil?
-      return currentActivity.story_card
-    end
+      return current_activity.story_card
   end
 
 end
