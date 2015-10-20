@@ -1,4 +1,5 @@
 class NullUser < User
+  include NullModel
 
   def current_timesheet
     Timesheet::NULL

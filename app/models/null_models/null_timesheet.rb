@@ -1,4 +1,5 @@
 class NullTimesheet < Timesheet
+  include NullModel
 
   def activities
     []

@@ -18,4 +18,8 @@ class NullStoryCardTest < ModelTestCase
     assert_equal [], @null_story_card.activities
   end
 
+  test 'id is -1' do
+    assert_equal -1, @null_story_card.id
+  end
+
 end

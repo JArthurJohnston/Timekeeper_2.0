@@ -1,7 +1,13 @@
 class StoryCardsController < ApplicationController
   def index
-    project = Project.find params[:project_id]
-    @story_cards = project.story_cards
+    project_id = params[:project_id]
+    if null_id? project_id
+      @project = Project::NULL
+    else
+      @project = Project.find project_id
+    end
+    @projects = Project.all
+    @story_cards = @project.story_cards
   end
 
   def show

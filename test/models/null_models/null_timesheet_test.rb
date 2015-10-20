@@ -5,6 +5,10 @@ class NullTimesheetTest < ModelTestCase
     @null_timesheet = Timesheet::NULL
   end
 
+  test 'id is -1' do
+    assert_equal -1, @null_timesheet.id
+  end
+
   test 'current activity returns null activity' do
     assert_equal Activity::NULL, @null_timesheet.current_activity
   end

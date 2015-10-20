@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
     @user = User.find params[:user_id]
   end
 
+  def null_id? aNumberOrString
+    return aNumberOrString == -1 || aNumberOrString == '-1'
+  end
+
 end

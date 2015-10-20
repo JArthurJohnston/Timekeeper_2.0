@@ -6,6 +6,10 @@ class NullActivityTest < ModelTestCase
     @null_act = Activity::NULL
   end
 
+  test 'id is -1' do
+    assert_equal -1, @null_act.id
+  end
+
   test 'times are both now' do
     assert DateTime.now.eql? @null_act.start_time
     assert DateTime.now.eql? @null_act.end_time

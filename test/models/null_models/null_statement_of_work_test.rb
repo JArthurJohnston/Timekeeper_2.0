@@ -19,4 +19,9 @@ class NullStatementOfWorkTest < ModelTestCase
   test 'returns null user' do
     assert_equal User::NULL, @null_sow.user
   end
+
+  test 'id is -1' do
+    assert_equal -1, StatementOfWork::NULL.id
+  end
+
 end
