@@ -1,26 +1,16 @@
-<div>
+<div class="change">
   <%= form_for @story_card, url: @submit_path do |f| %>
-      <div>
-        <div>Title:</div>
+        <%= f.label 'Title:' %>
         <%= f.text_field :title %>
-      </div>
-      <div>
-        <div>Number:</div>
+        <%= f.label 'Number:' %>
         <%= f.text_field :number %>
-      </div>
-      <div>
-        <div>Estimate:</div>
+        <%= f.label 'Estimate:' %>
         <%= f.text_field :estimate %>
-      </div>
-      <div>
-        <div>Description:</div>
-        <%= f.text_area :description %>
-      </div>
-      <div>
-        <div>Project:</div>
+        <%= f.label 'Project:' %>
         <%= f.collection_select(:project_id, Project.all, :id, :name) %>
-      </div>
-      <div>
+        <%= f.label 'Description:' %>
+        <%= f.text_area :description %>
+      <div class="change-buttons">
         <%= f.submit 'Save' %>
         <%= cancel_button %>
       </div>

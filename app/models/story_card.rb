@@ -1,5 +1,7 @@
 class StoryCard < ActiveRecord::Base
   include StoryCardDisplay
+  extend FindNullModel
+
   belongs_to :project
   has_many :activities, -> {order(:start_time)}
 

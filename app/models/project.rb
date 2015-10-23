@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   include ProjectDisplay
+  extend FindNullModel
 
   has_many :story_cards, -> {order(:number)}
   belongs_to :statement_of_work

@@ -1,13 +1,17 @@
 class StoryCardsController < ApplicationController
   def index
-    project_id = params[:project_id]
-    if null_id? project_id
-      @project = Project::NULL
-    else
-      @project = Project.find project_id
-    end
+    @project = Project.find project_id_from_params
     @projects = Project.all
     @story_cards = @project.story_cards
+  end
+
+  def project_id_from_params
+    unless params[:project_select].nil?
+      project_id = params[:project_select][:selected_project]
+    else
+      project_id = params[:project_id]
+    end
+    project_id
   end
 
   def show
@@ -17,7 +21,7 @@ class StoryCardsController < ApplicationController
 
   def new
     @story_card = StoryCard.new
-    @submit_path = user_story_cards_path(@user.id)
+    @submit_path = user_project_story_cards_path(@user.id, @user.current_project.id)
   end
 
   def edit

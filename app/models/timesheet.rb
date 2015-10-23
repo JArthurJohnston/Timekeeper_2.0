@@ -1,6 +1,7 @@
 class Timesheet < ActiveRecord::Base
   include CurrentActivity, TimesheetDisplay
   extend DateTimeHelper
+  extend FindNullModel
 
   NULL = NullTimesheet.new
 

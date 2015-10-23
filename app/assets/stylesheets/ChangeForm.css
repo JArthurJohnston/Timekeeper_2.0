@@ -1,0 +1,25 @@
+.change {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.change textarea {
+    width: 100%;
+}
+
+.change input {
+    width: 100%;
+    font-size: x-large;
+}
+
+.change label {
+    display: block;
+    text-align: left;
+    margin-top: 2%;
+    font-size: xx-large;
+}
+
+.change .change-buttons input {
+    padding: 2%;
+}

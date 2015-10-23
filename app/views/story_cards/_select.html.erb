@@ -1,23 +1,23 @@
 <div class="project-select">
-  <%= form_for user_project_story_cards_path(@user.id, params[:project_id]) do |f| %>
-    <%= f.collection_select(:project_id, @projects, :id, :name, onchange: "$(this).parent('form').submit();") %>
+  <%= form_for :project_select, url: user_project_story_cards_path(@user.id, params[:project_id]), method: :get do |f| %>
+    <%= f.collection_select(:selected_project, @projects, :id, :name, {:selected => @project.id}, :onchange => "this.form.submit()", selected: @project) %>
   <% end %>
-  <%= select_tag 'project-selector',
-                 options_from_collection_for_select(@projects, :id, :name),
-                 data_url: user_project_story_card_select_path(@user.id, @project.id)%>
 </div>
 <div class="selected-project-story-cards">
-  <% @story_cards.each do |each_story_card| %>
-      <li>
-        <%= link_to user_project_story_card_path(@user.id, params[:project_id], each_story_card.id) do %>
-            <div>
-              <%= each_story_card.display_string %>
-            </div>
-        <% end %>
-      </li>
-  <% end %>
+  <ul>
+    <% @story_cards.each do |each_story_card| %>
+        <li>
+          <%= link_to user_project_story_card_path(@user.id, each_story_card.project_id, each_story_card.id) do %>
+              <div>
+                <%= each_story_card.display_string %>
+              </div>
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
 </div>
 <% content_for :buttons_bar do %>
-    <%= link_to new_user_project_story_card_path(@user.id, @selected_project_id) do %>
+    <%= link_to new_user_project_story_card_path(@user.id, @user.current_project.id) do %>
+        <div class="add-button">+</div>
     <% end %>
 <% end %>

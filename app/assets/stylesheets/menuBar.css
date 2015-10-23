@@ -31,9 +31,9 @@ i:hover {
 
 #menu-bar-title {
     display: inline;
-    vertical-align: top;
 }
 
-a i {
+i {
     color: white;
+    padding: 3%;
 }

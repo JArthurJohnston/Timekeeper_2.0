@@ -14,7 +14,7 @@
     </li>
   <% end %>
   <li>
-    <%= link_to user_story_card_select_path(@user.id) do %>
+    <%= link_to new_activity_for_timesheet_path(@user.id, @timesheet.id) do %>
         <div class="new-button">+</div>
     <% end %>
   </li>

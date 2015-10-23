@@ -1,15 +1,15 @@
-<div>
+<div class="change">
   <%= form_for @activity, url: @submit_path do |f| %>
       <div>
-        <div>Start:</div>
+        <%= f.label 'Start:' %>
         <%= f.time_select :start_time, {ampm: true, minute_step: 15} %>
       </div>
       <div>
-        <div>End:</div>
+        <%= f.label 'End:' %>
         <%= f.time_select :end_time, {ampm: true, minute_step: 15} %>
       </div>
       <div>
-        <div>Story Card:</div>
+        <%= f.label 'Story Card:' %>
         <%= f.collection_select(:story_card_id, StoryCard.all, :id, :project_number) %>
       </div>
       <div>

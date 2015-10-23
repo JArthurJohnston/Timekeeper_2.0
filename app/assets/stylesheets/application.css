@@ -55,3 +55,14 @@ body {
     position: fixed;
     top: 10%;
 }
+
+select{
+    width: 100%;
+    text-align: center;
+    font-size: xx-large;
+    background-color: #000099;
+    color: white;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    padding: 2%;
+}

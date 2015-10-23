@@ -10,6 +10,10 @@ class ActivitiesController < ApplicationController
     @submit_path = activities_path
   end
 
+  def new_for_timesheet
+
+  end
+
   def update
     activity = find_activity
     activity.update(activity_params)
