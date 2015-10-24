@@ -75,4 +75,27 @@ class StoryCardActionsTest < ActionDispatch::IntegrationTest
     assert_equal project1, @controller.instance_variable_get(:@selected_project)
   end
 
+  test 'get new story card for activity' do
+    user = User.create
+    timesheet = Timesheet.create(user_id: user.id)
+
+    get new_story_card_for_activity_path(user.id, timesheet.id)
+
+    assert_response :success
+    assert_template ''
+    assert assigns :new_story_card
+  end
+
+  test 'delete destroy action' do
+    user = User.create
+    project = Project.create(user_id: user)
+    story = StoryCard.create(project_id: project.id)
+
+    delete user_project_story_card_path(user.id, project.id, story.id)
+
+    assert_response :success
+    assert_template 'index'
+    assert_nil StoryCard.find_by(id: story.id)
+  end
+
 end

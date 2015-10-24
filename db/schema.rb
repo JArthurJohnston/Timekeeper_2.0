@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003044554) do
+ActiveRecord::Schema.define(version: 20151024201346) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
@@ -19,12 +19,14 @@ ActiveRecord::Schema.define(version: 20151003044554) do
     t.integer  "timesheet_id"
     t.integer  "story_card_id"
     t.integer  "user_id"
+    t.boolean  "is_deleted"
   end
 
   create_table "projects", force: :cascade do |t|
     t.string  "name",                 limit: 255
     t.integer "statement_of_work_id"
     t.integer "user_id"
+    t.boolean "is_deleted"
   end
 
   create_table "statements_of_work", force: :cascade do |t|
@@ -33,6 +35,7 @@ ActiveRecord::Schema.define(version: 20151003044554) do
     t.string  "client",                limit: 255
     t.string  "nickname",              limit: 255
     t.integer "user_id"
+    t.boolean "is_deleted"
   end
 
   create_table "story_cards", force: :cascade do |t|
@@ -41,16 +44,19 @@ ActiveRecord::Schema.define(version: 20151003044554) do
     t.string  "title",       limit: 255
     t.string  "description", limit: 255
     t.integer "estimate"
+    t.boolean "is_deleted"
   end
 
   create_table "timesheets", force: :cascade do |t|
     t.integer "user_id"
     t.integer "current_activity_id"
+    t.boolean "is_deleted"
   end
 
   create_table "users", force: :cascade do |t|
     t.string  "name",                 limit: 255
     t.integer "current_timesheet_id"
+    t.boolean "is_deleted"
   end
 
 end

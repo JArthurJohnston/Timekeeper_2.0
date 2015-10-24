@@ -12,14 +12,17 @@ class Activity < ActiveRecord::Base
   NULL = NullActivity.new
   BILLING_CYCLE = 15.0 * 60
 
-  def self.now
-    return self.new(start_time: DateTime.now)
+  def self.now timesheet_id, story_card_id
+    return Activity.create(start_time: DateTime.now, timesheet_id: timesheet_id, story_card_id: story_card_id)
   end
 
   def initialize attributes = nil, options = {}
     unless attributes.nil?
       if_not_nil_round attributes, :start_time
       if_not_nil_round attributes, :end_time
+      attributes[:is_deleted] = false
+    else
+      attributes = {is_deleted: false}
     end
     super attributes, options
   end
@@ -33,7 +36,7 @@ class Activity < ActiveRecord::Base
   end
 
   def display_string
-    return self.range.display_string
+    "%{story_card} - %{range}" % {story_card: story_card.project_number, range: range.display_string}
   end
 
   def total_time
@@ -43,6 +46,13 @@ class Activity < ActiveRecord::Base
       return (time_in_minutes(end_time) - time_in_minutes(start_time)) / 60.0
     end
     return Float::INFINITY
+  end
+
+  def timesheet
+    if timesheet_id.nil?
+      return Timesheet::NULL
+    end
+    super
   end
 
   def set_end_time aDateTime
@@ -64,10 +74,9 @@ class Activity < ActiveRecord::Base
 
   def destroy
     if self.timesheet.current_activity_id == self.id
-      self.timesheet.current_activity_id= nil
-      self.timesheet.save
+      timesheet.update(current_activity_id: nil)
     end
-    super
+    self.update(is_deleted: true)
   end
 
   private

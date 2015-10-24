@@ -6,7 +6,7 @@
     display: block;
 }
 
-#menu-bar {
+.menu-bar {
     width: 100%;
     position: fixed;
     top: 0%;
@@ -24,16 +24,16 @@
     margin-left: 2%;
 }
 
-i:hover {
-    color: aquamarine;
-    cursor: pointer;
-}
-
 #menu-bar-title {
     display: inline;
 }
 
-i {
+.menu-bar i {
     color: white;
     padding: 3%;
+}
+
+.menu-bar i:hover {
+    color: aquamarine;
+    cursor: pointer;
 }

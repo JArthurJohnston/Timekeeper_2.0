@@ -3,13 +3,14 @@
  */
 
 var MenubarController = (function(){
-    var isMenuVisible, menuBar, menuDropdown, menuBarEventDelegator;
+    var isMenuVisible, menuBar, menuDropdown;
 
     function initialize() {
         isMenuVisible = false;
-        menuBar = document.querySelector('#menu-bar');
+        menuBar = document.querySelector('.menu-bar');
         menuDropdown = document.querySelector('#menu-dropdown');
-        menuBar.onclick = toggleMenu;
+        var menuButton = document.querySelector('#menu-dropdown-button')
+        menuButton.onclick = toggleMenu;
 //        menuBarEventDelegator = new EventDelegator('#menu-bar');
 //        menuBarEventDelegator.handleCommand('show-menu-dropdown', toggleMenu);
     }

@@ -2,6 +2,16 @@ require_relative 'model_test_case'
 
 class ActivityTest < ModelTestCase
 
+  test 'activity can be deleted' do
+    act = Activity.create
+    deny act.is_deleted
+    assert_equal act, Activity.find(act.id)
+
+    act.destroy
+    assert act.is_deleted
+    assert_equal act, Activity.find(act.id)
+  end
+
   test 'activity initializes with start and end' do
     expectedStart = DateTime.new(2015, 1, 1, 2, 2, 2)
     expectedEnd = DateTime.new(2015, 1, 1, 3, 3, 3)
@@ -38,21 +48,17 @@ class ActivityTest < ModelTestCase
     assert_equal timesheet, activity.timesheet
   end
 
-  test 'activity starts now' do
+  test 'activity now_for a timesheet' do
+    timesheet = Timesheet.create
     now = DateTime.now.rounded_to_fifteen_min
-    activity = Activity.now
+    story = StoryCard.create
+    activity = Activity.now timesheet.id, story.id
 
-    assertDatesAreClose now, activity.start_time
+    assert_dates_are_close now, activity.start_time
     assert_equal nil, activity.end_time
-  end
-
-  def assertDatesAreClose expectedDate, actualDate
-    assert_equal expectedDate.utc.year, actualDate.utc.year
-    assert_equal expectedDate.utc.month, actualDate.utc.month
-    assert_equal expectedDate.utc.day, actualDate.utc.day
-    assert_equal expectedDate.utc.hour, actualDate.utc.hour
-    assert_equal expectedDate.utc.minute, actualDate.utc.minute
-    assert_equal expectedDate.utc.second, actualDate.utc.second
+    assert_equal timesheet, activity.timesheet
+    assert_equal story, activity.story_card
+    assert_equal activity, Activity.find(activity.id)
   end
 
   test 'initialize rounds times to nearest 15' do
@@ -130,9 +136,22 @@ class ActivityTest < ModelTestCase
 
     act3.destroy
 
-    assert_equal Activity::NULL, timesheet.current_activity
+    updated_timesheet = Timesheet.find(timesheet.id)
 
-    assert_nil Timesheet.find(timesheet.id).current_activity_id
+    assert_equal Activity::NULL, updated_timesheet.current_activity
+    assert_nil updated_timesheet.current_activity_id
+  end
+
+  test 'activity.timesheet returns null timesheet' do
+    act = Activity.create
+
+    assert_equal Timesheet::NULL, act.timesheet
+
+    timesheet = Timesheet.create
+    act.update(timesheet_id: timesheet.id)
+
+    assert_equal timesheet, act.timesheet
+    assert_equal timesheet, Activity.create(timesheet_id: timesheet.id).timesheet
   end
 
   test 'activities overlap' do
@@ -156,8 +175,10 @@ class ActivityTest < ModelTestCase
   end
 
   test 'display string ' do
-    act1 = Activity.create(start_time: time_on(5, 15), end_time: time_on(6, 0))
-    assert_equal '05:15 to 06:00', act1.display_string
+    project = Project.create(name: 'Mouse')
+    story = StoryCard.create(number: '123', project_id: project.id)
+    act1 = Activity.create(start_time: time_on(5, 15), end_time: time_on(6, 0), story_card_id: story.id)
+    assert_equal 'Mouse 123 - 05:15 to 06:00', act1.display_string
   end
 
 end

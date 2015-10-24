@@ -1,4 +1,4 @@
-#buttons-bar {
+.buttons-bar {
     background-color: black;
     height: 10%;
     position: fixed;
@@ -41,8 +41,6 @@
     padding-top: 5%;
 }
 
-
-
 .add-button {
     background-color: deepskyblue;   
     width: 85%;
@@ -50,6 +48,6 @@
     border-radius: 5%;
 }
 
-#buttons-menu-icon {
+.buttons-bar i {
     color: white;
 }

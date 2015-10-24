@@ -9,21 +9,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <div id="menu-bar">
-      <%= render 'layouts/menu_bar' %>
-    </div>
-    <div id="menu-dropdown" class="invisible">
-      <%= render 'layouts/menu_bar_dropdown' %>
-    </div>
+    <%= render 'layouts/menu_bar' %>
+    <%= render 'layouts/menu_bar_dropdown' %>
     <div id="page-body">
       <%= yield %>
     </div>
     <div id="buttons-bar-popup" class="invisible">
       <%= yield(:buttons_bar) %>
     </div>
-    <div id="buttons-bar">
-      <i id="buttons-menu-icon" class="fa fa-bars w3-xxxlarge"></i>
-    </div>
+    <%= render 'layouts/buttons_bar' %>
     <script type="text/javascript">
       MenubarController.initialize();
       ButtonBarController.initialize();

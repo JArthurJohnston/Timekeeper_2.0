@@ -72,4 +72,14 @@ Rails.application.routes.draw do
         via: :get,
         as: 'new_activity_for_timesheet'
 
+  match 'users/:user_id/timesheet/:timesheet_id/story_cards/:story_card_id/create_activity_for_timesheet' => 'activities#create_for_timesheet',
+        via: :post,
+        as: 'create_activity_for_timesheet'
+  match 'users/:user_id/timesheet/:timesheet_id/add_story_card_with_activity' => 'story_cards#new_with_activity',
+        via: :get,
+        as: 'new_story_card_for_activity'
+  match 'users/:user_id/timesheet/:timesheet_id/create_story_card_with_activity' => 'story_cards#create_with_activity',
+        via: :post,
+        as: 'create_story_card_for_activity'
+
 end

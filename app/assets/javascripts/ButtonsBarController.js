@@ -2,17 +2,17 @@
  * Created by arthur on 10/15/15.
  */
 var ButtonBarController = (function(){
-    var isMenuVisible, buttonsBar, buttonsBarPopup;
+    var isMenuVisible, menuButton, buttonsBarPopup;
 
     function initialize() {
         isMenuVisible = false;
-        buttonsBar = document.querySelector('#buttons-bar');
+        menuButton = document.querySelector('#buttons-menu-icon');
         buttonsBarPopup = document.querySelector('#buttons-bar-popup');
         wireUpMenuButton();
     }
 
     function wireUpMenuButton(){
-        buttonsBar.onclick = toggleMenu;
+        menuButton.onclick = toggleMenu;
     }
 
     function showMenu(){

@@ -11,7 +11,16 @@ class ActivitiesController < ApplicationController
   end
 
   def new_for_timesheet
+    @project = @user.current_project
+    @projects = Project.all
+    @story_cards = @project.story_cards
+    @select_symbol = :select_story_card_for_activity
+  end
 
+  def create_for_timesheet
+    timesheet = Timesheet.find params[:timesheet_id]
+    timesheet.add_activity Activity.now(timesheet.id, params[:story_card_id])
+    redirect_to user_timesheet_path(@user.id, timesheet.id)
   end
 
   def update
