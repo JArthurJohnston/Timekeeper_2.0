@@ -1,0 +1,11 @@
+<ul>
+  <% @projects.each do |each_project| %>
+      <%= list_item_to_path_named user_project_path(@user.id, each_project.id), each_project.display_string %>
+  <% end %>
+</ul>
+
+<% content_for :buttons_bar do %>
+    <%= link_to new_user_project_path(@user.id) do %>
+        <div class="add-button">+</div>
+    <% end %>
+<% end %>

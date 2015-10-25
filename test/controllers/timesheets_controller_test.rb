@@ -22,4 +22,17 @@ class TimesheetsControllerTest < ActionController::TestCase
     assert_equal user, response_user
   end
 
+  test 'show assigns non-deleted activities'
+  user = User.create
+  timesheet = Timesheet.create user_id: user.id
+  act1 = Activity.create(timesheet_id: timesheet.id)
+  act1.destroy
+  act2 = Activity.create(timesheet_id: timesheet.id)
+  act3 = Activity.create(timesheet_id: timesheet.id)
+
+  get :show, user_id: user.id, timesheet_id: timesheet.id
+
+  assert_response :success
+  assert assigns :activities
+
 end

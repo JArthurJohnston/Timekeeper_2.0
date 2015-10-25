@@ -1,8 +1,10 @@
 class StatementOfWork < ActiveRecord::Base
-  include StatementOfWorkDisplay
+  include StatementOfWorkDisplay,
+          Deletable
+  extend FindNullModel
+
   has_many :projects, -> {order(:name)}
   belongs_to :user
-  extend FindNullModel
 
   NULL = NullStatementOfWork.new
 

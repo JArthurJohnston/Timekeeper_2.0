@@ -47,4 +47,11 @@ class ProjectTest < ModelTestCase
     assert_equal user, project.user
   end
 
+  test ':statement_of_work returns null sow when sow_id is nil' do
+    user = User.create
+    project = Project.create(user_id: user.id)
+
+    assert_equal StatementOfWork::NULL, project.statement_of_work
+  end
+
 end

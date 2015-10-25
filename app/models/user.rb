@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
+  include Deletable
   extend FindNullModel
 
   has_many :timesheets
   has_many :activities
   has_many :statements_of_work
+  has_many :projects
+
 
   NULL = NullUser.new
 

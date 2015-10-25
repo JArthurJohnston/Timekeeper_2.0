@@ -20,9 +20,9 @@ class Activity < ActiveRecord::Base
     unless attributes.nil?
       if_not_nil_round attributes, :start_time
       if_not_nil_round attributes, :end_time
-      attributes[:is_deleted] = false
+      # attributes[:is_deleted] = false
     else
-      attributes = {is_deleted: false}
+      # attributes = {is_deleted: false}
     end
     super attributes, options
   end
@@ -72,12 +72,13 @@ class Activity < ActiveRecord::Base
     end
   end
 
-  def destroy
-    if self.timesheet.current_activity_id == self.id
-      timesheet.update(current_activity_id: nil)
-    end
-    self.update(is_deleted: true)
-  end
+  # dont know if I need this yet
+  # def destroy
+  #   if self.timesheet.current_activity_id == self.id
+  #     timesheet.update(current_activity_id: nil)
+  #   end
+  #   self.update(is_deleted: true)
+  # end
 
   private
 

@@ -26,11 +26,17 @@ var ButtonBarController = (function(){
     }
 
     function toggleMenu(){
-        if(isMenuVisible){
-            hideMenu();
-        } else {
-            showMenu();
+        if(hasOptions()){
+            if(isMenuVisible){
+                hideMenu();
+            } else {
+                showMenu();
+            }
         }
+    }
+
+    function hasOptions(){
+        return buttonsBarPopup.children.length > 0
     }
 
     return {
