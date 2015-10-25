@@ -51,3 +51,7 @@
 .buttons-bar i {
     color: white;
 }
+
+.buttons-bar i:hover {
+    color: aquamarine;
+}

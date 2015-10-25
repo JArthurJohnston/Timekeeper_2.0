@@ -1,6 +1,5 @@
 class StatementOfWork < ActiveRecord::Base
-  include StatementOfWorkDisplay,
-          Deletable
+  include StatementOfWorkDisplay
   extend FindNullModel
 
   has_many :projects, -> {order(:name)}

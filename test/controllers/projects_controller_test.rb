@@ -4,8 +4,6 @@ class ProjectsControllerTest < ActionController::TestCase
 
   test 'get index' do
     user = User.create
-    project1 = Project.create
-    project2 = Project.create
 
     get :index, user_id: user.id
 

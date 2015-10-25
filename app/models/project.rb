@@ -1,6 +1,5 @@
 class Project < ActiveRecord::Base
-  include ProjectDisplay,
-          Deletable
+  include ProjectDisplay
   extend FindNullModel
 
   has_many :story_cards, -> {order(:number)}

@@ -7,4 +7,5 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find_by(user_id: @user.id, id: params[:id])
   end
+
 end

@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  include Deletable
   extend FindNullModel
 
   has_many :timesheets

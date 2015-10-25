@@ -1,6 +1,5 @@
 class StoryCard < ActiveRecord::Base
-  include StoryCardDisplay,
-          Deletable
+  include StoryCardDisplay
   extend FindNullModel
 
   belongs_to :project

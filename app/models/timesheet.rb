@@ -1,7 +1,6 @@
 class Timesheet < ActiveRecord::Base
   include CurrentActivity,
-          TimesheetDisplay,
-          Deletable
+          TimesheetDisplay
   extend DateTimeHelper,
          FindNullModel
 
