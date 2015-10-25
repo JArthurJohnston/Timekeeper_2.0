@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+  root 'users#index'
+
   resources :users do
     resources :statements_of_work
     resources :story_cards, only: :new
