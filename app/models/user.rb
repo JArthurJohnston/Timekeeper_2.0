@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
     current_timesheet.current_activity
   end
 
+  def display_string
+    name
+  end
+
 end
