@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root 'users#index'
+  root 'users#show_login'
 
   resources :users do
     resources :statements_of_work
@@ -66,6 +66,9 @@ Rails.application.routes.draw do
       resources :activities
     end
   end
+
+  match 'user_login' => 'users#show_login', via: :get, as: 'show_user_login'
+  match 'users/login' => 'users#login', via: :post, as: 'user_login'
 
   match 'users/:user_id/projects/:project_id/story_cards/select' => 'story_cards#select',
         via: :get,

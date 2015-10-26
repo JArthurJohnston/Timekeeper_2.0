@@ -7,7 +7,18 @@ class ApplicationController < ActionController::Base
   before_action :find_user
 
   def find_user
-    @user = User.find params[:user_id]
+    @user = authenticate_user
+  end
+
+  def authenticate_user
+    session_id = session[:user_id]
+    unless session_id.nil?
+      if session_id.to_s == params[:user_id].to_s
+        return User.find params[:user_id]
+      end
+    end
+    head :forbidden
+    nil
   end
 
   def null_id? aNumberOrString

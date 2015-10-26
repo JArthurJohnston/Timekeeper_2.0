@@ -1,5 +1,6 @@
 /opt/jruby-9.0.1.0/bin/jruby -e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift) /home/arthur/Projects/Timekeeper_2.0/Timekeeper_2.0/bin/rake routes
                         Prefix Verb   URI Pattern                                                                                                Controller#Action
+                          root GET    /                                                                                                          users#show_login
        user_statements_of_work GET    /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#index
                                POST   /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#create
     new_user_statement_of_work GET    /users/:user_id/statements_of_work/new(.:format)                                                           statements_of_work#new
@@ -49,6 +50,8 @@
                                PATCH  /users/:id(.:format)                                                                                       users#update
                                PUT    /users/:id(.:format)                                                                                       users#update
                                DELETE /users/:id(.:format)                                                                                       users#destroy
+               show_user_login GET    /users/show_login(.:format)                                                                                users#show_login
+                    user_login POST   /users/login(.:format)                                                                                     users#login
 user_project_story_card_select GET    /users/:user_id/projects/:project_id/story_cards/select(.:format)                                          story_cards#select
     new_activity_for_timesheet GET    /users/:user_id/timesheet/:timesheet_id/add_activity(.:format)                                             activities#new_for_timesheet
  create_activity_for_timesheet POST   /users/:user_id/timesheet/:timesheet_id/story_cards/:story_card_id/create_activity_for_timesheet(.:format) activities#create_for_timesheet

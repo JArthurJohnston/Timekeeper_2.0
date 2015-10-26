@@ -1,0 +1,30 @@
+.user-login {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: white;
+    z-index: 3;
+    top: 0%;
+}
+
+.user-login form {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20%;
+}
+
+.user-login label {
+    margin-top: 2%;
+    display: block;
+    font-size: xx-large;
+    text-align: left;
+}
+
+.user-login input {
+    margin-top: 2%;
+    display: block;
+    font-size: xx-large;
+    width: 100%;
+}
+

@@ -2,6 +2,6 @@
   <%= link_to user_path(@user.id) do %>
       <i id="home-menu-button" class="fa fa-home w3-xxxlarge"></i>
   <% end %>
-  <div id="menu-bar-title">Timekeeper</div>
+  <div id="menu-bar-title"><%= @user.username %></div>
   <i id="menu-dropdown-button" class="fa fa-bars w3-xxxlarge"></i>
 </div>

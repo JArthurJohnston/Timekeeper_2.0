@@ -1,8 +1,21 @@
 <div>
-  <%= link_to user_timesheet_path(@user.id, @user.current_timesheet_id) do %>
-      <div>
-        <h4>Current Timesheet</h4>
-        <p><%= @user.current_timesheet.display_string %></p>
-      </div>
+  <% if @user.current_timesheet == Timesheet::NULL %>
+    <h4>You have no timesheets</h4>
+      <%= link_to new_user_timesheet_path(@user.id) do %>
+          <div class="add-button">New Timesheet</div>
+      <% end %>
+  <% else %>
+      <%= link_to user_timesheet_path(@user.id, @user.current_timesheet.id) do %>
+          <div>
+            <h4>Current Timesheet</h4>
+            <p><%= @user.current_timesheet.display_string %></p>
+          </div>
+      <% end %>
   <% end %>
 </div>
+
+<% content_for :buttons_bar do %>
+    <%= link_to new_user_timesheet_path(@user.id) do %>
+        <div class="add-button">New Timesheet</div>
+    <% end %>
+<% end %>
