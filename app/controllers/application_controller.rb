@@ -15,14 +15,17 @@ class ApplicationController < ActionController::Base
     unless session_id.nil?
       if session_id.to_s == params[:user_id].to_s
         return User.find params[:user_id]
+      else
+        head :forbidden
       end
+      # redirect_to user_login_path
+      head :forbidden
     end
-    head :forbidden
     nil
   end
 
-  def null_id? aNumberOrString
-    return aNumberOrString == -1 || aNumberOrString == '-1'
+  def null_id? id
+    return id.to_s == '-1'
   end
 
 end

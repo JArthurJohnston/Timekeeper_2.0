@@ -9,10 +9,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def index
-    @users = User.all
-  end
-
   def login
     valid_user = User.find_by(username: params[:user_login][:username], password: params[:user_login][:password])
     if valid_user.nil?
