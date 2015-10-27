@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20151025164808) do
   end
 
   create_table "story_cards", force: :cascade do |t|
-    t.integer "project_id",  limit: 255
+    t.integer "project_id"
     t.string  "number",      limit: 255
     t.string  "title",       limit: 255
     t.string  "description", limit: 255

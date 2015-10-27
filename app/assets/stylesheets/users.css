@@ -28,3 +28,13 @@
     width: 100%;
 }
 
+.new-user-button {
+    font-size: xx-large;
+    background-color: rgb(102, 204, 255);
+    width: 80%;
+    margin-right: 9%;
+    margin-left: 10%;
+    margin-top: 2%;
+    padding: 1%;
+    border-radius: 8px;
+}

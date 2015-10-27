@@ -5,9 +5,9 @@
       <%= f.label 'Username' %>
       <%= f.text_field :username %>
       <%= f.label 'Password' %>
-      <%= f.text_field :password %>
+      <%= f.password_field :password %>
       <%= f.label 'Confirm Password' %>
-      <%= f.text_field :confirm_password %>
+      <%= password_field_tag :confirm_password %>
       <%= f.submit 'Save' %>
   <% end %>
 </div>

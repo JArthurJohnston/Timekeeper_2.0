@@ -19,4 +19,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def new
+    @new_user = User.new
+  end
+
+  def create
+    if passwords_check?
+      user = User.create(user_params)
+      redirect_to user_path(user.id)
+    else
+      redirect_to action: :new
+    end
+  end
+
+  def passwords_check?
+    return password_params[:password].eql?(params[:confirm_password])
+  end
+
+  def password_params
+    params.require(:user).permit(:password, :confirm_password)
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :username, :password)
+  end
+
 end

@@ -1,0 +1,12 @@
+<div class="change">
+  <%= form_for @project, url: @submit_path do |f| %>
+        <%= f.label 'Name:' %>
+        <%= f.text_field :name %>
+        <%= f.label 'Statement Of Work:' %>
+        <%= f.collection_select(:statement_of_work_id, @user.statements_of_work, :id, :nickname) %>
+      <div class="change-buttons">
+        <%= f.submit 'Save' %>
+        <%= cancel_button %>
+      </div>
+  <% end %>
+</div>

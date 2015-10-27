@@ -1,9 +1,6 @@
 <div>
   <% if @user.current_timesheet == Timesheet::NULL %>
     <h4>You have no timesheets</h4>
-      <%= link_to new_user_timesheet_path(@user.id) do %>
-          <div class="add-button">New Timesheet</div>
-      <% end %>
   <% else %>
       <%= link_to user_timesheet_path(@user.id, @user.current_timesheet.id) do %>
           <div>
@@ -15,7 +12,7 @@
 </div>
 
 <% content_for :buttons_bar do %>
-    <%= link_to new_user_timesheet_path(@user.id) do %>
+    <%= link_to user_timesheets_path(@user.id), method: :post do %>
         <div class="add-button">New Timesheet</div>
     <% end %>
 <% end %>

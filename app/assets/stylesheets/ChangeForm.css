@@ -6,9 +6,12 @@
 
 .change textarea {
     width: 100%;
+    height: 20%;
+    font-size: x-large;
 }
 
 .change input {
+    margin-top: 2%;
     width: 100%;
     font-size: x-large;
 }
