@@ -288,6 +288,7 @@
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v4.2.1, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord-jdbc-adapter (v1.3.18, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord-jdbcmysql-adapter (v1.3.18, jruby-9.0.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activerecord-jdbcpostgresql-adapter (v1.3.18, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v4.2.1, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v6.0.3, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, jruby-9.0.1.0-p0) [gem]" level="application" />
@@ -301,6 +302,7 @@
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.7.0, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.3.2, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jdbc-mysql (v5.1.36, jruby-9.0.1.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jdbc-postgres (v9.4.1200, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v4.0.5, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.8.3, jruby-9.0.1.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.0.3, jruby-9.0.1.0-p0) [gem]" level="application" />
