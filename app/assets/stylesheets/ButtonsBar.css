@@ -50,8 +50,14 @@
 
 .buttons-bar i {
     color: white;
+    font-size: 4em;
+    margin: 2%;
 }
 
 .buttons-bar i:hover {
     color: aquamarine;
+}
+
+#cancel-icon {
+    float: left;
 }

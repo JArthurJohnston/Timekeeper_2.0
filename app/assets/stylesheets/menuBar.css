@@ -30,7 +30,8 @@
 
 .menu-bar i {
     color: white;
-    padding: 3%;
+    padding: 2%;
+    font-size: 2em;
 }
 
 .menu-bar i:hover {
