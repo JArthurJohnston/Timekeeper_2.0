@@ -18,4 +18,11 @@ class StoryCard < ActiveRecord::Base
     return billable_hours
   end
 
+  def project
+    if project_id.nil?
+      return Project::NULL
+    end
+    super
+  end
+
 end

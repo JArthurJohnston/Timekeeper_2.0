@@ -23,7 +23,7 @@ class StoryCardsController < ApplicationController
 
   def new
     @story_card = StoryCard.new
-    @submit_path = user_project_story_cards_path(@user.id, @user.current_project.id)
+    @submit_path = user_project_story_cards_path(@user.id, @story_card.project.id)
   end
 
   def new_with_activity

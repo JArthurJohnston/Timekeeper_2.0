@@ -2,10 +2,13 @@ require 'test_helper'
 
 class ProjectsControllerTest < ActionController::TestCase
 
-  test 'get index' do
-    user = User.create
+  def setup
+    @user = User.create
+    @controller.session[:user_id] = @user.id
+  end
 
-    get :index, user_id: user.id
+  test 'get index' do
+    get :index, user_id: @user.id
 
     assert_response :success
     assert_template 'index'
@@ -14,8 +17,7 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test 'get show' do
-    user = User.create
-    project1 = Project.create(user_id: user.id)
+    project1 = Project.create(user_id: @user.id)
 
     get :show, user_id: user.id, id: project1.id
 
@@ -23,5 +25,9 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_template 'show'
     assert assigns :project
     assert assigns :user
+  end
+
+  test 'get logout' do
+    fail()
   end
 end

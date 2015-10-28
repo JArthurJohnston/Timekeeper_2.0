@@ -55,4 +55,10 @@ class StoryCardTest < ModelTestCase
     assert_equal 4.25, @storyCard.billable_hours
   end
 
+  test 'story card returns null_project when project_id is nil' do
+    story = StoryCard.create
+
+    assert_equal Project::NULL, story.project
+  end
+
 end
