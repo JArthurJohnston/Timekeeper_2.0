@@ -10,11 +10,21 @@ class ActivitiesController < ApplicationController
     @submit_path = activities_path
   end
 
+  def project_id_from_params
+    unless params[:project_select].nil?
+      project_id = params[:project_select][:selected_project]
+    else
+      project_id = params[:project_id]
+    end
+    project_id
+  end
+
   def new_for_timesheet
-    @project = @user.current_project
+    @project = Project.find(project_id_from_params)
     @projects = Project.all
     @story_cards = @project.story_cards
     @select_symbol = :select_story_card_for_activity
+    @project_select_path = new_activity_for_timesheet_path(@user.id, params[:timesheet_id], @project.id)
   end
 
   def create_for_timesheet

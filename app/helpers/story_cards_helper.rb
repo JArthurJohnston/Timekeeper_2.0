@@ -12,4 +12,13 @@ module StoryCardsHelper
     end
   end
 
+  def project_id_from_params
+    unless params[:project_select].nil?
+      project_id = params[:project_select][:selected_project]
+    else
+      project_id = params[:project_id]
+    end
+    project_id
+  end
+
 end

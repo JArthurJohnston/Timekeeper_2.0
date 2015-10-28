@@ -73,10 +73,9 @@ Rails.application.routes.draw do
   match 'users/:user_id/projects/:project_id/story_cards/select' => 'story_cards#select',
         via: :get,
         as: 'user_project_story_card_select'
-  match 'users/:user_id/timesheet/:timesheet_id/add_activity' => 'activities#new_for_timesheet',
+  match 'users/:user_id/timesheet/:timesheet_id/project/:project_id/add_activity' => 'activities#new_for_timesheet',
         via: :get,
         as: 'new_activity_for_timesheet'
-
   match 'users/:user_id/timesheet/:timesheet_id/story_cards/:story_card_id/create_activity_for_timesheet' => 'activities#create_for_timesheet',
         via: :post,
         as: 'create_activity_for_timesheet'

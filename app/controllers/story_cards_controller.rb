@@ -5,6 +5,7 @@ class StoryCardsController < ApplicationController
     @projects = Project.all
     @story_cards = @project.story_cards
     @select_symbol = :navigate_to_story_card
+    @project_select_path = user_project_story_cards_path(@user.id, project_id_from_params)
   end
 
   def project_id_from_params
