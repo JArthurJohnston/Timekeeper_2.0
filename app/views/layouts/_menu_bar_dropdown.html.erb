@@ -11,4 +11,7 @@
   <%= link_to user_projects_path(@user.id) do %>
       <div class="menu-dropdown-option">Projects</div>
   <% end %>
+  <%= link_to user_logout_path(@user.id) do %>
+      <div class="menu-dropdown-option">Logout</div>
+  <% end %>
 </div>

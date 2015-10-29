@@ -38,3 +38,9 @@
     padding: 1%;
     border-radius: 8px;
 }
+
+.logout-text {
+    font-size: x-large;
+    margin-top: 40%;
+    margin-bottom: 10%;
+}

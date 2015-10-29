@@ -4,6 +4,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test 'get show' do
     user = User.create
+    @controller.session[user_id: user.id]
 
     get :show, id: user.id
 
@@ -22,6 +23,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test 'get edit' do
     user = User.create
+    @controller.session[user_id: user.id]
     get :edit, id: user.id
 
     assert_response :success
@@ -40,6 +42,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test 'put update' do
     user = User.create
+    @controller.session[user_id: user.id]
     put :update, id: user.id, name: 'harvey', username: 'h_dent', password: 'bigBadHarv', email: 'h_dent@da.gov'
 
     assert_response :success
@@ -68,6 +71,18 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_response :success
     assert assigns :user
+  end
+
+  test 'user logout' do
+    user = User.create
+    @controller.session[:user_id] = user.id
+
+    post :logout, user_id: user.id
+
+    assert_response :success
+    assert_template 'logout'
+
+    assert_nil @controller.session[:user_id]
   end
 
 end

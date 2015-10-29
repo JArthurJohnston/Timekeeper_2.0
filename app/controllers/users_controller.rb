@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+    session[:user_id] = nil
+  end
+
   def new
     @new_user = User.new
   end
