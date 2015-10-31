@@ -29,7 +29,7 @@ class ActivitiesController < ApplicationController
 
   def create_for_timesheet
     timesheet = Timesheet.find params[:timesheet_id]
-    timesheet.add_activity Activity.now(timesheet.id, params[:story_card_id])
+    timesheet.add_activity Activity.now(timesheet.id, params[:story_card_id], @user.id)
     redirect_to user_timesheet_path(@user.id, timesheet.id)
   end
 

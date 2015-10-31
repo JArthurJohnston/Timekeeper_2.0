@@ -7,16 +7,17 @@
   <% @timesheet.days.each do |each_day| %>
       <li class="activity-list">
         <div class="day-header"><%= each_day.display_string %></div>
-        <% each_day.activities.each do |each_activity| %>
-            <ul class="invisible">
+        <ul class="invisible">
+          <% each_day.activities.each do |each_activity| %>
               <li>
                 <%= link_to edit_user_timesheet_activity_path(@user.id, @timesheet.id, each_activity.id) do %>
                     <div>
                       <%= each_activity.display_string %>
                     </div>
-                <% end %></li>
-            </ul>
-        <% end %>
+                <% end %>
+              </li>
+          <% end %>
+        </ul>
       </li>
   <% end %>
   <li>

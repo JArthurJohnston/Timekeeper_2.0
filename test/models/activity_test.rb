@@ -49,15 +49,17 @@ class ActivityTest < ModelTestCase
   end
 
   test 'activity now_for a timesheet' do
+    user = User.create
     timesheet = Timesheet.create
     now = DateTime.now.rounded_to_fifteen_min
     story = StoryCard.create
-    activity = Activity.now timesheet.id, story.id
+    activity = Activity.now timesheet.id, story.id, user.id
 
     assert_dates_are_close now, activity.start_time
     assert_equal nil, activity.end_time
     assert_equal timesheet, activity.timesheet
     assert_equal story, activity.story_card
+    assert_equal user, activity.user
     assert_equal activity, Activity.find(activity.id)
   end
 

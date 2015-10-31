@@ -12,17 +12,17 @@ class Activity < ActiveRecord::Base
   NULL = NullActivity.new
   BILLING_CYCLE = 15.0 * 60
 
-  def self.now timesheet_id, story_card_id
-    return Activity.create(start_time: DateTime.now, timesheet_id: timesheet_id, story_card_id: story_card_id)
+  def self.now timesheet_id, story_card_id, user_id
+    return Activity.create(start_time: DateTime.now,
+                           timesheet_id: timesheet_id,
+                           story_card_id: story_card_id,
+                           user_id: user_id)
   end
 
   def initialize attributes = nil, options = {}
     unless attributes.nil?
       if_not_nil_round attributes, :start_time
       if_not_nil_round attributes, :end_time
-      # attributes[:is_deleted] = false
-    else
-      # attributes = {is_deleted: false}
     end
     super attributes, options
   end
