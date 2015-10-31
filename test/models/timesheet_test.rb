@@ -47,6 +47,14 @@ class TimesheetTest < ModelTestCase
     assert_equal timesheet.id, activity.timesheet_id
   end
 
+  test 'timesheet days returns one day when timesheet has no activities' do
+    timesheet = Timesheet.create
+    assert_equal 1, timesheet.days.size
+
+    start_time = time_on(5, 15)
+    act1 = Activity.create(timesheet_id: timesheet.id, start_time: start_time)
+  end
+
   test 'adding an activty sets end of previous activity' do
     currentActivity = Activity.create(start_time: time_on(4, 30))
     @timesheet.add_activity currentActivity

@@ -4,14 +4,20 @@
 </div>
 <h1>Activities</h1>
 <ul>
-  <% @timesheet.activities.each do |each_activity| %>
-    <li>
-      <%= link_to edit_user_timesheet_activity_path(@user.id, @timesheet.id, each_activity.id) do %>
-        <div>
-          <%= each_activity.display_string %>
-        </div>
-      <% end %>
-    </li>
+  <% @timesheet.days.each do |each_day| %>
+      <li class="activity-list">
+        <div class="day-header"><%= each_day.display_string %></div>
+        <% each_day.activities.each do |each_activity| %>
+            <ul class="invisible">
+              <li>
+                <%= link_to edit_user_timesheet_activity_path(@user.id, @timesheet.id, each_activity.id) do %>
+                    <div>
+                      <%= each_activity.display_string %>
+                    </div>
+                <% end %></li>
+            </ul>
+        <% end %>
+      </li>
   <% end %>
   <li>
     <%= link_to new_activity_for_timesheet_path(@user.id, @timesheet.id, @user.current_project.id) do %>
@@ -19,6 +25,9 @@
     <% end %>
   </li>
 </ul>
+<script>
+  $(document).ready(TimesheetListController.initialize());
+</script>
 
 <% content_for :buttons_bar do %>
     <%= link_to new_user_timesheet_activity_path(@user.id, @timesheet.id) do %>

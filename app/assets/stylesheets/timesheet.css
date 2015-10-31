@@ -1,0 +1,11 @@
+.day-header{
+    background-color: #009999;
+}
+
+.day-header:hover{
+    background-color: #33CCCC;
+}
+
+.day-header:nth-child(even){
+    background-color: #33CCCC;
+}

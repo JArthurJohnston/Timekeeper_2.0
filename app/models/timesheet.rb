@@ -18,12 +18,12 @@ class Timesheet < ActiveRecord::Base
   end
 
   def days
-    currentDate = self.start_date.to_datetime.new_offset(0)
+    current_date = self.start_date.to_datetime.new_offset(0)
     through_date = self.through_date.to_datetime.new_offset(0)
-    theDays = [self.on(currentDate)]
-    while currentDate < through_date
-      currentDate += 1.day
-      theDays.push(self.on(currentDate.new_offset(0)))
+    theDays = [self.on(current_date)]
+    while current_date.to_date < through_date.to_date
+      current_date += 1.day
+      theDays.push(self.on(current_date.new_offset(0)))
     end
     return theDays
   end
