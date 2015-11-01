@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find_by(user_id: @user.id, id: params[:id])
+    @submit_path = user_projects_path(@user.id)
   end
 
   def new
@@ -13,13 +14,24 @@ class ProjectsController < ApplicationController
     @submit_path = user_projects_path(@user.id)
   end
 
+  def edit
+    @project = Project.find params[:id]
+    @submit_path = user_project_path(@user.id, @project.id)
+  end
+
+  def update
+    project = Project.find(params[:id])
+    project.update(project_params)
+    redirect_to action:  :index
+  end
+
   def create
-    project = Project.create(statement_of_work_id: project_params[:statement_of_work_id],
+    Project.create(statement_of_work_id: project_params[:statement_of_work_id],
                              user_id: @user.id, name: project_params[:name])
-    redirect_to user_project_path(@user.id, project.id)
+    redirect_to user_projects_path(@user.id)
   end
 
   def project_params
-    params.require(:project).permit(:name, :statement_of_work_id)
+    params.require(:project).permit(:name, :statement_of_work_id, :job_id)
   end
 end

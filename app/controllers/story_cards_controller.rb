@@ -31,9 +31,6 @@ class StoryCardsController < ApplicationController
 
   end
 
-  def destroy
-  end
-
   def edit
     @story_card = find_story_card
     @submit_path = story_card_path
@@ -41,7 +38,7 @@ class StoryCardsController < ApplicationController
 
   def create
     @story_card = StoryCard.create(story_card_params)
-    redirect_to story_card_path
+    redirect_to user_project_story_cards_path(@user.id, params[:project_id])
   end
 
   def update

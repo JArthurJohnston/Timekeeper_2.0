@@ -84,4 +84,8 @@ class UserTest < ModelTestCase
     assert_equal Activity::NULL, user.current_activity
   end
 
+  test 'users have teams' do
+    fail()
+  end
+
 end

@@ -11,22 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025164808) do
+ActiveRecord::Schema.define(version: 20151031182554) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer  "timesheet_id"
-    t.integer  "story_card_id"
-    t.integer  "user_id"
+    t.integer  "timesheet_id",  limit: 4
+    t.integer  "story_card_id", limit: 4
+    t.integer  "user_id",       limit: 4
     t.boolean  "is_deleted"
   end
 
   create_table "projects", force: :cascade do |t|
     t.string  "name",                 limit: 255
-    t.integer "statement_of_work_id"
-    t.integer "user_id"
+    t.integer "statement_of_work_id", limit: 4
+    t.integer "user_id",              limit: 4
     t.boolean "is_deleted"
+    t.string  "job_id",               limit: 255
   end
 
   create_table "statements_of_work", force: :cascade do |t|
@@ -34,28 +35,35 @@ ActiveRecord::Schema.define(version: 20151025164808) do
     t.string  "purchase_order_number", limit: 255
     t.string  "client",                limit: 255
     t.string  "nickname",              limit: 255
-    t.integer "user_id"
+    t.integer "user_id",               limit: 4
     t.boolean "is_deleted"
   end
 
   create_table "story_cards", force: :cascade do |t|
-    t.integer "project_id"
+    t.integer "project_id",  limit: 4
     t.string  "number",      limit: 255
     t.string  "title",       limit: 255
     t.string  "description", limit: 255
-    t.integer "estimate"
+    t.integer "estimate",    limit: 4
     t.boolean "is_deleted"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "timesheets", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "current_activity_id"
+    t.integer "user_id",             limit: 4
+    t.integer "current_activity_id", limit: 4
     t.boolean "is_deleted"
   end
 
   create_table "users", force: :cascade do |t|
     t.string  "name",                 limit: 255
-    t.integer "current_timesheet_id"
+    t.integer "current_timesheet_id", limit: 4
     t.boolean "is_deleted"
     t.string  "username",             limit: 255
     t.string  "password",             limit: 255

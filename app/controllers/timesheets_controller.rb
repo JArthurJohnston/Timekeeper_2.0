@@ -13,8 +13,8 @@ class TimesheetsController < ApplicationController
   end
 
   def create
-    @user.create_timesheet
-    redirect_to action: :index
+    timesheet = @user.create_timesheet
+    redirect_to user_timesheet_path(@user.id, timesheet.id)
   end
 
   def destroy
