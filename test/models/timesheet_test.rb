@@ -65,10 +65,9 @@ class TimesheetTest < ModelTestCase
     @timesheet.add_activity newActivity
 
     assert_equal @timesheet.id , newActivity.timesheet_id
-    assert_equal newActivity.id, @timesheet.current_activity_id
     assert_equal newActivity, @timesheet.current_activity
 
-    updatedCurrentActivity = Activity.find currentActivity.id
+    updatedCurrentActivity = @timesheet.current_activity
     assert_equal expectedTime, updatedCurrentActivity.end_time
     assert_equal @timesheet.id, updatedCurrentActivity.timesheet_id
   end
@@ -231,6 +230,21 @@ class TimesheetTest < ModelTestCase
     assert_equal Activity::NULL, timesheet.current_activity
     assert_equal Project::NULL, timesheet.current_project
     assert_equal StoryCard::NULL, timesheet.current_story_card
+  end
+
+  test 'current activity is the last activity' do
+    timesheet = Timesheet.create
+    assert_equal Activity::NULL, timesheet.current_activity
+    assert_empty timesheet.activities
+
+    act1 = Activity.create(timesheet_id: timesheet.id, start_time: time_on(1, 15))
+    assert_equal act1, timesheet.current_activity
+
+    act2 = Activity.create(timesheet_id: timesheet.id, start_time: time_on(3, 15))
+    assert_equal act2, timesheet.current_activity
+
+    Activity.create(timesheet_id: timesheet.id, start_time: time_on(2, 15))
+    assert_equal act2, timesheet.current_activity
   end
 
 end

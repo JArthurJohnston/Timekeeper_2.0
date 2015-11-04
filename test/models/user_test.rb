@@ -84,8 +84,25 @@ class UserTest < ModelTestCase
     assert_equal Activity::NULL, user.current_activity
   end
 
-  test 'users have teams' do
-    fail()
+  test 'users have team members' do
+    user = User.create
+    member1 = TeamMember.create(user_id: user.id)
+    member2 = TeamMember.create(user_id: user.id)
+
+    team_members = user.team_members
+    assert_equal 2, team_members.size
+    assert team_members.include? member1
+    assert team_members.include? member2
+  end
+
+  test 'users have projects through job ids' do
+    user1 = User.create
+    sow1 = StatementOfWork.create(user_id: user1.id)
+    project1 = Project.create
+    jobId = JobId.create(project_id: project1.id, statement_of_work_id: sow1.id)
+
+    assert_equal 1, user1.projects.size
+    assert user1.projects.include? project1
   end
 
 end

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :timesheets
   has_many :activities
   has_many :statements_of_work
-  has_many :projects
+  has_many :team_members
 
 
   NULL = NullUser.new
@@ -37,6 +37,12 @@ class User < ActiveRecord::Base
 
   def display_string
     name
+  end
+
+  def projects
+  #   for now, just add a projects method to sows. that sql will be much easier to write
+  #   then just iterate over a users sows and add oall of their projects to
+  #   a list here on user.
   end
 
 end

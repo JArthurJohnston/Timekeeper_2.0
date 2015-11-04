@@ -11,15 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031182554) do
+ActiveRecord::Schema.define(version: 20151103131319) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "timesheet_id",  limit: 4
     t.integer  "story_card_id", limit: 4
-    t.integer  "user_id",       limit: 4
     t.boolean  "is_deleted"
+  end
+
+  create_table "job_ids", force: :cascade do |t|
+    t.string   "number",               limit: 255
+    t.integer  "project_id",           limit: 4
+    t.integer  "statement_of_work_id", limit: 4
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -46,6 +53,14 @@ ActiveRecord::Schema.define(version: 20151031182554) do
     t.string  "description", limit: 255
     t.integer "estimate",    limit: 4
     t.boolean "is_deleted"
+  end
+
+  create_table "team_members", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "team_id",    limit: 4
+    t.boolean  "is_admin"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "teams", force: :cascade do |t|

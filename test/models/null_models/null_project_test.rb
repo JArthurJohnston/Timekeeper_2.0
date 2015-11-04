@@ -14,11 +14,12 @@ class NullProjectTest < ModelTestCase
     assert_equal User::NULL, @null_project.user
   end
 
-  test 'statement of work returns null sow' do
-    assert_equal StatementOfWork::NULL, @null_project.statement_of_work
+  test 'name is N/A' do
+    assert_equal 'N/A', @null_project.name
   end
 
-  test 'name is empty' do
-    assert_equal '', @null_project.name
+  test 'story cards are empty' do
+    assert_empty @null_project.story_cards
   end
+
 end

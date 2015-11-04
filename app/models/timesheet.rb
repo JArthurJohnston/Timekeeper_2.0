@@ -10,11 +10,17 @@ class Timesheet < ActiveRecord::Base
   belongs_to :user
 
   def add_activity anActivity
-    unless self.current_activity_id.nil?
+    unless current_activity == Activity::NULL
       self.current_activity.set_end_time anActivity.start_time
     end
     anActivity.set_timesheet self
-    update current_activity_id: anActivity.id
+  end
+
+  def current_activity
+    unless activities.empty?
+      return activities.last
+    end
+    Activity::NULL
   end
 
   def days

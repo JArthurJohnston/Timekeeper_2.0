@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
 
   def new
     @activity = Activity.new
-    @submit_path = activities_path
+    @submit_path = user_timesheet_activities_path(@user.id, params[:timesheet_id])
   end
 
   def project_id_from_params
@@ -29,7 +29,7 @@ class ActivitiesController < ApplicationController
 
   def create_for_timesheet
     timesheet = Timesheet.find params[:timesheet_id]
-    timesheet.add_activity Activity.now(timesheet.id, params[:story_card_id], @user.id)
+    timesheet.add_activity Activity.now(timesheet.id, params[:story_card_id])
     redirect_to user_timesheet_path(@user.id, timesheet.id)
   end
 
@@ -57,15 +57,15 @@ class ActivitiesController < ApplicationController
   end
 
   def find_activity
-    return Activity.find_by user_id: params[:user_id], timesheet_id: params[:timesheet_id], id: params[:id]
+    return Activity.find_by timesheet_id: params[:timesheet_id], id: params[:id]
   end
 
   def activities_path
-    user_timesheet_activities_path(params[:user_id], params[:timesheet_id], params[:id])
+    user_timesheet_activities_path(@user.id, params[:timesheet_id], params[:id])
   end
 
   def activity_path
-    user_timesheet_activity_path(params[:user_id], params[:timesheet_id], params[:id])
+    user_timesheet_activity_path(@user.id, params[:timesheet_id], params[:id])
   end
 
 end

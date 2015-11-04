@@ -2,17 +2,14 @@ class Project < ActiveRecord::Base
   include ProjectDisplay
   extend FindNullModel
 
+  has_many :job_ids
   has_many :story_cards, -> {order(:number)}
-  belongs_to :statement_of_work
   belongs_to :user
 
   NULL = NullProject.new
 
   def statement_of_work
-    if statement_of_work_id.nil?
-      return StatementOfWork::NULL
-    end
-    super
+    StatementOfWork::NULL
   end
 
   def purchase_order_number

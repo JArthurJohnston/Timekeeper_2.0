@@ -31,8 +31,10 @@ class ProjectTest < ModelTestCase
     expected_client = 'Mickey'
     expected_project_name = 'Mouse'
     sow = StatementOfWork.create(number: expected_sow_number, purchase_order_number: expected_PO_number, client: expected_client)
-    project = Project.create(statement_of_work_id: sow.id, name: expected_project_name)
+    project = Project.create(name: expected_project_name)
+    job_id = JobId.create(statement_of_work_id: sow.id, project_id: project.id)
 
+    assert project.job_ids.include?(job_id)
     assert_equal expected_sow_number, project.invoice_number
     assert_equal expected_client, project.client
     assert_equal expected_PO_number, project.purchase_order_number
@@ -52,6 +54,10 @@ class ProjectTest < ModelTestCase
     project = Project.create(user_id: user.id)
 
     assert_equal StatementOfWork::NULL, project.statement_of_work
+  end
+
+  test 'project for user' do
+    fail()
   end
 
 end

@@ -5,11 +5,12 @@ class NullProject < Project
     User::NULL
   end
 
-  def statement_of_work
-    StatementOfWork::NULL
+  def name
+    'N/A'
   end
 
-  def name
-    ''
+  def story_cards
+    []
   end
+
 end

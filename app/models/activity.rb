@@ -12,11 +12,10 @@ class Activity < ActiveRecord::Base
   NULL = NullActivity.new
   BILLING_CYCLE = 15.0 * 60
 
-  def self.now timesheet_id, story_card_id, user_id
+  def self.now timesheet_id, story_card_id
     return Activity.create(start_time: DateTime.now,
                            timesheet_id: timesheet_id,
-                           story_card_id: story_card_id,
-                           user_id: user_id)
+                           story_card_id: story_card_id)
   end
 
   def initialize attributes = nil, options = {}
@@ -70,6 +69,10 @@ class Activity < ActiveRecord::Base
     unless self.story_card.nil?
       return self.story_card.project
     end
+  end
+
+  def user
+    return self.timesheet.user
   end
 
   # dont know if I need this yet

@@ -1,4 +1,3 @@
-
 class DateRange
   include DateTimeHelper
 
@@ -18,6 +17,17 @@ class DateRange
 
   def overlaps? date_range
     return contains_range_times?(date_range) || date_range.contains_range_times?(self) || self == date_range
+  end
+
+  def is_after? date_range
+    unless self.start.nil?
+      unless date_range.finish.nil?
+        return self.start > date_range.finish
+      else
+        return true
+      end
+    end
+    return false
   end
 
   def contains_range_times?(date_range)

@@ -2,9 +2,9 @@ require_relative '../model_test_case'
 class ProjectDisplayTest < ModelTestCase
 
   test 'display string' do
-    sow = StatementOfWork.create(number:'SOW234', client: 'Mickey')
-    project = Project.create(name: 'Mouse', statement_of_work_id: sow.id)
+    project = Project.create(name: 'Mouse')
+    jid = JobId.create(project_id: project.id, number: 'SOW234')
 
-    assert_equal 'Mouse SOW: SOW234' , project.display_string
+    assert_equal 'Mouse : SOW234' , project.display_string
   end
 end

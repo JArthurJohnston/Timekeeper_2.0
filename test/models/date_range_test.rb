@@ -108,13 +108,29 @@ class DateRangeTest < ModelTestCase
     assert_equal 0, DateRange.new(nil, nil).total_time_in_minutes
   end
 
-
   test 'display string ' do
     start_time = time_on(6, 0)
     end_time = time_on(8, 15)
 
     date_range = DateRange.new(start_time, end_time)
     assert_equal '06:00 to 08:15', date_range.display_string
+  end
+
+  test 'range comes after another range' do
+    range1 = DateRange.new(time_on(5, 15), time_on(6, 15))
+    range2 = DateRange.new(time_on(6, 30), time_on(7, 15))
+
+    assert range2.is_after?(range1)
+
+    range1 = DateRange.new(time_on(5, 15), time_on(6, 15))
+    range2 = DateRange.new(nil, time_on(7, 15))
+
+    deny range2.is_after?(range1)
+
+    range1 = DateRange.new(time_on(5, 15), nil)
+    range2 = DateRange.new(time_on(6, 30), time_on(7, 15))
+
+    assert range2.is_after?(range1)
   end
 
 end
