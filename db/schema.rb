@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103131319) do
+ActiveRecord::Schema.define(version: 20151104033338) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20151103131319) do
     t.string  "username",             limit: 255
     t.string  "password",             limit: 255
     t.string  "email",                limit: 255
+    t.string  "timezone",             limit: 255
   end
 
 end

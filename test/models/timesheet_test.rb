@@ -247,4 +247,25 @@ class TimesheetTest < ModelTestCase
     assert_equal act2, timesheet.current_activity
   end
 
+  test 'adding an activity only updates current activity when new activity is after current' do
+    timesheet = Timesheet.create
+    act1 = Activity.create(start_time: time_on(3, 30))
+    assert_nil act1.end_time
+    timesheet.add_activity(act1)
+
+    assert_equal act1, timesheet.current_activity
+
+    new_act_start_time = time_on(5, 30)
+    act2 = Activity.create(start_time: new_act_start_time)
+    timesheet.add_activity(act2)
+
+    assert_equal new_act_start_time, Activity.find(act1.id).end_time
+
+    new_act_start_time = time_on(4, 30)
+    act3 = Activity.create(start_time: new_act_start_time)
+    timesheet.add_activity(act3)
+
+    assert_nil Activity.find(act2.id).end_time
+  end
+
 end
