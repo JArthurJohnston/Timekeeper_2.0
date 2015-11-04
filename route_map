@@ -50,12 +50,13 @@
                                PATCH  /users/:id(.:format)                                                                                       users#update
                                PUT    /users/:id(.:format)                                                                                       users#update
                                DELETE /users/:id(.:format)                                                                                       users#destroy
-               show_user_login GET    /users/show_login(.:format)                                                                                users#show_login
+               show_user_login GET    /user_login(.:format)                                                                                      users#show_login
                     user_login POST   /users/login(.:format)                                                                                     users#login
 user_project_story_card_select GET    /users/:user_id/projects/:project_id/story_cards/select(.:format)                                          story_cards#select
-    new_activity_for_timesheet GET    /users/:user_id/timesheet/:timesheet_id/add_activity(.:format)                                             activities#new_for_timesheet
+    new_activity_for_timesheet GET    /users/:user_id/timesheet/:timesheet_id/project/:project_id/add_activity(.:format)                         activities#new_for_timesheet
  create_activity_for_timesheet POST   /users/:user_id/timesheet/:timesheet_id/story_cards/:story_card_id/create_activity_for_timesheet(.:format) activities#create_for_timesheet
    new_story_card_for_activity GET    /users/:user_id/timesheet/:timesheet_id/add_story_card_with_activity(.:format)                             story_cards#new_with_activity
 create_story_card_for_activity POST   /users/:user_id/timesheet/:timesheet_id/create_story_card_with_activity(.:format)                          story_cards#create_with_activity
+                   user_logout GET    /users/:user_id/logout(.:format)                                                                           users#logout
 
 Process finished with exit code 0
