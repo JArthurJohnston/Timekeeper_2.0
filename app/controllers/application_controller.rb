@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
   respond_to :html, :js
 
   before_action :find_user
+  around_filter :set_user_timezone
+
+  def set_user_timezone(&block)
+    zone_to_use = @user.timezone || 'UTC'
+    Time.use_zone(zone_to_use, &block)
+  end
 
   def find_user
     @user = authenticate_user
