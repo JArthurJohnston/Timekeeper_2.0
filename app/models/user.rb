@@ -39,6 +39,14 @@ class User < ActiveRecord::Base
     name
   end
 
+  def timesheet_deleted timesheet
+    if current_timesheet == Timesheet::NULL
+      unless timesheets.empty?
+        self.update(current_timesheet_id: timesheets.last.id)
+      end
+    end
+  end
+
   def projects
   #   for now, just add a projects method to sows. that sql will be much easier to write
   #   then just iterate over a users sows and add oall of their projects to

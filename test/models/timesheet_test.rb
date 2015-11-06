@@ -29,47 +29,12 @@ class TimesheetTest < ModelTestCase
     return newActivity
   end
 
-  def dateOn aYear, aMonth, aDay
-    return DateTime.new(aYear, aMonth, aDay, 10, 0, 0)
-    #added 10 for the hour so that the date wouldnt change with the timezone
-  end
-
-  test 'adding an activity sets last activity of timesheet' do
-    timesheet = Timesheet.create
-    assert_nil timesheet.current_activity_id
-
-    activity = Activity.create
-
-    timesheet.add_activity activity
-
-    assert_equal activity.id, timesheet.current_activity_id
-    assert_equal activity, timesheet.current_activity
-    assert_equal timesheet.id, activity.timesheet_id
-  end
-
   test 'timesheet days returns one day when timesheet has no activities' do
     timesheet = Timesheet.create
     assert_equal 1, timesheet.days.size
 
     start_time = time_on(5, 15)
     act1 = Activity.create(timesheet_id: timesheet.id, start_time: start_time)
-  end
-
-  test 'adding an activty sets end of previous activity' do
-    currentActivity = Activity.create(start_time: time_on(4, 30))
-    @timesheet.add_activity currentActivity
-
-    expectedTime = time_on 5, 30
-    newActivity = Activity.create(start_time: expectedTime)
-
-    @timesheet.add_activity newActivity
-
-    assert_equal @timesheet.id , newActivity.timesheet_id
-    assert_equal newActivity, @timesheet.current_activity
-
-    updatedCurrentActivity = @timesheet.current_activity
-    assert_equal expectedTime, updatedCurrentActivity.end_time
-    assert_equal @timesheet.id, updatedCurrentActivity.timesheet_id
   end
 
   test 'timesheet has current project' do
@@ -271,4 +236,29 @@ class TimesheetTest < ModelTestCase
     assert_nil Activity.find(act2.id).end_time
   end
 
+
+  test 'deleting a timesheet updates user current timesheet' do
+    user = User.create
+    sheet1 = user.create_timesheet
+    sheet2 = user.create_timesheet
+
+    assert_equal sheet2, user.current_timesheet
+    assert_equal 2, user.timesheets.size
+
+    sheet2.destroy
+
+    updated_user = User.find(user.id)
+    assert_equal 1, updated_user.timesheets.size
+    assert_equal sheet1, updated_user.current_timesheet
+
+    sheet1.destroy
+    updated_user = User.find(user.id)
+
+    assert_equal Timesheet::NULL, updated_user.current_timesheet
+  end
+
+  test 'user returns NULL when nil' do
+    timesheet = Timesheet.create
+    assert_equal User::NULL, timesheet.user
+  end
 end

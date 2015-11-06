@@ -48,19 +48,20 @@ class ActivityTest < ModelTestCase
     assert_equal timesheet, activity.timesheet
   end
 
-  test 'activity now_for a timesheet' do
+  test 'activity now' do
     user = User.create
     timesheet = Timesheet.create(user_id: user.id)
     now = DateTime.now.rounded_to_fifteen_min
     story = StoryCard.create
     activity = Activity.now timesheet.id, story.id
 
+    deny timesheet.activities.include?activity
     assert_dates_are_close now, activity.start_time
     assert_equal nil, activity.end_time
     assert_equal timesheet, activity.timesheet
     assert_equal story, activity.story_card
     assert_equal user, activity.user
-    assert_equal activity, Activity.find(activity.id)
+    assert_nil activity.id
   end
 
   test 'initialize rounds times to nearest 15' do
@@ -120,28 +121,6 @@ class ActivityTest < ModelTestCase
     activity = Activity.create(story_card_id: storyCard.id)
 
     assert_equal(project, activity.project)
-  end
-
-  test 'deleting an activity will clear the current activity id if the activity is current' do
-    timesheet = Timesheet.create
-    act1 = Activity.create
-    act2 = Activity.create
-    act3 = Activity.create
-    timesheet.add_activity(act1)
-    timesheet.add_activity(act2)
-    timesheet.add_activity(act3)
-
-    assert_equal act3, timesheet.current_activity
-
-    act2.destroy
-    assert_equal act3, timesheet.current_activity
-
-    act3.destroy
-
-    updated_timesheet = Timesheet.find(timesheet.id)
-
-    assert_equal Activity::NULL, updated_timesheet.current_activity
-    assert_nil updated_timesheet.current_activity_id
   end
 
   test 'activity.timesheet returns null timesheet' do

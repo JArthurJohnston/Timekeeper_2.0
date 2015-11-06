@@ -10,10 +10,11 @@ class Timesheet < ActiveRecord::Base
   belongs_to :user
 
   def add_activity anActivity
-    unless current_activity == Activity::NULL || current_activity == anActivity
+    unless current_activity == Activity::NULL
       self.current_activity.update(end_time: anActivity.start_time)
     end
     anActivity.set_timesheet(self)
+    anActivity.save
   end
 
   def current_activity
@@ -72,4 +73,15 @@ class Timesheet < ActiveRecord::Base
     total
   end
 
+  def destroy
+    super
+    user.timesheet_deleted(self)
+  end
+
+  def user
+    if self.user_id.nil?
+      return User::NULL
+    end
+    super
+  end
 end

@@ -18,8 +18,8 @@ class NullTimesheetTest < ModelTestCase
   end
 
   test 'dates are both today' do
-    assert DateTime.now.eql? @null_timesheet.start_date
-    assert DateTime.now.eql? @null_timesheet.through_date
+    assert_dates_are_close DateTime.now, @null_timesheet.start_date
+    assert_dates_are_close DateTime.now, @null_timesheet.through_date
   end
 
   test 'story cards are empty' do

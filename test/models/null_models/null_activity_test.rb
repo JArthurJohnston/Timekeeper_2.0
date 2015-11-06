@@ -11,8 +11,8 @@ class NullActivityTest < ModelTestCase
   end
 
   test 'times are both now' do
-    assert DateTime.now.eql? @null_act.start_time
-    assert DateTime.now.eql? @null_act.end_time
+    assert_dates_are_close DateTime.now, @null_act.start_time
+    assert_dates_are_close DateTime.now, @null_act.end_time
   end
 
   test 'returns null story card' do

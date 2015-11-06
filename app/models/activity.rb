@@ -13,7 +13,7 @@ class Activity < ActiveRecord::Base
   BILLING_CYCLE = 15.0 * 60
 
   def self.now timesheet_id, story_card_id
-    return Activity.create(start_time: DateTime.now,
+    return Activity.new(start_time: DateTime.now,
                            timesheet_id: timesheet_id,
                            story_card_id: story_card_id)
   end
