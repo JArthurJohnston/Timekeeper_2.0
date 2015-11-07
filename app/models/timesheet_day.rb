@@ -9,16 +9,16 @@ class TimesheetDay
   def activities
      activities = @timesheet.activities
      return activities.select { |e|
-       daysAreTheSame e.start_time.to_datetime.new_offset(0), @date.to_datetime.new_offset(0)
+       same_days? e.start_time.to_datetime.new_offset(0), @date.to_datetime.new_offset(0)
      }
   #   This could definitely be done better in sql
   end
 
-  def daysAreTheSame aDate, anotherDate
-    return justTheDate(aDate) == justTheDate(anotherDate)
+  def same_days? aDate, anotherDate
+    return date_without_time(aDate) == date_without_time(anotherDate)
   end
 
-  def justTheDate aDate
+  def date_without_time aDate
     return DateTime.new(aDate.year, aDate.month, aDate.day)
   end
 

@@ -1,8 +1,9 @@
 require_relative 'model_test_case'
 require_relative '../../app/models/date_range'
+require_relative 'date_test_helper'
 
 class DateRangeTest < ModelTestCase
-  include DateTimeHelper
+  include DateTimeHelper, DateTestHelper
 
   test 'initialize' do
     time1 = time_on(5, 15)
@@ -131,6 +132,40 @@ class DateRangeTest < ModelTestCase
     range2 = DateRange.new(time_on(6, 30), time_on(7, 15))
 
     assert range2.is_after?(range1)
+  end
+
+  test 'each_day iterator' do
+    days_iterated_over = []
+    range = DateRange.new(monday.at(5, 30), wednesday.at(6, 15))
+    range.each_day do
+      |e_day|
+      days_iterated_over.push e_day
+    end
+
+    assert_equal 3, days_iterated_over.size
+    assert_equal monday.at(1).to_date, days_iterated_over[0].to_date
+    assert_equal tuesday.at(1).to_date, days_iterated_over[1].to_date
+    assert_equal wednesday.at(1).to_date, days_iterated_over[2].to_date
+
+    days_iterated_over = []
+    range = DateRange.new(tuesday.at(5, 30), thursday.at(6, 15))
+    range.each_day do
+    |e_day|
+      days_iterated_over.push e_day
+    end
+
+    assert_equal 3, days_iterated_over.size
+    assert_equal tuesday.at(1).to_date, days_iterated_over[0].to_date
+    assert_equal wednesday.at(1).to_date, days_iterated_over[1].to_date
+    assert_equal thursday.at(1).to_date, days_iterated_over[2].to_date
+  end
+
+  test 'to work week' do
+    range = DateRange.new(tuesday.at(5, 30), wednesday.at(6, 15))
+    work_week_range = range.to_work_week
+
+    assert_equal monday.at(1).to_date, work_week_range.start.to_date
+    assert_equal friday.at(1).to_date, work_week_range.finish.to_date
   end
 
 end

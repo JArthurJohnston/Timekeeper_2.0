@@ -1,6 +1,7 @@
 class Timesheet < ActiveRecord::Base
   include CurrentActivity,
-          TimesheetDisplay
+          TimesheetDisplay,
+          TimesheetCSV
   extend DateTimeHelper,
          FindNullModel
 
@@ -40,14 +41,7 @@ class Timesheet < ActiveRecord::Base
   end
 
   def story_cards
-    cards = []
-    self.activities.each do |each_activity|
-      story_card = each_activity.story_card
-      unless cards.include? story_card
-        cards.push(story_card)
-      end
-    end
-    return cards
+    return StoryCard.joins(:activities).uniq
   end
 
   def start_date

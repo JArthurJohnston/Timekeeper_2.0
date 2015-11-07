@@ -13,7 +13,7 @@ module Timekeeper20
     # -- all .rb files in that directory are automatically loaded.
 
     #add model sub-directories to autoload paths
-    ['display', 'helpers', 'validators', 'null_models'].each do
+    ['display', 'helpers', 'validators', 'null_models', 'export'].each do
     |each_directory|
       config.autoload_paths += %W(#{config.root}/app/models/#{each_directory})
     end

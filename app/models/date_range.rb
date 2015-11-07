@@ -51,6 +51,18 @@ class DateRange
     return time_in_minutes(finish) - time_in_minutes(start)
   end
 
+  def to_work_week
+    return DateRange.new(self.start.to_monday, self.finish.to_friday)
+  end
+
+  def each_day &block
+    current_date = @start
+    while current_date.to_date <= @finish.to_date
+      block.call(current_date)
+      current_date += 1.day
+    end
+  end
+
     private
       def time_or_now_for  aTime
         if aTime.nil?
