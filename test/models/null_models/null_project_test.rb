@@ -22,4 +22,8 @@ class NullProjectTest < ModelTestCase
     assert_empty @null_project.story_cards
   end
 
+  test 'job id is not signed' do
+    assert_equal '', project.job_id
+  end
+
 end

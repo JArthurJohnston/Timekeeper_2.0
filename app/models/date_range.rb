@@ -1,11 +1,20 @@
 class DateRange
   include DateTimeHelper
 
-  attr_reader :start ,:finish
-
   def initialize(start, finish)
+    if start > finish
+      raise 'cannot create range whose start is greater than its finish'
+    end
     @start = start
     @finish = finish
+  end
+
+  def start
+    @start.to_datetime
+  end
+
+  def finish
+    @finish.to_datetime
   end
 
   def contains?(date_time)

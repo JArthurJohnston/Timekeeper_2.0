@@ -97,6 +97,19 @@ class DateRangeTest < ModelTestCase
     assert_equal finish, d_range.finish
   end
 
+  test 'throws an error when trying to create a range whos start is greater than its finish' do
+    wrong_start = thursday.at(9)
+    wrong_end = monday.at(6)
+
+    assert_raise RuntimeError do
+      DateRange.new(wrong_start, wrong_end)
+    end
+
+    assert_raise RuntimeError do
+      DateRange.new(wrong_start.to_date, wrong_end.to_date)
+    end
+  end
+
   test 'total time in minutes' do
     start_time = time_on(6, 0)
     end_time = time_on(8, 15)

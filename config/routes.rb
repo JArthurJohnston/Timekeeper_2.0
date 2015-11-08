@@ -67,9 +67,12 @@ Rails.application.routes.draw do
     end
   end
 
-  match 'user_login' => 'users#show_login', via: :get, as: 'show_user_login'
-  match 'users/login' => 'users#login', via: :post, as: 'user_login'
-
+  match 'user_login' => 'users#show_login',
+        via: :get,
+        as: 'show_user_login'
+  match 'users/login' => 'users#login',
+        via: :post,
+        as: 'user_login'
   match 'users/:user_id/projects/:project_id/story_cards/select' => 'story_cards#select',
         via: :get,
         as: 'user_project_story_card_select'
@@ -85,6 +88,10 @@ Rails.application.routes.draw do
   match 'users/:user_id/timesheet/:timesheet_id/create_story_card_with_activity' => 'story_cards#create_with_activity',
         via: :post,
         as: 'create_story_card_for_activity'
-  match 'users/:user_id/logout' => 'users#logout', via: :get, as: 'user_logout'
-
+  match 'users/:user_id/logout' => 'users#logout',
+        via: :get,
+        as: 'user_logout'
+  match 'users/:user_id/timesheets/:id/download_csv' => 'timesheets#download_csv',
+        via: :get,
+        :as => 'timesheet_csv'
 end

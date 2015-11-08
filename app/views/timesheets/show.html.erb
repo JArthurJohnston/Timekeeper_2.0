@@ -34,6 +34,9 @@
     <%= link_to new_user_timesheet_activity_path(@user.id, @timesheet.id) do %>
         <div class="add-button">Create Activity</div>
     <% end %>
+    <%= link_to timesheet_csv_path(@user.id, @timesheet.id), method: :delete do %>
+        <div class="delete-button">Download CSV</div>
+    <% end %>
     <%= link_to user_timesheet_path(@user.id, @timesheet.id), method: :delete do %>
         <div class="delete-button">Delete</div>
     <% end %>

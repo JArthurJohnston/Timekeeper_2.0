@@ -9,6 +9,10 @@ class NullProject < Project
     'N/A'
   end
 
+  def job_id
+    ''
+  end
+
   def story_cards
     []
   end

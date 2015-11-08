@@ -9,6 +9,9 @@ class Project < ActiveRecord::Base
   NULL = NullProject.new
 
   def statement_of_work
+    unless statement_of_work_id.nil?
+      return StatementOfWork.find(statement_of_work_id)
+    end
     StatementOfWork::NULL
   end
 

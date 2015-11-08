@@ -23,4 +23,9 @@ class TimesheetsController < ApplicationController
     redirect_to action: :index
   end
 
+  def download_csv
+    @timesheet = find_timesheet
+    send_data @timesheet.to_csv, :filename => 'timesheet.csv'
+  end
+
 end

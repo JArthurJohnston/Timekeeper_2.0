@@ -1,5 +1,3 @@
-
-
 module TimeRounding
   FIFTEEN_MINUTES = 60 * 15.0
   ONE_HOUR = 60 * 60

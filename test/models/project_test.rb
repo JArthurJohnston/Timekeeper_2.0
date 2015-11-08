@@ -54,10 +54,11 @@ class ProjectTest < ModelTestCase
     project = Project.create(user_id: user.id)
 
     assert_equal StatementOfWork::NULL, project.statement_of_work
-  end
 
-  test 'project for user' do
-    fail()
+    sow = StatementOfWork.create
+    project = Project.create(statement_of_work_id: sow.id)
+
+    assert_equal sow, project.statement_of_work
   end
 
 end
