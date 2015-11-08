@@ -2,8 +2,10 @@ class DateRange
   include DateTimeHelper
 
   def initialize(start, finish)
-    if start > finish
-      raise 'cannot create range whose start is greater than its finish'
+    unless finish.nil?
+      if start > finish
+        raise 'cannot create range whose start is greater than its finish'
+      end
     end
     @start = start
     @finish = finish

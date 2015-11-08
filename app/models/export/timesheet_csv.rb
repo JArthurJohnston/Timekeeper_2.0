@@ -1,9 +1,8 @@
 module TimesheetCSV
 
   def activities_for_card_on story_card_id, date_time
-    date = DateWrapper.new date_time
     activities.where('story_card_id = ? AND start_time >= ? AND end_time <= ? AND timesheet_id = ?',
-                     story_card_id, date.at_start, date.at_end, self.id)
+                     story_card_id, date_time.beginning_of_day, date_time.end_of_day, self.id)
   end
 
   def line_item_string_for a_story_card

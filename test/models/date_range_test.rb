@@ -110,6 +110,12 @@ class DateRangeTest < ModelTestCase
     end
   end
 
+  test 'doesnt throw error when given nil finish' do
+    assert_nothing_raised do
+      DateRange.new(monday.at(9), nil)
+    end
+  end
+
   test 'total time in minutes' do
     start_time = time_on(6, 0)
     end_time = time_on(8, 15)

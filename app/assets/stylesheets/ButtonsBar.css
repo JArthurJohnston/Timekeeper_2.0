@@ -36,9 +36,12 @@
     width: 80%;
     text-align: center;
     height: 14%;
-    margin: 10%;
     border-radius: 8px;
-    padding-top: 5%;
+    padding-top: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2%;
+    font-size: xx-large;
 }
 
 .add-button {
