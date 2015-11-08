@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def login
     valid_user = User.find_by(username: params[:user_login][:username], password: params[:user_login][:password])
     if valid_user.nil?
-      redirect_to :show_login
+      redirect_to show_user_login_path
     else
       session[:user_id] = valid_user.id
       redirect_to user_path(id: valid_user.id)
