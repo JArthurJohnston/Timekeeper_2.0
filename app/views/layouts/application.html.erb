@@ -7,6 +7,12 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+      document.addEventListener("page:restore", function() {
+          MenubarController.initialize();
+          ButtonBarController.initialize();
+      });
+  </script>
 </head>
 <body>
     <%= render 'layouts/menu_bar' %>
@@ -19,8 +25,8 @@
     </div>
     <%= render 'layouts/buttons_bar' %>
     <script type="text/javascript">
-      MenubarController.initialize();
-      ButtonBarController.initialize();
+        MenubarController.initialize();
+        ButtonBarController.initialize();
     </script>
 </body>
 </html>

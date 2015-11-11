@@ -3,10 +3,14 @@ class UsersController < ApplicationController
   def find_user
     user_id = params[:id]
     unless user_id.nil?
-      @user = User.find user_id
+      @user = authenticate_user
     else
       @user = User::NULL
     end
+  end
+
+  def get_user_id
+    params[:id]
   end
 
   def login

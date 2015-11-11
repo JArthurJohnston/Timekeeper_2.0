@@ -12,7 +12,9 @@ class Timesheet < ActiveRecord::Base
 
   def add_activity anActivity
     unless current_activity == Activity::NULL
-      self.current_activity.update(end_time: anActivity.start_time)
+      if current_activity.end_time.nil?
+        self.current_activity.update(end_time: anActivity.start_time)
+      end
     end
     anActivity.set_timesheet(self)
     anActivity.save

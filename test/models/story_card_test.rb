@@ -10,18 +10,20 @@ class StoryCardTest < ModelTestCase
   end
 
   test 'story card fields' do
+    status = StoryCardStatus.create(label: 'Done', color: 'Green')
     project = Project.create
     description = 'you need to do all the things'
     cardNumber = 'D123'
     title = 'do something with the thing'
     estimate = 16
-    storyCard = StoryCard.new(project_id: project.id, title: title, number: cardNumber, description: description, estimate: estimate)
+    storyCard = StoryCard.new(story_card_status_id: status.id, project_id: project.id, title: title, number: cardNumber, description: description, estimate: estimate)
 
     assert_equal title, storyCard.title
     assert_equal cardNumber, storyCard.number
     assert_equal description, storyCard.description
     assert_equal estimate, storyCard.estimate
     assert_equal project, storyCard.project
+    assert_equal status, storyCard.status
   end
 
   test 'story card activities' do

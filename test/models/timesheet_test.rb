@@ -236,6 +236,25 @@ class TimesheetTest < ModelTestCase
     assert_nil Activity.find(act2.id).end_time
   end
 
+  test 'adding an acitvity will only update the previous activity if its end is nil' do
+    timesheet = Timesheet.create
+    act1 = Activity.create(start_time: time_on(9, 45))
+    timesheet.add_activity(act1)
+
+    assert_nil act1.end_time
+
+    act2_start = time_on(11, 15)
+    act2_end = time_on(13, 45)
+    act2 = Activity.create(start_time: act2_start, end_time: act2_end)
+    timesheet.add_activity(act2)
+
+    assert_equal act2_start, Activity.find(act1.id).end_time
+
+    act3 = Activity.create(start_time: time_on(15, 30))
+    timesheet.add_activity(act3)
+
+    assert_equal act2_end, Activity.find(act2.id).end_time
+  end
 
   test 'deleting a timesheet updates user current timesheet' do
     user = User.create

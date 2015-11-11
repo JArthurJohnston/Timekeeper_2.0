@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2742828963">
+  <component name="DataSourceManagerImpl" format="xml" hash="2088629287">
     <data-source source="LOCAL" name="Rails Timekeeper 2.0: development" uuid="f675d5c5-694d-424f-ae98-d3cbcbb82279">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
@@ -14,6 +14,20 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/timekeeper_test</jdbc-url>
       <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails Timekeeper 2.0: production" uuid="d999002f-cce7-4877-8bb1-cc534edd65fa">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:project_production</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/postgresql-9.4-1201.jdbc4.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

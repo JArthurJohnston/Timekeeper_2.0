@@ -16,11 +16,15 @@ class ApplicationController < ActionController::Base
     @user = authenticate_user
   end
 
+  def get_user_id
+    params[:user_id]
+  end
+
   def authenticate_user
     session_id = session[:user_id]
     unless session_id.nil?
-      if session_id.to_s == params[:user_id].to_s
-        return User.find params[:user_id]
+      if session_id.to_s == get_user_id.to_s
+        return User.find get_user_id
       else
         head :forbidden
       end
