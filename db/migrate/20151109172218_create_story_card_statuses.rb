@@ -6,10 +6,5 @@ class CreateStoryCardStatuses < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-
-    Status.create(label: 'In Progress', color: 'Yellow')
-    Status.create(label: 'Cancelled', color: 'Blue')
-    Status.create(label: 'Done', color: 'Green')
-    Status.create(label: 'Stopped', color: 'Blue')
   end
 end
