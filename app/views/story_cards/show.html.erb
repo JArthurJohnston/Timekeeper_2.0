@@ -2,6 +2,10 @@
     <%= @story_card.display_string %>
     <%= @story_card.actual_estimate_string %>
 </div>
+<div>
+  <p>Status: </p>
+  <p><%= @story_card.status_string %></p>
+</div>
 <h1>Activities</h1>
 <ul>
   <% @story_card.activities.each do |each_activity| %>

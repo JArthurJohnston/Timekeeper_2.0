@@ -26,10 +26,10 @@ class StoryCard < ActiveRecord::Base
   end
 
   def status
-    unless status_id.nil?
-      return StoryCardStatus.find(status_id)
+    if status_id.nil?
+      return Status::NULL
     end
-    StoryCardStatus.find(0)
+    super
   end
 
 end

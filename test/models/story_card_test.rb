@@ -10,7 +10,7 @@ class StoryCardTest < ModelTestCase
   end
 
   test 'story card fields' do
-    status = StoryCardStatus.create(label: 'Done', color: 'Green')
+    status = Status.create(label: 'Done', color: 'Green')
     project = Project.create
     description = 'you need to do all the things'
     cardNumber = 'D123'
@@ -63,4 +63,14 @@ class StoryCardTest < ModelTestCase
     assert_equal Project::NULL, story.project
   end
 
+  test 'returns null status when status_id is -1' do
+    story = StoryCard.create
+
+    assert_equal Status::NULL, story.status
+
+    status = Status.create
+    story.update(status_id: status.id)
+
+    assert_equal status, story.status
+  end
 end

@@ -2,7 +2,7 @@ module FindNullModel
 
   def find *ids
     model_id = ids[0]
-    if model_id == -1 || model_id == '-1'
+    if null_id? model_id
       return self::NULL
     end
     super
@@ -11,11 +11,15 @@ module FindNullModel
   def find_by *args
     model_id = args[0][:id]
     unless model_id.nil?
-      if model_id == -1 || model_id == '-1'
+      if null_id? model_id
         return self::NULL
       end
     end
     super
+  end
+
+  def null_id? aNumber
+    aNumber == -1 || aNumber == '-1'
   end
 
 end

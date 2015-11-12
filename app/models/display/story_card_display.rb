@@ -16,5 +16,4 @@ module StoryCardDisplay
         {actual: billable_hours, estimate: estimate}
   end
 
-
 end

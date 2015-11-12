@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109180021) do
+ActiveRecord::Schema.define(version: 20151111180130) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20151109180021) do
     t.boolean "is_deleted"
   end
 
-  create_table "story_card_statuses", force: :cascade do |t|
+  create_table "statuses", force: :cascade do |t|
     t.string   "label",      limit: 255
     t.string   "color",      limit: 255
     t.datetime "created_at",             null: false
