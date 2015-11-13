@@ -31,11 +31,7 @@ class ApplicationController < ActionController::Base
       # redirect_to user_login_path
       head :forbidden
     end
-    nil
-  end
-
-  def null_id? id
-    return id.to_s == '-1'
+    redirect_to show_user_login_path
   end
 
 end

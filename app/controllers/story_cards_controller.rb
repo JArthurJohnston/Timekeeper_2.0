@@ -28,7 +28,7 @@ class StoryCardsController < ApplicationController
   end
 
   def new_with_activity
-
+    puts @user.name
   end
 
   def edit
