@@ -28,7 +28,16 @@ class StoryCardsController < ApplicationController
   end
 
   def new_with_activity
-    puts @user.name
+    @story_card = StoryCard.new
+    @submit_path = create_story_card_for_activity_path(@user.id, params[:timesheet_id])
+  end
+
+  def create_with_activity
+    @story_card = StoryCard.create(story_card_params)
+    timesheet_id = params[:timesheet_id]
+    timesheet = Timesheet.find(timesheet_id)
+    timesheet.add_activity(Activity.now(timesheet_id, @story_card.id))
+    redirect_to user_timesheet_path(@user.id, timesheet_id)
   end
 
   def edit

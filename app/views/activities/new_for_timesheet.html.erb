@@ -1,12 +1,6 @@
 <div>Select Activity Story Card</div>
 
 <%= render 'story_cards/select' %>
-
-<% content_for :buttons_bar do %>
-    <%= link_to '' do %>
-        <div class="add-button">+</div>
-    <% end %>
-    <%= link_to '' do %>
-        <div class="">Cancel</div>
-    <% end %>
+<%= link_to new_story_card_for_activity_path(@user.id, params[:timesheet_id]) do %>
+    <div class="add-button">New Story Card</div>
 <% end %>
