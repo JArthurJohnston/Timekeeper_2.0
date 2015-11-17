@@ -1,4 +1,4 @@
-<div class="change">
+<div id="change-form" class="change">
   <%= form_for @story_card, url: @submit_path do |f| %>
         <%= f.label 'Title:' %>
         <%= f.text_field :title %>
@@ -13,5 +13,12 @@
       <div class="change-buttons">
         <%= f.submit 'Save' %>
       </div>
+      <div id="edit-discard-button" class="edit-button">Edit</div>
   <% end %>
+
 </div>
+<script>
+  $(document).ready(function(){
+      EditableFormController.initDisable();
+  });
+</script>

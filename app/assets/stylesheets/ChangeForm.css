@@ -6,7 +6,7 @@
 
 .change textarea {
     width: 100%;
-    height: 20%;
+    line-height: 3em;
     font-size: x-large;
 }
 
@@ -15,10 +15,12 @@
     width: 100%;
     font-size: x-large;
     border-radius: 5px;
+    border: 1px solid black;
 }
 
 .change input[type="text"]:disabled {
     background-color:rgb(228, 228, 228);
+    color: black;
     padding: 1%;
     border: medium none;
 }
@@ -34,3 +36,31 @@
     padding: 2%;
 }
 
+.change select {
+    border-radius: 5px;
+    border: 1px solid;
+    border: medium none;
+}
+
+.change select:disabled {
+    background-color: rgb(228, 228, 228);
+    color: black;
+}
+
+.disabled-form .change-buttons {
+    display: none;
+}
+
+.disabled-form .edit-button {
+    font-size: xx-large;
+    font-weight: bolder;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: 2%;
+    background-color: #00CC99;
+}
+
+.enabled-form .edit-button {
+    display: none;
+}
