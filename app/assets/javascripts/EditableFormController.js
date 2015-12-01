@@ -11,24 +11,22 @@ var EditableFormController = (function(){
     function enableFields(){
         var changeForm = document.querySelector('#change-form');
         changeForm.setAttribute('class', 'change enabled-form');
-        var inputs = changeForm.querySelectorAll('.change input');
-        changeForm.querySelector('textArea').removeAttribute('disabled');
-        changeForm.querySelector('select').removeAttribute('disabled');
-        for(key in inputs){
-            var eachInput = inputs[key];
+        var inputs = changeForm.querySelectorAll('.disablable');
+        for(var i = 0; i < inputs.length; i++){
+            var eachInput = inputs[i];
             eachInput.originalValue = eachInput.innerHTML;
-            eachInput.removeAttribute('disabled');
+            if(eachInput.getAttribute('disabled') != null){
+                eachInput.removeAttribute('disabled');
+            }
         }
     }
 
     function disableFields(){
         var changeForm = document.querySelector('#change-form');
         changeForm.setAttribute('class', 'change disabled-form');
-        var inputs = changeForm.querySelectorAll('.change input');
-        changeForm.querySelector('textArea').setAttribute('disabled', '');
-        changeForm.querySelector('select').setAttribute('disabled', '');
-        for(key in inputs){
-            var eachInput = inputs[key];
+        var inputs = changeForm.querySelectorAll('.disablable');
+        for(var i = 0; i < inputs.length; i++){
+            var eachInput = inputs[i];
             eachInput.innerHTML = eachInput.originalValue;
             eachInput.setAttribute('disabled', '');
         }

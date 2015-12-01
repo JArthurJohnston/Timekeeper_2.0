@@ -1,19 +1,19 @@
-<div class="change">
+<div id="change-form" class="change">
   <%= form_for @activity, url: @submit_path do |f| %>
       <div>
         <%= f.label 'Start:' %>
-        <%= f.time_select :start_time, {ampm: true, minute_step: 15} %>
+        <%= f.time_select :start_time, {ampm: true, minute_step: 15}, class: 'disablable'%>
       </div>
       <div>
         <%= f.label 'End:' %>
-        <%= f.time_select :end_time, {ampm: true, minute_step: 15} %>
+        <%= f.time_select :end_time, {ampm: true, minute_step: 15}, class: 'disablable'%>
       </div>
       <div>
         <%= f.label 'Story Card:' %>
-        <%= f.collection_select(:story_card_id, StoryCard.all, :id, :project_number) %>
+        <%= f.collection_select(:story_card_id, StoryCard.all, :id, :project_number, class: 'dissablable') %>
       </div>
       <div>
-        <%= f.submit 'Save' %>
+        <%= f.submit 'Save', class: 'disablable' %>
       </div>
   <% end %>
 </div>
