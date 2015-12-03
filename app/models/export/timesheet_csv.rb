@@ -25,8 +25,7 @@ module TimesheetCSV
     timesheet_csv = ''
     story_cards.each do
       |each_story_card|
-      each_card_csv = weekday_totals_string_for(each_story_card)
-      timesheet_csv.concat(each_card_csv).concat("\n")
+      timesheet_csv.concat(StoryCardLineItem.new(self, each_story_card).to_csv).concat("\n")
     end
     return timesheet_csv
   end
