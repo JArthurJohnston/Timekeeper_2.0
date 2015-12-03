@@ -12,9 +12,9 @@ class TimesheetTest < ModelTestCase
     timesheet.save
     assert_empty timesheet.activities
 
-    newActivity1 = newActivityFor timesheet
-    newActivity2 = newActivityFor timesheet
-    newActivity3 = newActivityFor timesheet
+    newActivity1 = new_activity_for timesheet
+    newActivity2 = new_activity_for timesheet
+    newActivity3 = new_activity_for timesheet
 
     assert_equal 3, timesheet.activities.size
     assert timesheet.activities.include? newActivity1
@@ -22,7 +22,7 @@ class TimesheetTest < ModelTestCase
     assert timesheet.activities.include? newActivity3
   end
 
-  def newActivityFor aTimesheet
+  def new_activity_for aTimesheet
     newActivity = Activity.new
     newActivity.timesheet_id= aTimesheet.id
     newActivity.save
@@ -115,11 +115,13 @@ class TimesheetTest < ModelTestCase
   test 'timesheet story cards' do
     story1 = StoryCard.create
     story2 = StoryCard.create
+    story3 = StoryCard.create
 
     timesheet = Timesheet.create
-    act1 = Activity.create(timesheet_id: timesheet.id, story_card_id: story1.id)
-    act2 = Activity.create(timesheet_id: timesheet.id, story_card_id: story2.id)
-    act3 = Activity.create(timesheet_id: timesheet.id, story_card_id: story1.id)
+    Activity.create(timesheet_id: timesheet.id, story_card_id: story1.id)
+    Activity.create(timesheet_id: timesheet.id, story_card_id: story2.id)
+    Activity.create(timesheet_id: timesheet.id, story_card_id: story1.id)
+    Activity.create(story_card_id: story3.id)
 
     assert_equal [story1, story2], timesheet.story_cards
   end
