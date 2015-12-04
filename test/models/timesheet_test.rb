@@ -116,6 +116,7 @@ class TimesheetTest < ModelTestCase
     story1 = StoryCard.create
     story2 = StoryCard.create
     story3 = StoryCard.create
+    story4 = StoryCard.create
 
     timesheet = Timesheet.create
     Activity.create(timesheet_id: timesheet.id, story_card_id: story1.id)

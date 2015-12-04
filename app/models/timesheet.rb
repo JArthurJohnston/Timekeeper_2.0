@@ -43,7 +43,12 @@ class Timesheet < ActiveRecord::Base
   end
 
   def story_cards
-    return StoryCard.joins(activities: :timesheet).uniq
+    cards = []
+    activities.each do
+      |each_activity|
+      cards.push each_activity.story_card
+    end
+    cards.uniq
   end
 
   def start_date
