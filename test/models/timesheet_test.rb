@@ -283,4 +283,20 @@ class TimesheetTest < ModelTestCase
     timesheet = Timesheet.create
     assert_equal User::NULL, timesheet.user
   end
+
+  test 'timesheet projects' do
+    project1 = Project.create
+    project2 = Project.create
+    Project.create
+
+    card1 = StoryCard.create project_id: project1.id
+    card2 = StoryCard.create project_id: project2.id
+
+    timesheet = Timesheet.create
+
+    act1 = Activity.create timesheet_id: timesheet.id, story_card_id: card1.id
+    act1 = Activity.create timesheet_id: timesheet.id, story_card_id: card2.id
+
+    assert_equal [project1, project2], timesheet.projects
+  end
 end

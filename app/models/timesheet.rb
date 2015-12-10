@@ -85,4 +85,13 @@ class Timesheet < ActiveRecord::Base
     end
     super
   end
+
+  def projects
+    story_projects = []
+    self.story_cards.each do
+      |each_card|
+      story_projects.push each_card.project
+    end
+    story_projects.uniq
+  end
 end

@@ -9,4 +9,13 @@ module TimesheetCSV
     return timesheet_csv
   end
 
+  def story_card_line_items
+    line_items = []
+    story_cards.sort {|a, b| a.project.name < b.project.name}.each do
+      |each_card|
+      line_items.push(StoryCardLineItem.new(self, each_card))
+    end
+    line_items
+  end
+
 end
