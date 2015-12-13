@@ -2,6 +2,10 @@ class StoryCardLineItem
   attr_reader :timesheet,
               :story_card
 
+  def self.line_item_for timesheet, story_card
+    return self.new(timesheet, story_card).to_csv
+  end
+
   def initialize timesheet, story_card
     @timesheet = timesheet
     @story_card = story_card

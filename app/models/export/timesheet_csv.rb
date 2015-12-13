@@ -2,20 +2,18 @@ module TimesheetCSV
 
   def to_csv
     timesheet_csv = ''
-    story_cards.each do
-      |each_story_card|
-      timesheet_csv.concat(StoryCardLineItem.new(self, each_story_card).to_csv).concat("\n")
+    projects.each do
+      |each_project|
+      project_csv = ProjectLineItem.line_item_for(self, each_project)
+      timesheet_csv.concat(project_csv).concat(empty_line).concat("\n")
     end
-    return timesheet_csv
+    timesheet_csv
   end
 
-  def story_card_line_items
-    line_items = []
-    story_cards.sort {|a, b| a.project.name < b.project.name}.each do
-      |each_card|
-      line_items.push(StoryCardLineItem.new(self, each_card))
+  private
+
+    def empty_line
+      return ',,,,,,,,,,,,'
     end
-    line_items
-  end
 
 end
