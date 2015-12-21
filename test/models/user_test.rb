@@ -101,4 +101,11 @@ class UserTest < ModelTestCase
     assert user1.projects.include? project1
   end
 
+  test 'user has a rate' do
+    expected_rate = 25.50
+    user = User.create rate: expected_rate
+
+    assert_equal expected_rate, user.rate
+  end
+
 end

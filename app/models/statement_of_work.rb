@@ -8,4 +8,10 @@ class StatementOfWork < ActiveRecord::Base
 
   NULL = NullStatementOfWork.new
 
+  def rate
+    sow_rate = super
+    unless sow_rate.nil?
+      return user.rate
+    end
+  end
 end

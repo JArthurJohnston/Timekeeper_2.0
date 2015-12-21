@@ -23,7 +23,7 @@ class NullProjectTest < ModelTestCase
   end
 
   test 'job id is not signed' do
-    assert_equal '', project.job_id
+    assert_equal '', @null_project.job_id
   end
 
 end

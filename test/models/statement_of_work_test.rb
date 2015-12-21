@@ -42,4 +42,17 @@ class StatementOfWorkTest < ActiveSupport::TestCase
     assert_equal user, sow.user
   end
 
+  test 'sow has rate' do
+    user = User.create
+    sow = StatementOfWork.create rate: 5.50, user_id: user.id
+    assert_equal 5.50, sow.rate
+  end
+
+  test 'sow gets rate from user when its rate is nil' do
+    user = User.create rate: 20.5
+    sow = StatementOfWork.create user_id: user.id
+
+    assert_equal 20.5, sow.rate
+  end
+
 end
