@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214235722) do
+ActiveRecord::Schema.define(version: 20151224162900) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
@@ -45,7 +45,8 @@ ActiveRecord::Schema.define(version: 20151214235722) do
     t.string  "nickname",              limit: 255
     t.integer "user_id",               limit: 4
     t.boolean "is_deleted"
-    t.decimal "rate",                              precision: 10
+    t.decimal "rate",                              precision: 8, scale: 2
+    t.string  "description",           limit: 255
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -94,7 +95,7 @@ ActiveRecord::Schema.define(version: 20151214235722) do
     t.string  "password",             limit: 255
     t.string  "email",                limit: 255
     t.string  "timezone",             limit: 255
-    t.decimal "rate",                             precision: 10
+    t.decimal "rate",                             precision: 8, scale: 2
   end
 
 end

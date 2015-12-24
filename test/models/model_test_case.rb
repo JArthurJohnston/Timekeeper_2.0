@@ -24,4 +24,15 @@ class ModelTestCase < ActiveSupport::TestCase
     assert_equal expectedDate.utc.second, actualDate.utc.second
   end
 
+  def assert_order_equal expected_collection, actual_collection, fail_message = ''
+    assert_equal expected_collection.length, actual_collection.length, 'collections have different sizes'
+    for i in 0..expected_collection.length do
+      assert_equal expected_collection[i], actual_collection[i], order_error_msg_at(i)
+    end
+  end
+
+  def order_error_msg_at index
+    'collections differ at location '.concat(index.to_s)
+  end
+
 end

@@ -1,6 +1,6 @@
-require 'test_helper'
+require_relative 'model_test_case'
 
-class StatementOfWorkTest < ActiveSupport::TestCase
+class StatementOfWorkTest < ModelTestCase
 
   test 'sow has projects' do
     sow = StatementOfWork.create
@@ -24,7 +24,7 @@ class StatementOfWorkTest < ActiveSupport::TestCase
     project3 = Project.create(name: 'alpha (lowercase) project is last', statement_of_work_id: sow.id)
     project4 = Project.create(name: '0th project is first', statement_of_work_id: sow.id)
 
-    assert_equal [project4, project2, project1, project3], sow.projects
+    assert_order_equal [project4, project1, project2, project3], sow.projects
   end
 
   test 'sow fields' do
@@ -33,19 +33,21 @@ class StatementOfWorkTest < ActiveSupport::TestCase
     po_number = 'SUBSOW3344'
     client_name = 'Acme Co'
     nickname = 'the name of nick'
-    sow = StatementOfWork.create(user_id: user.id, number: sow_number, purchase_order_number: po_number, client: client_name, nickname: nickname)
+    expected_rate = 56.34
+    expected_descr = 'sflkjsflkjdf'
+    sow = StatementOfWork.create(user_id: user.id,
+                                 number: sow_number,
+                                 purchase_order_number: po_number,
+                                 client: client_name,
+                                 nickname: nickname, rate: expected_rate, description: expected_descr)
 
     assert_equal sow_number, sow.number
     assert_equal po_number, sow.purchase_order_number
     assert_equal client_name, sow.client
     assert_equal nickname, sow.nickname
     assert_equal user, sow.user
-  end
-
-  test 'sow has rate' do
-    user = User.create
-    sow = StatementOfWork.create rate: 5.50, user_id: user.id
-    assert_equal 5.50, sow.rate
+    assert_equal expected_rate, sow.rate
+    assert_equal expected_descr, sow.description
   end
 
   test 'sow gets rate from user when its rate is nil' do
