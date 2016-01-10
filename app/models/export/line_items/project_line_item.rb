@@ -2,7 +2,7 @@ class ProjectLineItem
   attr_reader :timesheet,
               :project
 
-  def self.line_item_for timesheet, project
+  def self.line_item_for(timesheet, project)
     return self.new(timesheet, project).to_csv
   end
 
