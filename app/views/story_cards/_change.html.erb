@@ -7,7 +7,7 @@
         <%= f.label 'Estimate:' %>
         <%= f.text_field :estimate %>
         <%= f.label 'Project:' %>
-        <%= f.collection_select(:project_id, Project.all, :id, :name) %>
+        <%= f.collection_select(:project_id, Project.order(:name), :id, :name) %>
         <%= f.label 'Description:' %>
         <%= f.text_area :description %>
       <div class="change-buttons">

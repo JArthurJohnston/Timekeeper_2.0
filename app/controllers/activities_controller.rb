@@ -21,7 +21,7 @@ class ActivitiesController < ApplicationController
 
   def new_for_timesheet
     @project = Project.find(project_id_from_params)
-    @projects = Project.all
+    @projects = Project.order(:name)
     @story_cards = @project.story_cards
     @select_symbol = :select_story_card_for_activity
     @project_select_path = new_activity_for_timesheet_path(@user.id, params[:timesheet_id], @project.id)

@@ -2,7 +2,7 @@ class StoryCardsController < ApplicationController
 
   def index
     @project = Project.find project_id_from_params
-    @projects = Project.all
+    @projects = Project.order(:name)
     @story_cards = @project.story_cards
     @select_symbol = :navigate_to_story_card
     @project_select_path = user_project_story_cards_path(@user.id, project_id_from_params)
@@ -63,7 +63,7 @@ class StoryCardsController < ApplicationController
   end
 
   def select
-    @projects = Project.all
+    @projects = Project.order(:name)
   end
 
   def story_card_path
