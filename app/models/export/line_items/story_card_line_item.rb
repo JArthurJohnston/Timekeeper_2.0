@@ -50,12 +50,11 @@ class StoryCardLineItem
   def line_item_string
     project = @story_card.project
     sow = project.statement_of_work
-    "%{client},%{job_id},%{project} DEV - %{number},,,," % {
+    "%{client},%{job_id},%{project} DEV - %{number},,," % {
         client: sow.client,
         job_id: project.job_id,
         project: project.name,
-        number: @story_card.number,
-        billable: if project.billable? then 'Y' else 'N' end
+        number: @story_card.number
     }
   end
 

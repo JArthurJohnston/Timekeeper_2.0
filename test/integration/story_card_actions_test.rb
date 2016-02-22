@@ -21,7 +21,7 @@ class StoryCardActionsTest < ActionDispatch::IntegrationTest
   end
 
   test 'destroy story card action' do
-    user = User.id
+    user = User.create
     projet = Project.create
     story = StoryCard.create(user_id: user.id, project_id: project.id)
 

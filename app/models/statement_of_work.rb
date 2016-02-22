@@ -10,8 +10,9 @@ class StatementOfWork < ActiveRecord::Base
 
   def rate
     sow_rate = super
-    unless sow_rate.nil?
+    if sow_rate.nil?
       return user.rate
     end
   end
+
 end

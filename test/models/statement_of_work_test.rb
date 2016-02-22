@@ -39,7 +39,9 @@ class StatementOfWorkTest < ModelTestCase
                                  number: sow_number,
                                  purchase_order_number: po_number,
                                  client: client_name,
-                                 nickname: nickname, rate: expected_rate, description: expected_descr)
+                                 nickname: nickname,
+                                 rate: expected_rate,
+                                 description: expected_descr)
 
     assert_equal sow_number, sow.number
     assert_equal po_number, sow.purchase_order_number

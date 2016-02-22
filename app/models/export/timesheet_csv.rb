@@ -13,7 +13,7 @@ module TimesheetCSV
   private
 
     def empty_line
-      return ',,,,,,,,,,,,'
+      return ',,,,,,,,,,,'
     end
 
 end

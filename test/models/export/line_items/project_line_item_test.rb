@@ -39,8 +39,8 @@ class ProjectLineItemTest < ModelTestCase
 
     line_item = ProjectLineItem.new timesheet, project
 
-    expected_csv = 'Mickey,SOW111,Mouse DEV - 123,Y,N,,,,1.0,,,,
-Mickey,SOW111,Mouse DEV - 234,Y,N,,,1.0,,,,,
+    expected_csv = 'Mickey,SOW111,Mouse DEV - 123,,,,1.0,,,,
+Mickey,SOW111,Mouse DEV - 234,,,1.0,,,,,
 '
 
     assert_equal expected_csv, line_item.to_csv
@@ -58,8 +58,8 @@ Mickey,SOW111,Mouse DEV - 234,Y,N,,,1.0,,,,,
 
     line_item = ProjectLineItem.new timesheet, project
 
-    expected_csv = 'Mickey,SOW111,Mouse DEV - 123,Y,N,,,,1.0,,,,
-Mickey,SOW111,Mouse DEV - 234,Y,N,,,1.0,,,,,
+    expected_csv = 'Mickey,SOW111,Mouse DEV - 123,,,,1.0,,,,
+Mickey,SOW111,Mouse DEV - 234,,,1.0,,,,,
 '
 
     assert_equal expected_csv, ProjectLineItem.line_item_for(timesheet, project)

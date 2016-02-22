@@ -1,6 +1,6 @@
 module ProjectDisplay
 
   def display_string
-    "%{name}" % {name: name}
+    "%{name} : %{sow}" % {name: name, sow: invoice_number}
   end
 end
