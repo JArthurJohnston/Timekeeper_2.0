@@ -1,17 +1,24 @@
-<% content_for :specific_scripts do %>
-    <%= javascript_include_tag 'activities' %>
-<% end %>
+
 
 <div id="activity-content">
 </div>
+<div id="edit-activity-button" class="edit-button">Edit</div>
 
 <% content_for :buttons_bar do %>
-    <div id="edit-activity-button" class="edit-button">Edit</div>
     <%= link_to user_timesheet_activity_path(@user.id, @activity.timesheet_id, @activity.id), method: :DELETE do %>
         <div class="delete-button">Delete</div>
     <% end %>
 <% end %>
 
+<% content_for :specific_scripts do %>
+    <%= javascript_include_tag 'activities' %>
+<% end %>
+
 <script type="text/javascript">
-  EditableActivityController.initialize();
+  <% change_page = render('change') %>
+  <% display_page = render('display') %>
+  $(document).ready(EditableActivityController.initialize('<%= j change_page %>', '<%= j display_page %>'));
+  document.addEventListener("page:restore", function() {
+    EditableActivityController.initialize('<%= j change_page %>', '<%= j display_page %>');
+  });
 </script>

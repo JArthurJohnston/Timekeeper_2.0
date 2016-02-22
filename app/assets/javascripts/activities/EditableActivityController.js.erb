@@ -7,11 +7,15 @@ var EditableActivityController = (function(){
 
     var activityContentDiv,
         editActivityButton,
+        editHTML,
+        showHTML,
         isEditing;
 
-    function initialize(){
+    function initialize(editPage, showPage){
         activityContentDiv = document.getElementById('activity-content');
         editActivityButton = document.getElementById('edit-activity-button');
+        editHTML = editPage;
+        showHTML = showPage;
         isEditing = false;
         wireUpEditButton();
         renderDisplayDiv();
@@ -22,20 +26,22 @@ var EditableActivityController = (function(){
     }
 
     function renderEditForm(){
-        activityContentDiv.innerHTML = <%= render partial: 'change' %>;
+        activityContentDiv.innerHTML = editHTML;
     }
 
     function renderDisplayDiv(){
-        activityContentDiv.innerHTML = <%= render partial: 'display' %>;
+        activityContentDiv.innerHTML = showHTML;
     }
 
     function editButtonOnclick(){
         if(isEditing){
             renderDisplayDiv();
             isEditing = false;
+            editActivityButton.innerHTML = 'Edit'
         }else{
             renderEditForm();
             isEditing = true;
+            editActivityButton.innerHTML = 'Discard'
         }
     }
 
