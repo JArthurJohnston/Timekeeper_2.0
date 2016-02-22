@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find_by(user_id: @user.id, id: params[:id])
+    @project = Project.find(params[:id])
     @submit_path = user_projects_path(@user.id)
   end
 
@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find params[:id]
+    @project = Project.find(params[:id])
     @submit_path = user_project_path(@user.id, @project.id)
   end
 
