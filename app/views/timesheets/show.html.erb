@@ -1,3 +1,7 @@
+<% content_for :specific_scripts do %>
+    <%= javascript_include_tag 'timesheets' %>
+<% end %>
+
 <div class="summary">
   <div class="summary-title">Summary</div>
   <%= summary_div_for @timesheet.current_activity %>

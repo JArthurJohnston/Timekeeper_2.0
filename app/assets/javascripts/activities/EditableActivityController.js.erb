@@ -1,0 +1,46 @@
+/**
+ * Created by arthur on 11/16/15.
+ */
+
+var EditableActivityController = (function(){
+    "use strict";
+
+    var activityContentDiv,
+        editActivityButton,
+        isEditing;
+
+    function initialize(){
+        activityContentDiv = document.getElementById('activity-content');
+        editActivityButton = document.getElementById('edit-activity-button');
+        isEditing = false;
+        wireUpEditButton();
+        renderDisplayDiv();
+    }
+
+    function wireUpEditButton(){
+        editActivityButton.onclick = editButtonOnclick;
+    }
+
+    function renderEditForm(){
+        activityContentDiv.innerHTML = <%= render partial: 'change' %>;
+    }
+
+    function renderDisplayDiv(){
+        activityContentDiv.innerHTML = <%= render partial: 'display' %>;
+    }
+
+    function editButtonOnclick(){
+        if(isEditing){
+            renderDisplayDiv();
+            isEditing = false;
+        }else{
+            renderEditForm();
+            isEditing = true;
+        }
+    }
+
+    return {
+        initialize: initialize
+    };
+
+}());

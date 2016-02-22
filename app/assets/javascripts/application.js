@@ -13,15 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
-
-var Requester = (function(){
-
-    var requester = {
-        requestPostToUrl: function(urlString){
-
-        }
-    }
-
-    return requester;
-}());
+//= require_tree ./application

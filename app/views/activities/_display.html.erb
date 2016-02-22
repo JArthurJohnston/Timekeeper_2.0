@@ -1,0 +1,14 @@
+<div>
+  <h3>Story Card</h3>
+  <%= link_to user_project_story_card_path(@user.id, @project.id, @activity.story_card_id) do %>
+      <div class="edit-button">
+        <%= @activity.story_card.display_string %>
+      </div>
+  <% end %>
+  <h3>Start:</h3>
+  <div><%= @activity.start %></div>
+  <h3>End:</h3>
+  <div>
+    <%= @activity.start.nil? ? '--' : @activity.start %>
+  </div>
+</div>
