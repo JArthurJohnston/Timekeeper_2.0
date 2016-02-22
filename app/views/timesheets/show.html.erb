@@ -1,5 +1,10 @@
 <% content_for :specific_scripts do %>
     <%= javascript_include_tag 'timesheets' %>
+    <script type="text/javascript">
+        document.addEventListener("page:restore", function() {
+            TimesheetListController.initialize();
+        });
+    </script>
 <% end %>
 
 <div class="summary">
@@ -30,9 +35,6 @@
     <% end %>
   </li>
 </ul>
-<script>
-  $(document).ready(TimesheetListController.initialize());
-</script>
 
 <% content_for :buttons_bar do %>
     <%= link_to new_user_timesheet_activity_path(@user.id, @timesheet.id) do %>
@@ -45,3 +47,8 @@
         <div class="delete-button">Delete</div>
     <% end %>
 <% end %>
+
+<script type="text/javascript">
+    $(document).ready(TimesheetListController.initialize());
+
+</script>

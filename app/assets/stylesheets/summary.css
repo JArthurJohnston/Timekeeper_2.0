@@ -1,0 +1,34 @@
+.summary {
+    width: 88%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.summary h3 {
+    width: inherit;
+    margin-right: inherit;
+    margin-left: inherit;
+    background-color: #bababa;
+    margin-top: 3%;
+    padding: 1%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.summary div {
+    width: inherit;
+    margin-right: inherit;
+    margin-left: inherit;
+    background-color: #F7F7F7;
+    font-size: x-large;
+    padding: 1%;
+}
+
+.summary a div {
+    width: 88%;
+    margin-right: 5%;
+    margin-left: 5%;
+    background-color: lightblue;
+    padding: 1%;
+    display: inline-block;
+}

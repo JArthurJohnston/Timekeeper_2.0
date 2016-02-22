@@ -42,11 +42,6 @@ a:active {
     color: aquamarine;
 }
 
-body {
-    margin: 0%;
-    padding: 0%;
-}
-
 #page-body {
     text-align: center;
     overflow: scroll;
