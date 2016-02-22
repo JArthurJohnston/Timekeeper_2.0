@@ -1,0 +1,9 @@
+<div>
+  <%= render "change" %>
+</div>
+
+<% content_for :buttons_bar do %>
+    <%= link_to user_timesheet_activity_path(@user.id, @activity.timesheet_id, @activity.id), method: :DELETE do %>
+        <div class="delete-button">Delete</div>
+    <% end %>
+<% end %>
