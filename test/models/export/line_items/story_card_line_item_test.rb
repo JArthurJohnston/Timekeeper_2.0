@@ -59,7 +59,14 @@ class StoryCardLineItemTest < ModelTestCase
     card = StoryCard.create(project_id: project.id, number: '123')
     start_time = monday.at(5, 45)
     Activity.create(timesheet_id: sheet.id, story_card_id: card.id, start_time: start_time, end_time: monday.at(7, 15))
-    Activity.create(timesheet_id: sheet.id, story_card_id: card.id, start_time: monday.at(8), end_time: monday.at(9))
+
+
+
+
+
+    Activity.new(timesheet_id: sheet.id, story_card_id: card.id, start_time: monday.at(8), end_time: monday.at(9))
+
+
 
     assert_equal 'Mickey,SOW456,Mouse DEV - 123,,,2.5,,,,,', StoryCardLineItem.line_item_for(sheet, card)
   end
