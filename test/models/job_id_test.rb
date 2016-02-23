@@ -6,7 +6,7 @@ class JobIdTest < ActiveSupport::TestCase
     sow = StatementOfWork.create
     project = Project.create
     expected_number = 'SOW003'
-    job_id = JobId.create(statement_of_work_id: sow.id, project_id: project.id, number: expected_number)
+    job_id = JobIdentifier.create(statement_of_work_id: sow.id, project_id: project.id, number: expected_number)
 
     assert_equal expected_number, job_id.number
     assert_equal sow, job_id.statement_of_work

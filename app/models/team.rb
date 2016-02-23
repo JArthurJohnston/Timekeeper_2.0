@@ -1,5 +1,6 @@
 class Team < ActiveRecord::Base
   has_many :team_members
+  has_many :projects
   belongs_to :user
 
   def self.create attributes = nil, &block

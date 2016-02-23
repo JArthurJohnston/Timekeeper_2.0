@@ -53,4 +53,18 @@ class TeamTest < ModelTestCase
     assert members2.include? user2
   end
 
+  test 'team has projects' do
+    team = Team.create
+
+    assert_empty team.projects
+
+    project1 = Project.create(team_id: team.id)
+    project2 = Project.create(team_id: team.id)
+
+    team_projects = team.projects
+    assert_equal 2, team_projects.size
+    assert team_projects.include? project1
+    assert team_projects.include? project2
+  end
+
 end

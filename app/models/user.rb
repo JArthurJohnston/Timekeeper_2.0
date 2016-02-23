@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def teams
+    Team.joins(:team_members).where(team_members: {user_id: self.id})
+  end
+
   def projects
   #   for now, just add a projects method to sows. that sql will be much easier to write
   #   then just iterate over a users sows and add oall of their projects to
