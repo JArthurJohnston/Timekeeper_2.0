@@ -1,12 +1,13 @@
-<% change_page = render('change') %>
-<% display_page = render('display') %>
-
 <% content_for :specific_scripts do %>
-    <%= javascript_include_tag 'activities' %>
+    <% change_page = render('change') %>
+    <% display_page = render('display') %>
+
     <script type="text/javascript">
         document.addEventListener("page:restore", function() {
-            alert('page restore');
             EditableActivityController.initialize('<%= j change_page %>', '<%= j display_page %>');
+        });
+        $(document).ready(function(){
+            EditableActivityController.initialize('<%= j change_page %>', '<%= j display_page %>')
         });
     </script>
 <% end %>
@@ -19,8 +20,3 @@
 
 <div id="activity-content"></div>
 <div id="edit-activity-button" class="edit-button">Edit</div>
-
-<script type="text/javascript">
-  alert('ready');
-    $(document).ready(EditableActivityController.initialize('<%= j change_page %>', '<%= j display_page %>'));
-</script>

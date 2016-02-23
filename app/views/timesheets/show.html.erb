@@ -1,8 +1,12 @@
 <% content_for :specific_scripts do %>
-    <%= javascript_include_tag 'timesheets' %>
     <script type="text/javascript">
         document.addEventListener("page:restore", function() {
+            alert('restore');
             TimesheetListController.initialize();
+        });
+        $(document).ready(function(){
+            alert('ready');
+            TimesheetListController.initialize()
         });
     </script>
 <% end %>
@@ -48,7 +52,3 @@
     <% end %>
 <% end %>
 
-<script type="text/javascript">
-    $(document).ready(TimesheetListController.initialize());
-
-</script>

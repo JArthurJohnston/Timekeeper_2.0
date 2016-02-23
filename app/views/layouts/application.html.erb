@@ -7,7 +7,6 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <%= yield :specific_scripts %>
   <script type="text/javascript">
       document.addEventListener("page:restore", function() {
           MenubarController.initialize();
@@ -29,5 +28,6 @@
         MenubarController.initialize();
         ButtonBarController.initialize();
     </script>
+    <%= yield(:specific_scripts) %>
 </body>
 </html>
