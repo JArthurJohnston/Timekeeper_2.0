@@ -99,10 +99,6 @@ class ActivityTest < ModelTestCase
     activity = Activity.create(start_time: startingTime, end_time: endingTime)
     assert_equal 1.75, activity.total_time
 
-    activity.end_time= nil
-    activity.save
-    assert_equal Float::INFINITY, activity.total_time
-
     activity.start_time= startingTime
     activity.save
     assert_equal Float::INFINITY, activity.total_time
@@ -111,6 +107,22 @@ class ActivityTest < ModelTestCase
     activity.end_time= nil
     activity.save
     assert_equal Float::INFINITY, activity.total_time
+  end
+
+  test 'activity uses time.now when end_time is nil for total_time' do
+    startingTime = time_on(5, 45)
+
+    activity = Activity.create(start_time: startingTime, end_time: nil)
+
+    assert_not_equal Float::INFINITY, activity.total_time
+  end
+
+  test 'total_time is zero when start and end are the same' do
+    the_time = time_on(5, 45)
+
+    activity = Activity.create(start_time: the_time, end_time: the_time)
+
+    assert_equal 0.0, activity.total_time
   end
 
   test 'activity has project' do

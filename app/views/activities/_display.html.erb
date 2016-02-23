@@ -1,11 +1,14 @@
 <div class="summary">
-  <h3>Start:</h3>
-  <div><%= @activity.start_time %></div>
-  <h3>End:</h3>
+  <div>        Time: <%= @activity.total_time %></div>
+  <div>Time on Card: <%= @activity.story_card.billable_hours %></div>
+  <div>     Project: <%= @activity.project.name %></div>
+  <h4>Start:</h4>
+  <div><%= @activity.start_time.strftime("%I:%M") %></div>
+  <h4>End:</h4>
   <div>
-    <%= @activity.end_time.nil? ? '--' : @activity.start_time %>
+    <%= @activity.end_time.nil? ? '--' : @activity.start_time.strftime("%I:%M") %>
   </div>
-  <h3>Story Card</h3>
+  <h4>Story Card</h4>
   <%= link_to user_project_story_card_path(@user.id, @activity.project.id, @activity.story_card_id) do %>
       <div>
         <%= @activity.story_card.display_string %>

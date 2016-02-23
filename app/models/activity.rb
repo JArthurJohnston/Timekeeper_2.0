@@ -41,8 +41,9 @@ class Activity < ActiveRecord::Base
   def total_time
     end_time = self.end_time
     start_time = self.start_time
-    unless end_time.nil? || start_time.nil?
-      return (time_in_minutes(end_time) - time_in_minutes(start_time)) / 60.0
+    unless start_time.nil?
+      time_for_ending = end_time.nil? ? DateTime.now.rounded_to_fifteen_min : end_time
+      return (time_in_minutes(time_for_ending) - time_in_minutes(start_time)) / 60.0
     end
     return Float::INFINITY
   end
@@ -74,14 +75,6 @@ class Activity < ActiveRecord::Base
   def user
     return self.timesheet.user
   end
-
-  # dont know if I need this yet
-  # def destroy
-  #   if self.timesheet.current_activity_id == self.id
-  #     timesheet.update(current_activity_id: nil)
-  #   end
-  #   self.update(is_deleted: true)
-  # end
 
   private
 

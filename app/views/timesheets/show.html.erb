@@ -1,11 +1,9 @@
 <% content_for :specific_scripts do %>
     <script type="text/javascript">
         document.addEventListener("page:restore", function() {
-            alert('restore');
             TimesheetListController.initialize();
         });
         $(document).ready(function(){
-            alert('ready');
             TimesheetListController.initialize()
         });
     </script>
