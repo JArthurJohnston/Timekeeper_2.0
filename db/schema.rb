@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224052515) do
+ActiveRecord::Schema.define(version: 20160224113345) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160224052515) do
     t.boolean "is_deleted"
     t.boolean "billable"
     t.integer "team_id",              limit: 4
+    t.string  "code",                 limit: 255
   end
 
   create_table "statements_of_work", force: :cascade do |t|

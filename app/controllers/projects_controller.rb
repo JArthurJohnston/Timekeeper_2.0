@@ -21,8 +21,11 @@ class ProjectsController < ApplicationController
 
   def update
     project = Project.find(params[:id])
-    project.update(project_params)
-    redirect_to action:  :index
+    checked_params = project_params
+    job_identifier_with(project, checked_params)
+    project.update(name: checked_params[:name],
+                   code: checked_params[:code])
+    redirect_to action: :index
   end
 
   def create
@@ -32,6 +35,13 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :statement_of_work_id, :job_id)
+    params.require(:project).permit(:name, :statement_of_work_id, :code)
+  end
+
+  def job_identifier_with(project, params)
+    unless params[:statement_of_work_id].nil?
+      JobIdentifier.create(project_id: project.id,
+                           statement_of_work_id: params[:statement_of_work_id])
+    end
   end
 end
