@@ -26,32 +26,14 @@ class ProjectTest < ModelTestCase
   end
 
   test 'project fields' do
-    expected_sow_number = 'GT123'
-    expected_PO_number = 'HY345'
-    expected_client = 'Mickey'
     expected_project_name = 'Mouse'
-    sow = StatementOfWork.create(number: expected_sow_number, purchase_order_number: expected_PO_number, client: expected_client)
-    project = Project.create(name: expected_project_name)
-    job_id = JobIdentifier.create(statement_of_work_id: sow.id, project_id: project.id)
+    team = Team.create
+    project = Project.create(name: expected_project_name, team_id: team.id)
+    job_id = JobIdentifier.create(project_id: project.id)
 
-    assert project.job_identifier = job_id
-    assert_equal expected_sow_number, project.invoice_number
-    assert_equal expected_client, project.client
-    assert_equal expected_PO_number, project.purchase_order_number
-    assert_equal sow, project.statement_of_work
+    assert_equal job_id, project.job_identifier
     assert_equal expected_project_name, project.name
-  end
-
-  test 'get statement of work from job identifier' do
-    user = User.create
-    sow = StatementOfWork.create(user_id: user.id)
-    project = Project.create
-
-    assert_equal StatementOfWork::NULL, project.statement_of_work
-
-    JobIdentifier.create(statement_of_work_id: sow.id, project_id: project.id)
-
-    assert_equal sow, project.statement_of_work_for(user)
+    assert_equal team, project.team
   end
 
   test 'project belongs to a user' do
@@ -62,17 +44,15 @@ class ProjectTest < ModelTestCase
   end
 
   test ':statement_of_work returns null sow when sow_id is nil' do
-    user = User.create
-    project = Project.create(user_id: user.id)
+    project = Project.create()
+    sow = StatementOfWork.create()
 
-    assert_equal StatementOfWork::NULL, project.statement_of_work
+    assert_equal StatementOfWork::NULL, project.statement_of_work()
 
-    sow = StatementOfWork.create
-    project = Project.create(statement_of_work_id: sow.id)
+    job_id = JobIdentifier.create(project_id: project.id, statement_of_work_id: sow.id)
 
-    assert_equal sow, project.statement_of_work
+    assert_equal job_id, project.job_identifier
+    assert_equal sow, project.statement_of_work()
   end
-
-
 
 end

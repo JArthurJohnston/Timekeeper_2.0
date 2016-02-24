@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223125642) do
+ActiveRecord::Schema.define(version: 20160224052515) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
@@ -22,11 +22,10 @@ ActiveRecord::Schema.define(version: 20160223125642) do
   end
 
   create_table "job_identifiers", force: :cascade do |t|
-    t.string   "number",               limit: 255
     t.integer  "project_id",           limit: 4
     t.integer  "statement_of_work_id", limit: 4
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "projects", force: :cascade do |t|
@@ -34,7 +33,6 @@ ActiveRecord::Schema.define(version: 20160223125642) do
     t.integer "statement_of_work_id", limit: 4
     t.integer "user_id",              limit: 4
     t.boolean "is_deleted"
-    t.string  "job_identifier_id",    limit: 255
     t.boolean "billable"
     t.integer "team_id",              limit: 4
   end

@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   include ProjectDisplay
   extend FindNullModel
 
-  has_many :job_identifiers
+  has_one :job_identifier
   has_many :story_cards, -> {order(:number)}
   belongs_to :user
   belongs_to :team
@@ -15,18 +15,12 @@ class Project < ActiveRecord::Base
     found_project
   end
 
-  def for_user user
-    @user = user
-  end
-  #
-  # def statement_of_work
-  #   sow = StatementOfWork.find_by(user_id: @user.id, project_id: self.id)
-  #   (sow.nil? || @user.nil?) ? StatementOfWork::NULL : sow
-  # end
-
   def statement_of_work
-    sow = StatementOfWork.find(statement_of_work_id)
-    sow.nil? ? StatementOfWork::NULL : sow
+    job_id = self.job_identifier
+    unless job_id.nil?
+      return job_id.statement_of_work
+    end
+    StatementOfWork::NULL
   end
 
   def purchase_order_number
