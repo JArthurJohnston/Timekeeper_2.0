@@ -22,26 +22,36 @@ class ProjectsController < ApplicationController
   def update
     project = Project.find(params[:id])
     checked_params = project_params
-    job_identifier_with(project, checked_params)
     project.update(name: checked_params[:name],
-                   code: checked_params[:code])
+                   code: checked_params[:code],
+                   team_id: checked_params[:team_id])
+    job_identifier_with(project, checked_params)
     redirect_to action: :index
   end
 
   def create
-    Project.create(statement_of_work_id: project_params[:statement_of_work_id],
-                             user_id: @user.id, name: project_params[:name])
+    create_params = project_params
+    new_project = Project.create(user_id: @user.id,
+                   name: create_params[:name],
+                   code: create_params[:code],
+                   team_id: create_params[:team_id])
+    job_identifier_with(new_project, create_params)
     redirect_to user_projects_path(@user.id)
   end
 
   def project_params
-    params.require(:project).permit(:name, :statement_of_work_id, :code)
+    params.require(:project).permit(:name, :statement_of_work_id, :code, :team_id)
   end
 
+  private
   def job_identifier_with(project, params)
     unless params[:statement_of_work_id].nil?
-      JobIdentifier.create(project_id: project.id,
-                           statement_of_work_id: params[:statement_of_work_id])
+      job = JobIdentifier.find_by(project_id: project.id)
+      if job.nil?
+        JobIdentifier.create(project_id: project.id, statement_of_work_id: params[:statement_of_work_id])
+      else
+        job.update(project_id: project.id, statement_of_work_id: params[:statement_of_work_id])
+      end
     end
   end
 end
