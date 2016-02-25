@@ -41,7 +41,8 @@ class StoryCardLineItemTest < ModelTestCase
 
   test 'line item string' do
     sow = StatementOfWork.create(client: 'Mickey')
-    project = Project.create(name: 'Mouse', job_id: 'SOW456', statement_of_work_id: sow.id, billable: true)
+    project = Project.create(name: 'Mouse', code: 'SOW456')
+    JobIdentifier.create(statement_of_work_id: sow.id, project_id: project.id)
     sheet = Timesheet.create
     card = StoryCard.create(project_id: project.id, number: '123')
     start_time = monday.at(5, 45)
@@ -54,19 +55,13 @@ class StoryCardLineItemTest < ModelTestCase
 
   test 'line item for' do
     sow = StatementOfWork.create(client: 'Mickey')
-    project = Project.create(name: 'Mouse', job_id: 'SOW456', statement_of_work_id: sow.id, billable: true)
+    project = Project.create(name: 'Mouse', code: 'SOW456')
+    JobIdentifier.create(statement_of_work_id: sow.id, project_id: project.id)
     sheet = Timesheet.create
     card = StoryCard.create(project_id: project.id, number: '123')
     start_time = monday.at(5, 45)
     Activity.create(timesheet_id: sheet.id, story_card_id: card.id, start_time: start_time, end_time: monday.at(7, 15))
-
-
-
-
-
     Activity.new(timesheet_id: sheet.id, story_card_id: card.id, start_time: monday.at(8), end_time: monday.at(9))
-
-
 
     assert_equal 'Mickey,SOW456,Mouse DEV - 123,,,2.5,,,,,', StoryCardLineItem.line_item_for(sheet, card)
   end

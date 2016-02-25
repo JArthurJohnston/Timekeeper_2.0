@@ -19,14 +19,3 @@ statuses.each do
   |label, color|
   Status.create(label: label, color: color)
 end
-
-Project.all.each do
-  |e|
-  StoryCard.create(number: 'STU', title: 'Stand Up', project_id: e.id)
-  StoryCard.create(number: 'KIK', title: 'Kick Off', project_id: e.id)
-  StoryCard.create(number: 'EST', title: 'Estimation', project_id: e.id)
-  StoryCard.create(number: 'SHP', title: 'Show And Tell Prep', project_id: e.id)
-  StoryCard.create(number: 'SHO', title: 'Show And Tell', project_id: e.id)
-  StoryCard.create(number: 'PLG', title: 'Planning Game', project_id: e.id)
-  StoryCard.create(number: 'MCR', title: 'Manage Client Communications', project_id: e.id)
-end

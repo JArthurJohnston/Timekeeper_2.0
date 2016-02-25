@@ -14,4 +14,19 @@ class Project < ActiveRecord::Base
     sows.empty? ? StatementOfWork::NULL : sows[0]
   end
 
+  def create_basic_story_cards
+    [
+        ['STU', 'Stand Up'],
+        ['KIK', 'Kick Off'],
+        ['SHO', 'Show and Tell'],
+        ['SHP', 'Show and Tell Prep'],
+        ['EST', 'Estimation'],
+        ['MCR', 'Manage Client Communications'],
+        ['PLG', 'Planning Game']
+    ].each do
+      |number, title|
+      StoryCard.create(number: number, title: title, project_id: self.id)
+    end
+  end
+
 end

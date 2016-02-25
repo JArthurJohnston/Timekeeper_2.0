@@ -30,7 +30,7 @@ class ProjectLineItemTest < ModelTestCase
   test 'csv' do
     timesheet = Timesheet.create
     sow = StatementOfWork.create client: 'Mickey'
-    project = Project.create name: 'Mouse', statement_of_work_id: sow.id, job_id: 'SOW111'
+    project = Project.create name: 'Mouse', statement_of_work_id: sow.id, code: 'SOW111'
     card1 = StoryCard.create project_id: project.id, number: '123'
     card2 = StoryCard.create project_id: project.id, number: '234'
 
@@ -49,7 +49,7 @@ Mickey,SOW111,Mouse DEV - 234,,,1.0,,,,,
   test 'line item for' do
     timesheet = Timesheet.create
     sow = StatementOfWork.create client: 'Mickey'
-    project = Project.create name: 'Mouse', statement_of_work_id: sow.id, job_id: 'SOW111'
+    project = Project.create name: 'Mouse', statement_of_work_id: sow.id, code: 'SOW111'
     card1 = StoryCard.create project_id: project.id, number: '123'
     card2 = StoryCard.create project_id: project.id, number: '234'
 

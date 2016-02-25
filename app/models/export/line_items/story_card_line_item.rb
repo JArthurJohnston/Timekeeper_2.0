@@ -2,11 +2,11 @@ class StoryCardLineItem
   attr_reader :timesheet,
               :story_card
 
-  def self.line_item_for timesheet, story_card
+  def self.line_item_for(timesheet, story_card)
     return self.new(timesheet, story_card).to_csv
   end
 
-  def initialize timesheet, story_card
+  def initialize(timesheet, story_card)
     @timesheet = timesheet
     @story_card = story_card
   end
@@ -49,10 +49,10 @@ class StoryCardLineItem
 
   def line_item_string
     project = @story_card.project
-    sow = project.statement_of_work
+    sow = StatementOfWork::NULL
     "%{client},%{job_id},%{project} DEV - %{number},,," % {
         client: sow.client,
-        job_id: project.job_id,
+        job_id: project.code,
         project: project.name,
         number: @story_card.number
     }

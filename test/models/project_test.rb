@@ -71,4 +71,15 @@ class ProjectTest < ModelTestCase
     assert_equal sow, project.statement_of_work_for(user)
   end
 
+  test 'creating basic story cards' do
+    project = Project.create
+
+    assert_empty project.story_cards
+
+    project.create_basic_story_cards
+
+    basic_story_cards = project.story_cards
+    assert_equal 7, basic_story_cards.size
+  end
+
 end
