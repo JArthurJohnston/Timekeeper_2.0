@@ -5,9 +5,7 @@ class TimesheetCSVTest < ModelTestCase
   include DateTestHelper
 
   test 'to csv' do
-    sow = StatementOfWork.create(client: 'Mickey')
-    project = Project.create(name: 'Mouse', code: 'SOW456')
-    JobIdentifier.create(statement_of_work_id: sow.id, project_id: project.id)
+    project = Project.create(client: 'Mickey', name: 'Mouse', code: 'SOW456')
     card = StoryCard.create(project_id: project.id, number: '123')
     timesheet = Timesheet.create()
     Activity.create(start_time: monday.at(8, 30),
@@ -25,8 +23,7 @@ class TimesheetCSVTest < ModelTestCase
   end
 
   test 'to csv with only one activity' do
-    sow = StatementOfWork.create(client: 'Mickey')
-    project = Project.create(name: 'Mouse', code: 'SOW456', statement_of_work_id: sow.id)
+    project = Project.create(client: 'Mickey', name: 'Mouse', code: 'SOW456')
     card = StoryCard.create(project_id: project.id, number: '123')
     timesheet = Timesheet.create()
     Activity.create(start_time: monday.at(8, 30),
@@ -40,9 +37,7 @@ class TimesheetCSVTest < ModelTestCase
   end
 
   test 'different cards on the same day' do
-    sow = StatementOfWork.create(client: 'Mickey')
-    project = Project.create(name: 'Mouse', code: 'SOW456')
-    JobIdentifier.create(statement_of_work_id: sow.id, project_id: project.id)
+    project = Project.create(client: 'Mickey', name: 'Mouse', code: 'SOW456')
     card1 = StoryCard.create(project_id: project.id, number: '123')
     card2 = StoryCard.create(project_id: project.id, number: '234')
     timesheet = Timesheet.create()
@@ -63,9 +58,7 @@ Mickey,SOW456,Mouse DEV - 234,,,3.25,,,,,
   end
 
   test 'to csv with only no activities' do
-    sow = StatementOfWork.create(client: 'Mickey')
-    project = Project.create(name: 'Mouse', code: 'SOW456')
-    JobIdentifier.create(statement_of_work_id: sow.id, project_id: project.id)
+    project = Project.create(client: 'Mickey', name: 'Mouse', code: 'SOW456')
     card = StoryCard.create(project_id: project.id, number: '123')
     timesheet = Timesheet.create()
 
@@ -73,9 +66,7 @@ Mickey,SOW456,Mouse DEV - 234,,,3.25,,,,,
   end
 
   test 'to csv with multiple cards and activities' do
-    sow = StatementOfWork.create(client: 'Mickey')
-    project = Project.create(name: 'Mouse', code: 'SOW456')
-    JobIdentifier.create(statement_of_work_id: sow.id, project_id: project.id)
+    project = Project.create(client: 'Mickey', name: 'Mouse', code: 'SOW456')
     card1 = StoryCard.create(project_id: project.id, number: '123')
     card2 = StoryCard.create(project_id: project.id, number: '124')
     timesheet = Timesheet.create()

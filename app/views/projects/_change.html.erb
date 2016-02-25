@@ -4,6 +4,8 @@
       <%= f.text_field :name %>
       <%= f.label 'Project Code:' %>
       <%= f.text_field :code %>
+      <%= f.label 'Client:' %>
+      <%= f.text_field :client %>
       <%= f.label 'Statement Of Work:' %>
       <%= f.collection_select(:statement_of_work_id, @user.statements_of_work, :id, :nickname) %>
       <%= f.label 'Team:' %>

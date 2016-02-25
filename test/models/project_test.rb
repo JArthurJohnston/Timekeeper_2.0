@@ -5,13 +5,18 @@ class ProjectTest < ModelTestCase
   test 'project fields' do
     expected_project_name = 'Mouse'
     expected_project_code = 'SOW1234'
+    expected_client = 'Mickey'
     team = Team.create
-    project = Project.create(name: expected_project_name, team_id: team.id, code: expected_project_code)
+    project = Project.create(name: expected_project_name,
+                             team_id: team.id,
+                             code: expected_project_code,
+                             client: expected_client)
 
     assert_empty project.job_identifiers
     assert_empty project.story_cards
     assert_equal expected_project_name, project.name
     assert_equal expected_project_code, project.code
+    assert_equal expected_client, project.client
     assert_equal team, project.team
   end
 

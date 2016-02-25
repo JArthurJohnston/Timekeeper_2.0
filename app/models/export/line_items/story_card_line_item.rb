@@ -46,12 +46,10 @@ class StoryCardLineItem
     activities_csv
   end
 
-
   def line_item_string
     project = @story_card.project
-    sow = StatementOfWork::NULL
     "%{client},%{job_id},%{project} DEV - %{number},,," % {
-        client: sow.client,
+        client: project.client,
         job_id: project.code,
         project: project.name,
         number: @story_card.number
