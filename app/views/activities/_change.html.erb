@@ -10,7 +10,7 @@
       </div>
       <div>
         <%= f.label 'Story Card:' %>
-        <%= f.collection_select(:story_card_id, StoryCard.order(:project_id, :number), :id, :project_number) %>
+        <%= f.collection_select(:story_card_id, @user.story_cards, :id, :project_number) %>
       </div>
       <div>
         <%= f.submit 'Save'%>

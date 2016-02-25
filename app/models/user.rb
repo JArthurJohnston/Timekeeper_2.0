@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include TeamAccessableFields
   extend FindNullModel
 
   has_many :timesheets
@@ -6,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :statements_of_work
   has_many :team_members
 
+  after_create :create_private_team
 
   NULL = NullUser.new
 
@@ -47,14 +49,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def teams
-    Team.joins(:team_members).where(team_members: {user_id: self.id})
-  end
+  private
 
-  def projects
-  #   for now, just add a projects method to sows. that sql will be much easier to write
-  #   then just iterate over a users sows and add oall of their projects to
-  #   a list here on user.
+  def create_private_team
+    new_team = Team.create(user_id: self.id, name: 'Personal')
+    TeamMember.create(team_id: new_team.id, user_id: self.id, is_admin: true)
   end
 
 end

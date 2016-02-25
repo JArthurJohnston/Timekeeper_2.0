@@ -38,7 +38,16 @@ class UserTest < ModelTestCase
   end
 
   test 'creating a user creates a team for that user' do
-    fail
+    user = User.create
+    assert_equal 1, Team.all.size
+    assert_equal 1, user.teams.size
+    users_personal_team = user.teams.first
+
+    team_member = TeamMember.find_by(user_id: user.id, team_id: users_personal_team.id)
+    assert team_member.is_admin
+
+    assert_equal user.id, users_personal_team.user_id
+    assert_equal 'Personal', users_personal_team.name
   end
 
   test 'user has current project' do
@@ -92,12 +101,12 @@ class UserTest < ModelTestCase
     member2 =TeamMember.create(user_id: user.id, team_id: team2.id)
 
     team_members = user.team_members
-    assert_equal 2, team_members.size
+    assert_equal 3, team_members.size
     assert team_members.include? member1
     assert team_members.include? member2
 
     teams = user.teams
-    assert_equal 2, teams.size
+    assert_equal 3, teams.size
     assert teams.include? team1
     assert teams.include? team2
   end
@@ -107,6 +116,48 @@ class UserTest < ModelTestCase
     user = User.create rate: expected_rate
 
     assert_equal expected_rate, user.rate
+  end
+
+  test 'user gets projects from team' do
+    team1 = Team.create
+    team2 = Team.create
+    project1 = Project.create(team_id: team1.id)
+    project2 = Project.create(team_id: team1.id)
+    project3 = Project.create(team_id: team2.id)
+    user = User.create
+
+    assert_equal 0, user.projects.size
+
+    TeamMember.create(team_id: team1.id, user_id: user.id)
+    TeamMember.create(team_id: team2.id, user_id: user.id)
+
+    users_projects = user.projects
+    assert_equal 3, users_projects.size
+    assert users_projects.include? project1
+    assert users_projects.include? project2
+    assert users_projects.include? project3
+  end
+
+  test 'user gets story cards from accessable projects only' do
+    user = User.create
+
+    assert_empty user.story_cards
+
+    team = Team.create
+    project = Project.create(team_id: team.id)
+    TeamMember.create(team_id: team.id, user_id: user.id)
+    card1 = StoryCard.create(project_id: project.id)
+    card2 = StoryCard.create(project_id: project.id)
+
+    assert_equal 2, user.story_cards.size
+    assert user.story_cards.include? card1
+    assert user.story_cards.include? card2
+
+    project2 = Project.create(team_id: team.id)
+    card3 = StoryCard.create(project_id: project2.id)
+
+    assert_equal 3, user.story_cards.size
+    assert user.story_cards.include? card3
   end
 
 end

@@ -6,6 +6,8 @@
       <%= f.text_field :code %>
       <%= f.label 'Statement Of Work:' %>
       <%= f.collection_select(:statement_of_work_id, @user.statements_of_work, :id, :nickname) %>
+      <%= f.label 'Team:' %>
+      <%= f.collection_select(:team_id, @user.teams, :id, :name) %>
       <div class="change-buttons">
       <%= f.submit 'Save' %>
       </div>
