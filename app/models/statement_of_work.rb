@@ -3,16 +3,12 @@ class StatementOfWork < ActiveRecord::Base
   extend FindNullModel
 
   has_many :job_identifiers
-  has_many :projects, -> {order(:name)}
   belongs_to :user
 
   NULL = NullStatementOfWork.new
 
-  def rate
-    sow_rate = super
-    if sow_rate.nil?
-      return user.rate
-    end
+  def projects
+    self.job_identifiers.collect {|e| e.project}
   end
 
 end

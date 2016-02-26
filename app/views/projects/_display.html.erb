@@ -1,0 +1,17 @@
+<div class="summary">
+  <div>Client: <%= @project.client %></div>
+  <div>Code: <%= @project.code %></div>
+  <div>Team: <%= @project.team %></div>
+  <br>
+  <h4>Story Cards</h4>
+
+  <div class="selected-project-story-cards">
+    <ul>
+      <% @project.story_cards.each do |each_story_card| %>
+          <li>
+            <%= self.send(@select_symbol, each_story_card) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

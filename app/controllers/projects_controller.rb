@@ -24,7 +24,8 @@ class ProjectsController < ApplicationController
     checked_params = project_params
     project.update(name: checked_params[:name],
                    code: checked_params[:code],
-                   team_id: checked_params[:team_id])
+                   team_id: checked_params[:team_id],
+                   client: checked_params[:client])
     job_identifier_with(project, checked_params)
     redirect_to action: :index
   end
@@ -34,13 +35,14 @@ class ProjectsController < ApplicationController
     new_project = Project.create(user_id: @user.id,
                    name: create_params[:name],
                    code: create_params[:code],
-                   team_id: create_params[:team_id])
+                   team_id: create_params[:team_id],
+                   client: create_params[:client])
     job_identifier_with(new_project, create_params)
     redirect_to user_projects_path(@user.id)
   end
 
   def project_params
-    params.require(:project).permit(:name, :statement_of_work_id, :code, :team_id)
+    params.require(:project).permit(:name, :statement_of_work_id, :code, :team_id, :client)
   end
 
   private

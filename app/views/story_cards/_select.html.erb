@@ -7,7 +7,9 @@
   <ul>
     <% @story_cards.each do |each_story_card| %>
         <li>
-          <%= self.send(@select_symbol, each_story_card) %>
+          <%= link_to user_project_story_card_path(@user.id, @project.id, each_story_card.id) do %>
+              <div><%= each_story_card.display_string %></div>
+          <% end %>
         </li>
     <% end %>
   </ul>
