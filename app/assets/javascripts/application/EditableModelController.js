@@ -2,7 +2,7 @@
  * Created by arthur on 11/16/15.
  */
 
-var EditableActivityController = (function(){
+var EditableModelController = (function(){
     "use strict";
 
     var activityContentDiv,
@@ -12,8 +12,8 @@ var EditableActivityController = (function(){
         isEditing;
 
     function initialize(editPage, showPage){
-        activityContentDiv = document.getElementById('activity-content');
-        editActivityButton = document.getElementById('edit-activity-button');
+        activityContentDiv = document.getElementById('model-content');
+        editActivityButton = document.getElementById('edit-model-button');
         editHTML = editPage;
         showHTML = showPage;
         isEditing = false;

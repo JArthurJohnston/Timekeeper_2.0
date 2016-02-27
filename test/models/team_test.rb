@@ -67,4 +67,10 @@ class TeamTest < ModelTestCase
     assert team_projects.include? project2
   end
 
+  test 'display string' do
+    team = Team.create(name: 'Mouse')
+
+    assert_equal 'Mouse', team.display_string
+  end
+
 end

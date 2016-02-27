@@ -1,21 +1,20 @@
 <div class="summary">
     <%= @statement_of_work.display_string %>
 </div>
-<h1>Activities</h1>
+<h1>Projects</h1>
 <ul>
   <% @statement_of_work.projects.each do |each_project| %>
       <li>
-        <div>
-          <%= each_project.display_string %>
-        </div>
+        <%= link_to user_project_path(@user.id, each_project.id) do %>
+            <div>
+                <%= each_project.display_string %>
+            </div>
+        <% end %>
       </li>
   <% end %>
 </ul>
 
 <% content_for :buttons_bar do %>
-    <%= link_to edit_user_statement_of_work_path(@user.id, @statement_of_work.id) do %>
-        <div class="add-button">Edit</div>
-    <% end %>
     <%= link_to user_statement_of_work_path(@user.id, @statement_of_work.id), method: :delete do %>
         <div class="delete-button">Delete</div>
     <% end %>

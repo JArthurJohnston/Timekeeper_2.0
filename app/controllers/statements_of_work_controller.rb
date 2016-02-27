@@ -2,6 +2,7 @@ class StatementsOfWorkController < ApplicationController
 
   def show
     @statement_of_work = find_sow
+    @submit_path = user_statement_of_work_path(@user.id, @statement_of_work.id)
   end
 
   def index

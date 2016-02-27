@@ -6,16 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-statuses = [
-    ['In Progress', 'Yellow'],
-    ['Canceled', 'Blue'],
-    ['Done', 'Orange'],
-    ['Completed', 'Green'],
-    ['Stopped', 'Red'],
-    ['None', 'White'],
-]
+# statuses = [
+#     ['In Progress', 'Yellow'],
+#     ['Canceled', 'Blue'],
+#     ['Done', 'Orange'],
+#     ['Completed', 'Green'],
+#     ['Stopped', 'Red'],
+#     ['None', 'White'],
+# ]
+#
+# statuses.each do
+#   |label, color|
+#   Status.create(label: label, color: color)
+# end
 
-statuses.each do
-  |label, color|
-  Status.create(label: label, color: color)
-end
+

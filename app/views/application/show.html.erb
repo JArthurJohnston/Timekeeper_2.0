@@ -1,3 +1,16 @@
-<div>
-  <%= render "change" %>
-</div>
+<% content_for :specific_scripts do %>
+    <% change_page = render('change') %>
+    <% display_page = render('display') %>
+
+    <script type="text/javascript">
+        document.addEventListener("page:restore", function() {
+            EditableModelController.initialize('<%= j change_page %>', '<%= j display_page %>');
+        });
+        $(document).ready(function(){
+            EditableModelController.initialize('<%= j change_page %>', '<%= j display_page %>')
+        });
+    </script>
+<% end %>
+
+<div id="model-content"></div>
+<div id="edit-model-button" class="edit-button">Edit</div>

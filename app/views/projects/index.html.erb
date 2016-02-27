@@ -4,8 +4,6 @@
   <% end %>
 </ul>
 
-<% content_for :buttons_bar do %>
-    <%= link_to new_user_project_path(@user.id) do %>
-        <div class="add-button">+</div>
-    <% end %>
+<%= link_to new_user_project_path(@user.id) do %>
+    <div class="new-button">New</div>
 <% end %>

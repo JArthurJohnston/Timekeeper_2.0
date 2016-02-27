@@ -77,4 +77,15 @@ class StatementOfWorkTest < ModelTestCase
     assert_empty sow.job_identifiers
   end
 
+  test 'deleting a sow deletes any of its job identifiers' do
+    sow = StatementOfWork.create
+    job = JobIdentifier.create(statement_of_work_id: sow.id)
+
+    sow.destroy
+
+    assert_raise ActiveRecord::RecordNotFound do
+      assert_nil JobIdentifier.find(job.id)
+    end
+  end
+
 end

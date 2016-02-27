@@ -20,6 +20,7 @@ class StoryCardsController < ApplicationController
   def show
     @story_card = find_story_card
     @activities = @story_card.activities
+    @submit_path = story_card_path
   end
 
   def new

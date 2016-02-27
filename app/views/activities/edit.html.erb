@@ -4,10 +4,10 @@
 
     <script type="text/javascript">
         document.addEventListener("page:restore", function() {
-            EditableActivityController.initialize('<%= j change_page %>', '<%= j display_page %>');
+            EditableModelController.initialize('<%= j change_page %>', '<%= j display_page %>');
         });
         $(document).ready(function(){
-            EditableActivityController.initialize('<%= j change_page %>', '<%= j display_page %>')
+            EditableModelController.initialize('<%= j change_page %>', '<%= j display_page %>')
         });
     </script>
 <% end %>
@@ -18,5 +18,5 @@
     <% end %>
 <% end %>
 
-<div id="activity-content"></div>
-<div id="edit-activity-button" class="edit-button">Edit</div>
+<div id="model-content"></div>
+<div id="edit-model-button" class="edit-button">Edit</div>
