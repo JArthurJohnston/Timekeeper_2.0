@@ -1,9 +1,10 @@
-include Java
+require 'java'
+# require_relative '../../../../lib/Panoptes.jar'
+$CLASSPATH << '../../../../lib'
 
-require_relative '../../../../test/models/model_test_case'
-require_relative '../../../../lib/panoptes-xls.jar'
+TimeblockSet = JavaUtilities.get_proxy_class('com.omnicrola.panoptes.Panoptes')
 
-java_import com.omnicrola.panoptes.export.XlsWriterFactory
+java_import com.omnicrola.panoptes.control.TimeblockSet
 
 class PanoptesTest < ModelTestCase
 
@@ -22,6 +23,8 @@ class PanoptesTest < ModelTestCase
 
   # Fake test
   def test_fail
-    factory = XlsWriterFactory.build()
+    factory = TimeblockSet.new()
+    assert_not_nil(factory)
+    fail('shit didnt work')
   end
 end

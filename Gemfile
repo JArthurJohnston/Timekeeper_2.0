@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #configure ruby runtime
-ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
+ruby '~> 2.2.2', :engine => 'jruby', :engine_version => '~> 9.0.1.0'
 #use the puma server to deploy on heroku
 gem 'puma'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
