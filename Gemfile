@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #configure ruby runtime
-ruby '~> 2.2.2', :engine => 'jruby', :engine_version => '~> 9.0.1.0'
+# ruby '~> 2.2.2', :engine => 'jruby', :engine_version => '~> 9.0.1.0'
 #use the puma server to deploy on heroku
 gem 'puma'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -10,6 +10,8 @@ gem 'rails', '4.2.1'
 gem 'activerecord-jdbcmysql-adapter'
 # Use jdbcpostgresql as the database for Active Record
 gem 'activerecord-jdbcpostgresql-adapter'
+# Use jdbcsqlite3 as the database for Active Record
+gem 'activerecord-jdbcsqlite3-adapter'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
