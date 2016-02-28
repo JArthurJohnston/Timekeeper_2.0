@@ -1,3 +1,5 @@
+require_relative 'recovery'
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -19,5 +21,7 @@
 #   |label, color|
 #   Status.create(label: label, color: color)
 # end
+
+Recovery.new.recover
 
 
