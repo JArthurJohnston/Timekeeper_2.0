@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228222426) do
+ActiveRecord::Schema.define(version: 20160305175134) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 20160228222426) do
     t.integer "current_timesheet_id", limit: 4
     t.boolean "is_deleted"
     t.string  "username",             limit: 255
-    t.string  "password",             limit: 255
     t.string  "email",                limit: 255
     t.string  "timezone",             limit: 255
     t.decimal "rate",                             precision: 8, scale: 2
