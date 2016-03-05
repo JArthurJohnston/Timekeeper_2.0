@@ -14,13 +14,26 @@ class UsersController < ApplicationController
   end
 
   def login
-    valid_user = User.find_by(username: params[:user_login][:username], password: params[:user_login][:password])
+    login_params = params[:user_login]
+    password = login_params[:password]
+    not_validated_user = User.find_by(username: login_params[:username])
+    if is_user( not_validated_user.authenticate(password))
+      valid_user = not_validated_user
+    end
+
     if valid_user.nil?
       redirect_to show_user_login_path
     else
       session[:user_id] = valid_user.id
       redirect_to user_path(id: valid_user.id)
     end
+  end
+
+  def is_user(a_user_or_false)
+    if a_user_or_false == false
+      return false
+    end
+    true
   end
 
   def logout

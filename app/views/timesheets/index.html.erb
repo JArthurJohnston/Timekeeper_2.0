@@ -5,8 +5,6 @@
   <% end %>
 </ul>
 
-<% content_for :buttons_bar do %>
-    <%= link_to user_timesheets_path(@user.id), method: :post do %>
-        <div class="add-button">+</div>
-    <% end %>
+<%= link_to user_timesheets_path(@user.id), method: :post do %>
+    <div class="add-button">New Timesheet</div>
 <% end %>

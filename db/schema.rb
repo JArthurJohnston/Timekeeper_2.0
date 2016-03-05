@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225115655) do
+ActiveRecord::Schema.define(version: 20160228222426) do
 
   create_table "activities", force: :cascade do |t|
     t.datetime "start_time"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20160225115655) do
     t.string  "email",                limit: 255
     t.string  "timezone",             limit: 255
     t.decimal "rate",                             precision: 8, scale: 2
+    t.string  "password_digest",      limit: 255
   end
 
 end

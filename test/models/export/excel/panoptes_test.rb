@@ -2,7 +2,7 @@ require 'java'
 require_relative '../../../../lib/Panoptes.jar'
 # $CLASSPATH << '../../../../lib'
 
-include_class 'com.omnicrola.panoptes.control.TimeblockSet'
+# include_class 'com.omnicrola.panoptes.control.TimeblockSet'
 
 # TimeblockSet = JavaUtilities.get_proxy_class('com.omnicrola.panoptes.Panoptes')
 

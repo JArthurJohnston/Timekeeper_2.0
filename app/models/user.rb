@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :statements_of_work
   has_many :team_members
 
+  has_secure_password
+
   after_create :create_private_team
 
   NULL = NullUser.new
