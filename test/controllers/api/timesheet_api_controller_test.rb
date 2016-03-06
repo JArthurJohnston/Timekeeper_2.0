@@ -25,9 +25,13 @@ class Api::TimesheetApiControllerTest < ActionController::TestCase
   test 'adds cors header to response' do
     get :show, id: 1
     assert_response :success
-    assert_not_nil assigns(:timesheet)
 
     assert_equal '*', @response.headers['Access-Control-Allow-Origin']
+    assert_equal Timesheet::NULL.to_json, @response.body
+  end
+
+  test 'creates JWT for user' do
+    fail()
   end
 
   test 'cant do anything before the user has been authenticated' do

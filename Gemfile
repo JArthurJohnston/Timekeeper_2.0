@@ -16,6 +16,8 @@ gem 'activerecord-jdbcpostgresql-adapter'
 # gem 'sqlite3'
 # Using BCrypt to secure passwords
 gem 'bcrypt'
+# Use JWT for the api tokens
+gem 'jwt'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
