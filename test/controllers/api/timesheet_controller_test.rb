@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Api::TimesheetApiControllerTest < ActionController::TestCase
+class Api::TimesheetControllerTest < ActionController::TestCase
   test "should get create" do
     post :create
     assert_response :success

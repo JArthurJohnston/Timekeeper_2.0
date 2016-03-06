@@ -2,9 +2,16 @@ module Api
 
   class UserController < ApiController
 
-    def login
+    @@user_not_found = User.new
 
-      render json: @user
+    def login
+      if @user == User::NULL
+        head :unauthorized
+      elsif @user == @@user_not_found
+        head 404
+      else
+        render json: UserToken.for(@user)
+      end
     end
 
     private
@@ -20,7 +27,9 @@ module Api
       def find_user
         creds = login_credentials
         unverified_user = User.find_by(username: creds['username'])
-        if is_user(unverified_user.authenticate(creds['password']))
+        if unverified_user.nil?
+          @user = @@user_not_found
+        elsif is_user(unverified_user.authenticate(creds['password']))
           @user = unverified_user
         else
           @user = User::NULL
