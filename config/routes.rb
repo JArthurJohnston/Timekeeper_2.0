@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   namespace :api do
-    resources :timesheet_api, only: [:create, :show, :update, :destroy]
+    resources :timesheet, only: [:create, :show, :update, :destroy]
+    match 'user/login' => 'user#login', via: :post
   end
 
 

@@ -1,21 +1,23 @@
-class Api::ApiController < ApplicationController
-  protect_from_forgery with: :null_session
-  respond_to :js
-  after_action :add_cors_header
+module Api
 
-  def create
-  end
+  class ApiController < ApplicationController
+    protect_from_forgery with: :null_session
+    respond_to :js
+    after_action :add_cors_header
 
-  def show
-  end
+    def create
+    end
 
-  def update
-  end
+    def show
+    end
 
-  def destroy
-  end
+    def update
+    end
 
-  private
+    def destroy
+    end
+
+    private
 
     def add_cors_header
       response.headers['Access-Control-Allow-Origin'] = '*'
@@ -24,4 +26,6 @@ class Api::ApiController < ApplicationController
     def find_user
       @user = User.new
     end
+  end
+
 end
