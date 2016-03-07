@@ -1,7 +1,7 @@
 module Api
   class TimesheetController < ApiController
 
-    def show
+    def create
       render json: Timesheet::NULL
     end
 

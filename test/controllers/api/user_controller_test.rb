@@ -1,18 +1,8 @@
-require 'test_helper'
+require_relative 'api_controller_test_case'
 
 module Api
 
-  class UserControllerTest < ActionController::TestCase
-
-    def setup
-      @user_id = 4567
-      @user_password = '1234'
-      @username = 'JSmith'
-      @user = User.create(username: @username,
-                          password: @user_password,
-                          password_confirmation: @user_password,
-                          id: @user_id)
-    end
+  class UserControllerTest < ApiControllerTestCase
 
     test 'loggin in adds response to header' do
       params_hash = {username: @username, password: @user_password}

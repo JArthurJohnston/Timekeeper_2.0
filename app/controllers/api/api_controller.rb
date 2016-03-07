@@ -5,18 +5,6 @@ module Api
     respond_to :js
     after_action :add_cors_header
 
-    def create
-    end
-
-    def show
-    end
-
-    def update
-    end
-
-    def destroy
-    end
-
     private
 
     def add_cors_header
@@ -24,7 +12,9 @@ module Api
     end
 
     def find_user
-      @user = User.new
+      token = request.env['Authorization']
+      puts token.to_s
+      @user = UserToken.from(token)
     end
   end
 
