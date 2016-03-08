@@ -12,7 +12,7 @@ module Api
     end
 
     def find_user
-      token = request.env['Authorization']
+      token = request.env['HTTP_AUTHORIZATION']
       puts token.to_s
       @user = UserToken.from(token)
     end

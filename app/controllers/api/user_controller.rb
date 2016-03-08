@@ -17,19 +17,15 @@ module Api
     private
 
       def login_params
-        params.require(:credentials)
-      end
-
-      def login_credentials
-        JSON.parse(login_params)
+        params.require('credentials')
       end
 
       def find_user
-        creds = login_credentials
-        unverified_user = User.find_by(username: creds['username'])
+        creds = login_params
+        unverified_user = User.find_by(username: creds[:username])
         if unverified_user.nil?
           @user = @@user_not_found
-        elsif is_user(unverified_user.authenticate(creds['password']))
+        elsif is_user(unverified_user.authenticate(creds[:password]))
           @user = unverified_user
         else
           @user = User::NULL

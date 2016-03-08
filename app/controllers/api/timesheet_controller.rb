@@ -1,6 +1,10 @@
 module Api
   class TimesheetController < ApiController
 
+    def show
+      render json: Timesheet::NULL
+    end
+
     def create
       render json: Timesheet::NULL
     end
