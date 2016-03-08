@@ -23,6 +23,25 @@ Things you may want to cover:
 
 * ...
 
+* Using the API
+
+Some example code for making a login request to the api.
+Upon a successful login, you will recieve a Json Web Token (JWT).
+
+'''javascript
+    var creds = {credentials: {
+    	username:"TTOD", password: "1234"
+    }};
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+    	alert(xhttp.responseText);
+    };
+    xhttp.open("POST", "http://localhost:3000/api/user/login/");
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(creds));
+
+
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.

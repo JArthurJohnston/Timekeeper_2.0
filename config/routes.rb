@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
+  # Added to handle Cross resource preflight requests
+
   namespace :api do
+    match '*all' => 'api#cor_preflight', via: :options
+
     resources :timesheet, only: [:create, :show, :update, :destroy]
     match 'user/login' => 'user#login', via: :post
   end

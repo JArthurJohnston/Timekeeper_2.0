@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 20160305175134) do
 
   create_table "projects", force: :cascade do |t|
     t.string  "name",                 limit: 255
+    t.integer "statement_of_work_id", limit: 4
     t.integer "user_id",              limit: 4
     t.boolean "is_deleted"
     t.integer "team_id",              limit: 4
     t.string  "code",                 limit: 255
-    t.integer "statement_of_work_id", limit: 4
     t.string  "client",               limit: 255
   end
 
