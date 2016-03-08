@@ -40,7 +40,7 @@ Upon a successful login, you will recieve a Json Web Token (JWT).
     xhttp.open("POST", "http://localhost:3000/api/user/login/");
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify(creds));
-
+```
 
 
 Please feel free to use a different markup language if you do not plan to run
