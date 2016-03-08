@@ -42,8 +42,3 @@ Upon a successful login, you will recieve a Json Web Token (JWT).
     xhttp.send(JSON.stringify(creds));
 ```
 
-
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
