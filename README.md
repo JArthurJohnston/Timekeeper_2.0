@@ -1,8 +1,3 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 Things you may want to cover:
 
 * Ruby version
@@ -23,7 +18,7 @@ Things you may want to cover:
 
 * ...
 
-== Using the API
+### Using the API
 
 Some example code for making a login request to the api.
 Upon a successful login, you will recieve a Json Web Token (JWT).
