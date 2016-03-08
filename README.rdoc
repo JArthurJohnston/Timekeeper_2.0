@@ -23,7 +23,7 @@ Things you may want to cover:
 
 * ...
 
-* Using the API
+== Using the API
 
 Some example code for making a login request to the api.
 Upon a successful login, you will recieve a Json Web Token (JWT).
@@ -41,6 +41,8 @@ Upon a successful login, you will recieve a Json Web Token (JWT).
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify(creds));
 ```
+
+
 
 
 Please feel free to use a different markup language if you do not plan to run
