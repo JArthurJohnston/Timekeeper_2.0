@@ -28,7 +28,7 @@ Things you may want to cover:
 Some example code for making a login request to the api.
 Upon a successful login, you will recieve a Json Web Token (JWT).
 
-'''javascript
+```javascript
     var creds = {credentials: {
     	username:"TTOD", password: "1234"
     }};
