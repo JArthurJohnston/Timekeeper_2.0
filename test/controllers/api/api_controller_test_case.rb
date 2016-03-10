@@ -10,6 +10,8 @@ class ApiControllerTestCase < ActionController::TestCase
                         password: @user_password,
                         password_confirmation: @user_password,
                         id: @user_id)
+    @token = UserToken.for(@user)
+    @request.env['HTTP_AUTHORIZATION'] = @token
   end
 
 

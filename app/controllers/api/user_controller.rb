@@ -5,9 +5,7 @@ module Api
     @@user_not_found = User.new
 
     def login
-      if @user == User::NULL
-        head :unauthorized
-      elsif @user == @@user_not_found
+      if @user == @@user_not_found
         head 404
       else
         render json: UserToken.for(@user)
@@ -22,10 +20,10 @@ module Api
 
       def find_user
         creds = login_params
-        unverified_user = User.find_by(username: creds[:username])
+        unverified_user = User.find_by(username: creds['username'])
         if unverified_user.nil?
           @user = @@user_not_found
-        elsif is_user(unverified_user.authenticate(creds[:password]))
+        elsif is_user(unverified_user.authenticate(creds['password']))
           @user = unverified_user
         else
           @user = User::NULL

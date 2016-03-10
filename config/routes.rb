@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   namespace :api do
     match '*all' => 'api#cor_preflight', via: :options
 
-    resources :timesheet, only: [:create, :show, :update, :destroy]
+    resources :timesheet, only: [:create, :show, :destroy]
+    resources :activities, only: [:create, :show, :update, :destroy]
     match 'user/login' => 'user#login', via: :post
   end
 

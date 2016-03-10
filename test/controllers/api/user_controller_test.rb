@@ -6,7 +6,7 @@ module Api
 
     test 'loggin in adds response to header' do
       params_hash = {username: @username, password: @user_password}
-      post :login, credentials: params_hash.to_json
+      post :login, credentials: params_hash
       assert_response :success
       assert_not_nil assigns :user
 
@@ -17,8 +17,9 @@ module Api
     end
 
     test 'login returns unauthorized with incorrect password' do
-      params_hash = {username: @username, password: 'this is not the password youre looking for'}
-      post :login, credentials: params_hash.to_json
+      params_hash =  {username: @username, password: 'this is not the password youre looking for'}
+
+      post :login, credentials: params_hash
       assert_response :unauthorized
 
       assert_empty @response.body
@@ -30,6 +31,15 @@ module Api
       assert_response 404
 
       assert_empty @response.body
+    end
+
+    test 'cors preflight login returns token' do
+      params_hash = {username: @username, password: @user_password}
+      process :login, 'OPTIONS', credentials: params_hash
+      assert_response :success
+
+      expected_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NDU2N30.MgfwFDt027jQ6xVyrq9-nTfppxIQRcishy4NvE7Xs58'
+      assert_equal expected_token, @response.body
     end
 
   end
