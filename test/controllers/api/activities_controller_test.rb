@@ -18,7 +18,7 @@ module Api
 
     test 'get show is not successful because activity could not be found' do
       get :show, id: 4456
-      assert_response 404
+      assert_response :not_found
     end
 
     test 'get show is unsuccessful because activity is associated with another user' do
@@ -45,7 +45,7 @@ module Api
     test 'post destroy is unsuccessful with incorrect id' do
       post :destroy, id: 7987
 
-      assert_response 404
+      assert_response :not_found
     end
 
     test 'post destroy is forbidden with another user' do
@@ -59,29 +59,102 @@ module Api
     end
 
     test 'post update activity is successful' do
-      fail('write me')
+      act = Activity.create(timesheet_id: @timesheet.id)
+      new_start = DateTime.new(2016, 1, 1, 5, 30, 0)
+      new_end = DateTime.new(2016, 1, 1, 7, 0, 0)
+      act_params = {start_time: new_start, end_time: new_end}
+
+      post :update, {id: act.id, activity: act_params}
+      assert_response :success
+
+      updated_activity = Activity.find(act.id)
+
+      check_activity_against_params(updated_activity, act_params)
     end
 
     test 'post update activity is not successful with incorrect id' do
-      fail('write me')
+      new_start = DateTime.new(2016, 1, 1, 5, 30, 0)
+      new_end = DateTime.new(2016, 1, 1, 7, 0, 0)
+      act_params = {start_time: new_start, end_time: new_end}
+
+      post :update, {id: 2349, activity: act_params}
+      assert_response :not_found
     end
 
     test 'post update activity is not successful with incorrect user' do
-      fail('write me')
+      other_user = User.create
+      sheet = Timesheet.create(user_id: other_user.id)
+      act = Activity.create(timesheet_id: sheet.id)
+      new_start = DateTime.new(2016, 1, 1, 5, 30, 0)
+      new_end = DateTime.new(2016, 1, 1, 7, 0, 0)
+      act_params = {start_time: new_start, end_time: new_end}
+
+      post :update, {id: act.id, activity: act_params}
+      assert_response :forbidden
+    end
+
+    test 'post update with invalid parameters' do
+      act = Activity.create(timesheet_id: @timesheet.id)
+      start = DateTime.new(2016, 1, 1, 10, 30, 0)
+      end_before_start = DateTime.new(2016, 1, 1, 7, 0, 0)
+      act_params = {start_time: start, end_time: end_before_start}
+
+      post :update, {id: act.id, activity: act_params}
+      assert_response :bad_request
     end
 
     test 'post create activity is successful' do
-      fail('write me')
+      new_start = DateTime.new(2016, 1, 1, 5, 30, 0)
+      new_end = DateTime.new(2016, 1, 1, 7, 0, 0)
+      act_params = {start_time: new_start, end_time: new_end, timesheet_id: @timesheet.id}
+
+      assert_empty @timesheet.activities
+
+      post :create, activity: act_params
+
+      assert_response :success
+      assert_equal 1, @timesheet.activities.size
+      new_activity = @timesheet.activities[0]
+
+      check_activity_against_params(new_activity, act_params)
     end
 
-    test 'post create activity is not successful with incorrect id' do
-      fail('write me')
+    def check_activity_against_params(activity, params)
+      assert_equal @timesheet, activity.timesheet
+      assert_equal params[:start_time], activity.start_time
+      assert_equal params[:end_time], activity.end_time
+      assert_equal activity.to_json, @response.body
     end
 
     test 'post create activity is not successful with incorrect user' do
-      fail('write me')
+      other_user = User.create
+      sheet = Timesheet.create(user_id: other_user.id)
+      new_start = DateTime.new(2016, 1, 1, 5, 30, 0)
+      new_end = DateTime.new(2016, 1, 1, 7, 0, 0)
+      act_params = {start_time: new_start, end_time: new_end, timesheet_id: sheet.id}
+
+      assert_empty Activity.all
+
+      post :create, activity: act_params
+
+      assert_response :forbidden
+
+      assert_empty Activity.all
     end
 
+    test 'post create with invalid parameters' do
+      start_date_time = DateTime.new(2016, 1, 1, 10, 30, 0)
+      end_after_start = DateTime.new(2016, 1, 1, 7, 0, 0)
+      act_params = {start_time: start_date_time, end_time: end_after_start, timesheet_id: @timesheet.id}
+
+      assert_empty Activity.all
+
+      post :create, activity: act_params
+
+      assert_response :bad_request
+
+      assert_empty Activity.all
+    end
   end
 
 end
