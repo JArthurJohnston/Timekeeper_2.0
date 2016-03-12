@@ -4,10 +4,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     match '*all' => 'api#cor_preflight', via: :options
-
-    resources :timesheet, only: [:create, :show, :destroy]
-    resources :activities, only: [:create, :show, :update, :destroy]
     match 'user/login' => 'user#login', via: :post
+    resources :timesheet, only: [:create, :show, :destroy]
+
+    [:activities, :story_cards].each do
+      |each_resource|
+      resources each_resource, only: [:create, :show, :update, :destroy]
+    end
   end
 
 

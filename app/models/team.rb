@@ -1,5 +1,6 @@
 class Team < ActiveRecord::Base
   include TeamDisplay
+  include HasUserAccess
   has_many :team_members
   has_many :projects
   belongs_to :user

@@ -1,7 +1,8 @@
 class Timesheet < ActiveRecord::Base
   include CurrentActivity,
           TimesheetDisplay,
-          TimesheetCSV
+          TimesheetCSV,
+          HasUserAccess
   extend DateTimeHelper,
          FindNullModel
 

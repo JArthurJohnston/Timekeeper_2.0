@@ -1,5 +1,6 @@
 class StatementOfWork < ActiveRecord::Base
   include StatementOfWorkDisplay
+  include HasUserAccess
   extend FindNullModel
 
   has_many :job_identifiers

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  include TeamAccessableFields
+  include TeamAccessableFields,
+          UserAccessAdmin
   extend FindNullModel
 
   has_many :timesheets

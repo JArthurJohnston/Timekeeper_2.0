@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   include ProjectDisplay
+  include HasUserAccess
   extend FindNullModel
 
   has_many :job_identifiers

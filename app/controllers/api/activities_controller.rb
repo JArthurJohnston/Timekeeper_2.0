@@ -47,23 +47,17 @@ module Api
 
       def find_activity
         act = Activity.find_by(id: params[:id])
-        if act.nil?
-          return @@not_found_act
-        elsif act.user == @user
-          return act
-        else
-          return Activity::NULL
-        end
+        return act.nil? ? Activity::NULL : act
       end
 
       def check_activity_and_perform &block
         act = find_activity
         if act == Activity::NULL
-          head :forbidden
-        elsif act == @@not_found_act
           head :not_found
-        else
+        elsif act.accessable_by?(@user)
           block.call(act)
+        else
+          head :forbidden
         end
       end
   end

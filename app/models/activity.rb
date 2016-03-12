@@ -1,6 +1,7 @@
 class Activity < ActiveRecord::Base
   include DateTimeHelper
   include ActivityValidator
+  include HasUserAccess
   extend FindNullModel
 
   validate :start_comes_before_end

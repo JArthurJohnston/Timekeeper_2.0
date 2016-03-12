@@ -1,6 +1,7 @@
 /opt/jruby-9.0.1.0/bin/jruby -e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift) /home/arthur/Projects/Timekeeper_2.0/Timekeeper_2.0/bin/rake routes
                         Prefix Verb    URI Pattern                                                                                                Controller#Action
                            api OPTIONS /api/*all(.:format)                                                                                        api/api#cor_preflight
+                api_user_login POST    /api/user/login(.:format)                                                                                  api/user#login
            api_timesheet_index POST    /api/timesheet(.:format)                                                                                   api/timesheet#create
                  api_timesheet GET     /api/timesheet/:id(.:format)                                                                               api/timesheet#show
                                DELETE  /api/timesheet/:id(.:format)                                                                               api/timesheet#destroy
@@ -9,7 +10,11 @@
                                PATCH   /api/activities/:id(.:format)                                                                              api/activities#update
                                PUT     /api/activities/:id(.:format)                                                                              api/activities#update
                                DELETE  /api/activities/:id(.:format)                                                                              api/activities#destroy
-                api_user_login POST    /api/user/login(.:format)                                                                                  api/user#login
+               api_story_cards POST    /api/story_cards(.:format)                                                                                 api/story_cards#create
+                api_story_card GET     /api/story_cards/:id(.:format)                                                                             api/story_cards#show
+                               PATCH   /api/story_cards/:id(.:format)                                                                             api/story_cards#update
+                               PUT     /api/story_cards/:id(.:format)                                                                             api/story_cards#update
+                               DELETE  /api/story_cards/:id(.:format)                                                                             api/story_cards#destroy
                           root GET     /                                                                                                          users#show_login
        user_statements_of_work GET     /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#index
                                POST    /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#create

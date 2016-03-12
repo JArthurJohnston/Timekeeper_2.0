@@ -1,5 +1,6 @@
 class StoryCard < ActiveRecord::Base
   include StoryCardDisplay
+  include HasUserAccess
   extend FindNullModel
 
   belongs_to :project

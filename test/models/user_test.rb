@@ -10,7 +10,7 @@ class UserTest < ModelTestCase
   end
 
   test 'user has timehseets, and statements of work' do
-    user = User.create
+    user = User.create()
     assert_empty user.statements_of_work
     assert_empty user.timesheets
 
