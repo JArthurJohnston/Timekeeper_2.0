@@ -17,11 +17,11 @@ module UserAccessAdmin
   end
 
   def can_access_StatementOfWork? sow
-    self.statements_of_work.include?(sow)
+    sow.user == self
   end
 
   def can_access_Team? team
-    self.teams.include?(team)
+    self.teams.include?(team) || team.user == self
   end
 
 end

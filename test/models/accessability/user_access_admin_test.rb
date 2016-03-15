@@ -70,4 +70,10 @@ class UserAccessAdminTest < ModelTestCase
     assert user_team.accessable_by?(@user)
     refute other_team.accessable_by?(@user)
   end
+
+  test 'user has access to team he created even without team member' do
+    team = Team.create(user_id: @user.id)
+
+    assert team.accessable_by?(@user)
+  end
 end

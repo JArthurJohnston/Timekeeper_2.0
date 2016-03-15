@@ -14,6 +14,9 @@ class ApiControllerTestCase < ActionController::TestCase
     @request.env['HTTP_AUTHORIZATION'] = @token
   end
 
-
+  def create_user
+    password = rand(1000).to_s
+    return User.create(password: password, password_confirmation: password)
+  end
 
 end

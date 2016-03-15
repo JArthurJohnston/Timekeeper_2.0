@@ -35,4 +35,9 @@ class ModelTestCase < ActiveSupport::TestCase
     'collections differ at location '.concat(index.to_s)
   end
 
+  def create_user
+    password = rand(1000).to_s
+    return User.create(password: password, password_confirmation: password)
+  end
+
 end

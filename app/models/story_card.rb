@@ -6,6 +6,8 @@ class StoryCard < ActiveRecord::Base
   belongs_to :project
   has_many :activities, -> {order(:start_time)}
 
+  validates :number, :project_id, presence: true
+
   NULL = NullStoryCard.new
 
   def billable_hours

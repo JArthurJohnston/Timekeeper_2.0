@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     match 'user/login' => 'user#login', via: :post
     resources :timesheet, only: [:create, :show, :destroy]
 
-    [:activities, :story_cards].each do
+    [:activities, :story_cards, :statements_of_work, :teams, :projects].each do
       |each_resource|
       resources each_resource, only: [:create, :show, :update, :destroy]
     end

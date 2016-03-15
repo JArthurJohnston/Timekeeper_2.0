@@ -73,4 +73,13 @@ class StoryCardTest < ModelTestCase
 
     assert_equal status, story.status
   end
+
+  test 'number and project must be present' do
+    project = Project.create()
+    card = StoryCard.create(number: '123', project_id: project.id)
+    assert_not_nil card.id
+
+    card2 = StoryCard.create()
+    assert_nil card2.id
+  end
 end
