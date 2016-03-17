@@ -2,7 +2,7 @@ require_relative 'rest_api_actions'
 
 module Api
 
-  class TeamsController < ApiController
+  class TeamsApiController < ApiController
     include RestApiActions
 
     private

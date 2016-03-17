@@ -20,6 +20,7 @@ class StatementsOfWorkController < ApplicationController
   end
 
   def update
+    raise params.inspect
     @statement_of_work = find_sow
     @statement_of_work.update!(sow_params)
     redirect_to user_statement_of_work_path(@user.id, params[:id])

@@ -14,6 +14,7 @@ class StatementOfWorkTest < ModelTestCase
     JobIdentifier.create(statement_of_work_id: sow.id + 532, project_id: project3.id)
 
     sow_projects = sow.projects
+
     assert_equal 2, sow_projects.size
     assert sow_projects.include?(project1)
     assert sow_projects.include?(project2)

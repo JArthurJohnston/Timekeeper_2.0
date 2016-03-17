@@ -1,6 +1,6 @@
 require_relative 'api_controller_test_case'
 module Api
-  class ActivitiesControllerTest < ApiControllerTestCase
+  class ActivitiesApiControllerTest < ApiControllerTestCase
 
     def setup
       super

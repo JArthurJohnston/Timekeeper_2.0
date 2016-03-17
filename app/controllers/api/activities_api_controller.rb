@@ -1,5 +1,5 @@
 module Api
-  class ActivitiesController < ApiController
+  class ActivitiesApiController < ApiController
 
     @@not_found_act = Activity.new
 
@@ -42,7 +42,7 @@ module Api
     private
 
       def activity_params
-        params.require(:activity).permit(:start_time, :end_time, :timesheet_id)
+        params.require(:activity).permit(:start_time, :end_time, :timesheet_id, :story_card_id)
       end
 
       def find_activity

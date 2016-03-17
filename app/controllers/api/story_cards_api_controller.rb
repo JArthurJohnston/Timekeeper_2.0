@@ -2,7 +2,7 @@ require_relative 'rest_api_actions'
 
 module Api
 
-  class StoryCardsController < ApiController
+  class StoryCardsApiController < ApiController
     include RestApiActions
 
     private

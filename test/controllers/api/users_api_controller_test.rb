@@ -2,7 +2,7 @@ require_relative 'api_controller_test_case'
 
 module Api
 
-  class UserControllerTest < ApiControllerTestCase
+  class UsersApiControllerTest < ApiControllerTestCase
 
     test 'loggin in adds response to header' do
       params_hash = {username: @username, password: @user_password}

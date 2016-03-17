@@ -2,7 +2,7 @@ require_relative 'rest_api_actions'
 
 module Api
 
-  class ProjectsController < ApiController
+  class ProjectsApiController < ApiController
     include RestApiActions
 
     private

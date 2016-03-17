@@ -3,7 +3,7 @@ require_relative 'rest_api_tests'
 
 module Api
 
-  class TeamsControllerTest < ApiControllerTestCase
+  class TeamsApiControllerTest < ApiControllerTestCase
     include RestApiTests
 
     def setup

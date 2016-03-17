@@ -2,7 +2,7 @@ require_relative 'rest_api_actions'
 
 module Api
 
-  class StatementsOfWorkController < ApiController
+  class StatementsOfWorkApiController < ApiController
     include RestApiActions
 
     private

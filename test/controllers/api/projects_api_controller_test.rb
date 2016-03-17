@@ -3,7 +3,7 @@ require_relative 'rest_api_tests'
 
 module Api
 
-  class ProjectsControllerTest < ApiControllerTestCase
+  class ProjectsApiControllerTest < ApiControllerTestCase
 
     include RestApiTests
 

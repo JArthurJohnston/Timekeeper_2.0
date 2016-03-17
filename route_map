@@ -1,88 +1,93 @@
 /opt/jruby-9.0.1.0/bin/jruby -e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift) /home/arthur/Projects/Timekeeper_2.0/Timekeeper_2.0/bin/rake routes
-                        Prefix Verb    URI Pattern                                                                                                Controller#Action
-                           api OPTIONS /api/*all(.:format)                                                                                        api/api#cor_preflight
-                api_user_login POST    /api/user/login(.:format)                                                                                  api/user#login
-           api_timesheet_index POST    /api/timesheet(.:format)                                                                                   api/timesheet#create
-                 api_timesheet GET     /api/timesheet/:id(.:format)                                                                               api/timesheet#show
-                               DELETE  /api/timesheet/:id(.:format)                                                                               api/timesheet#destroy
-                api_activities POST    /api/activities(.:format)                                                                                  api/activities#create
-                  api_activity GET     /api/activities/:id(.:format)                                                                              api/activities#show
-                               PATCH   /api/activities/:id(.:format)                                                                              api/activities#update
-                               PUT     /api/activities/:id(.:format)                                                                              api/activities#update
-                               DELETE  /api/activities/:id(.:format)                                                                              api/activities#destroy
-               api_story_cards POST    /api/story_cards(.:format)                                                                                 api/story_cards#create
-                api_story_card GET     /api/story_cards/:id(.:format)                                                                             api/story_cards#show
-                               PATCH   /api/story_cards/:id(.:format)                                                                             api/story_cards#update
-                               PUT     /api/story_cards/:id(.:format)                                                                             api/story_cards#update
-                               DELETE  /api/story_cards/:id(.:format)                                                                             api/story_cards#destroy
-        api_statements_of_work POST    /api/statements_of_work(.:format)                                                                          api/statements_of_work#create
-         api_statement_of_work GET     /api/statements_of_work/:id(.:format)                                                                      api/statements_of_work#show
-                               PATCH   /api/statements_of_work/:id(.:format)                                                                      api/statements_of_work#update
-                               PUT     /api/statements_of_work/:id(.:format)                                                                      api/statements_of_work#update
-                               DELETE  /api/statements_of_work/:id(.:format)                                                                      api/statements_of_work#destroy
-                     api_teams POST    /api/teams(.:format)                                                                                       api/teams#create
-                      api_team GET     /api/teams/:id(.:format)                                                                                   api/teams#show
-                               PATCH   /api/teams/:id(.:format)                                                                                   api/teams#update
-                               PUT     /api/teams/:id(.:format)                                                                                   api/teams#update
-                               DELETE  /api/teams/:id(.:format)                                                                                   api/teams#destroy
-                          root GET     /                                                                                                          users#show_login
-       user_statements_of_work GET     /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#index
-                               POST    /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#create
-    new_user_statement_of_work GET     /users/:user_id/statements_of_work/new(.:format)                                                           statements_of_work#new
-   edit_user_statement_of_work GET     /users/:user_id/statements_of_work/:id/edit(.:format)                                                      statements_of_work#edit
-        user_statement_of_work GET     /users/:user_id/statements_of_work/:id(.:format)                                                           statements_of_work#show
-                               PATCH   /users/:user_id/statements_of_work/:id(.:format)                                                           statements_of_work#update
-                               PUT     /users/:user_id/statements_of_work/:id(.:format)                                                           statements_of_work#update
-                               DELETE  /users/:user_id/statements_of_work/:id(.:format)                                                           statements_of_work#destroy
-           new_user_story_card GET     /users/:user_id/story_cards/new(.:format)                                                                  story_cards#new
-      user_project_story_cards GET     /users/:user_id/projects/:project_id/story_cards(.:format)                                                 story_cards#index
-                               POST    /users/:user_id/projects/:project_id/story_cards(.:format)                                                 story_cards#create
-   new_user_project_story_card GET     /users/:user_id/projects/:project_id/story_cards/new(.:format)                                             story_cards#new
-  edit_user_project_story_card GET     /users/:user_id/projects/:project_id/story_cards/:id/edit(.:format)                                        story_cards#edit
-       user_project_story_card GET     /users/:user_id/projects/:project_id/story_cards/:id(.:format)                                             story_cards#show
-                               PATCH   /users/:user_id/projects/:project_id/story_cards/:id(.:format)                                             story_cards#update
-                               PUT     /users/:user_id/projects/:project_id/story_cards/:id(.:format)                                             story_cards#update
-                               DELETE  /users/:user_id/projects/:project_id/story_cards/:id(.:format)                                             story_cards#destroy
-                 user_projects GET     /users/:user_id/projects(.:format)                                                                         projects#index
-                               POST    /users/:user_id/projects(.:format)                                                                         projects#create
-              new_user_project GET     /users/:user_id/projects/new(.:format)                                                                     projects#new
-             edit_user_project GET     /users/:user_id/projects/:id/edit(.:format)                                                                projects#edit
-                  user_project GET     /users/:user_id/projects/:id(.:format)                                                                     projects#show
-                               PATCH   /users/:user_id/projects/:id(.:format)                                                                     projects#update
-                               PUT     /users/:user_id/projects/:id(.:format)                                                                     projects#update
-                               DELETE  /users/:user_id/projects/:id(.:format)                                                                     projects#destroy
-     user_timesheet_activities GET     /users/:user_id/timesheets/:timesheet_id/activities(.:format)                                              activities#index
-                               POST    /users/:user_id/timesheets/:timesheet_id/activities(.:format)                                              activities#create
-   new_user_timesheet_activity GET     /users/:user_id/timesheets/:timesheet_id/activities/new(.:format)                                          activities#new
-  edit_user_timesheet_activity GET     /users/:user_id/timesheets/:timesheet_id/activities/:id/edit(.:format)                                     activities#edit
-       user_timesheet_activity GET     /users/:user_id/timesheets/:timesheet_id/activities/:id(.:format)                                          activities#show
-                               PATCH   /users/:user_id/timesheets/:timesheet_id/activities/:id(.:format)                                          activities#update
-                               PUT     /users/:user_id/timesheets/:timesheet_id/activities/:id(.:format)                                          activities#update
-                               DELETE  /users/:user_id/timesheets/:timesheet_id/activities/:id(.:format)                                          activities#destroy
-               user_timesheets GET     /users/:user_id/timesheets(.:format)                                                                       timesheets#index
-                               POST    /users/:user_id/timesheets(.:format)                                                                       timesheets#create
-            new_user_timesheet GET     /users/:user_id/timesheets/new(.:format)                                                                   timesheets#new
-           edit_user_timesheet GET     /users/:user_id/timesheets/:id/edit(.:format)                                                              timesheets#edit
-                user_timesheet GET     /users/:user_id/timesheets/:id(.:format)                                                                   timesheets#show
-                               PATCH   /users/:user_id/timesheets/:id(.:format)                                                                   timesheets#update
-                               PUT     /users/:user_id/timesheets/:id(.:format)                                                                   timesheets#update
-                               DELETE  /users/:user_id/timesheets/:id(.:format)                                                                   timesheets#destroy
-                         users GET     /users(.:format)                                                                                           users#index
-                               POST    /users(.:format)                                                                                           users#create
-                      new_user GET     /users/new(.:format)                                                                                       users#new
-                     edit_user GET     /users/:id/edit(.:format)                                                                                  users#edit
-                          user GET     /users/:id(.:format)                                                                                       users#show
-                               PATCH   /users/:id(.:format)                                                                                       users#update
-                               PUT     /users/:id(.:format)                                                                                       users#update
-                               DELETE  /users/:id(.:format)                                                                                       users#destroy
-               show_user_login GET     /user_login(.:format)                                                                                      users#show_login
-                    user_login POST    /users/login(.:format)                                                                                     users#login
-user_project_story_card_select GET     /users/:user_id/projects/:project_id/story_cards/select(.:format)                                          story_cards#select
-    new_activity_for_timesheet GET     /users/:user_id/timesheet/:timesheet_id/project/:project_id/add_activity(.:format)                         activities#new_for_timesheet
- create_activity_for_timesheet POST    /users/:user_id/timesheet/:timesheet_id/story_cards/:story_card_id/create_activity_for_timesheet(.:format) activities#create_for_timesheet
-   new_story_card_for_activity GET     /users/:user_id/timesheet/:timesheet_id/add_story_card_with_activity(.:format)                             story_cards#new_with_activity
-create_story_card_for_activity POST    /users/:user_id/timesheet/:timesheet_id/create_story_card_with_activity(.:format)                          story_cards#create_with_activity
-                   user_logout GET     /users/:user_id/logout(.:format)                                                                           users#logout
-                 timesheet_csv GET     /users/:user_id/timesheets/:id/download_csv(.:format)                                                      timesheets#download_csv
+                          Prefix Verb    URI Pattern                                                                                                Controller#Action
+                             api OPTIONS /api/*all(.:format)                                                                                        api/api#cor_preflight
+                  api_user_login POST    /api/user/login(.:format)                                                                                  api/users_api#login
+         api_timesheet_api_index POST    /api/timesheet_api(.:format)                                                                               api/timesheet_api#create
+               api_timesheet_api GET     /api/timesheet_api/:id(.:format)                                                                           api/timesheet_api#show
+                                 DELETE  /api/timesheet_api/:id(.:format)                                                                           api/timesheet_api#destroy
+        api_activities_api_index POST    /api/activities_api(.:format)                                                                              api/activities_api#create
+              api_activities_api GET     /api/activities_api/:id(.:format)                                                                          api/activities_api#show
+                                 PATCH   /api/activities_api/:id(.:format)                                                                          api/activities_api#update
+                                 PUT     /api/activities_api/:id(.:format)                                                                          api/activities_api#update
+                                 DELETE  /api/activities_api/:id(.:format)                                                                          api/activities_api#destroy
+       api_story_cards_api_index POST    /api/story_cards_api(.:format)                                                                             api/story_cards_api#create
+             api_story_cards_api GET     /api/story_cards_api/:id(.:format)                                                                         api/story_cards_api#show
+                                 PATCH   /api/story_cards_api/:id(.:format)                                                                         api/story_cards_api#update
+                                 PUT     /api/story_cards_api/:id(.:format)                                                                         api/story_cards_api#update
+                                 DELETE  /api/story_cards_api/:id(.:format)                                                                         api/story_cards_api#destroy
+api_statements_of_work_api_index POST    /api/statements_of_work_api(.:format)                                                                      api/statements_of_work_api#create
+      api_statements_of_work_api GET     /api/statements_of_work_api/:id(.:format)                                                                  api/statements_of_work_api#show
+                                 PATCH   /api/statements_of_work_api/:id(.:format)                                                                  api/statements_of_work_api#update
+                                 PUT     /api/statements_of_work_api/:id(.:format)                                                                  api/statements_of_work_api#update
+                                 DELETE  /api/statements_of_work_api/:id(.:format)                                                                  api/statements_of_work_api#destroy
+             api_teams_api_index POST    /api/teams_api(.:format)                                                                                   api/teams_api#create
+                   api_teams_api GET     /api/teams_api/:id(.:format)                                                                               api/teams_api#show
+                                 PATCH   /api/teams_api/:id(.:format)                                                                               api/teams_api#update
+                                 PUT     /api/teams_api/:id(.:format)                                                                               api/teams_api#update
+                                 DELETE  /api/teams_api/:id(.:format)                                                                               api/teams_api#destroy
+          api_projects_api_index POST    /api/projects_api(.:format)                                                                                api/projects_api#create
+                api_projects_api GET     /api/projects_api/:id(.:format)                                                                            api/projects_api#show
+                                 PATCH   /api/projects_api/:id(.:format)                                                                            api/projects_api#update
+                                 PUT     /api/projects_api/:id(.:format)                                                                            api/projects_api#update
+                                 DELETE  /api/projects_api/:id(.:format)                                                                            api/projects_api#destroy
+                            root GET     /                                                                                                          users#show_login
+         user_statements_of_work GET     /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#index
+                                 POST    /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#create
+      new_user_statement_of_work GET     /users/:user_id/statements_of_work/new(.:format)                                                           statements_of_work#new
+     edit_user_statement_of_work GET     /users/:user_id/statements_of_work/:id/edit(.:format)                                                      statements_of_work#edit
+          user_statement_of_work GET     /users/:user_id/statements_of_work/:id(.:format)                                                           statements_of_work#show
+                                 PATCH   /users/:user_id/statements_of_work/:id(.:format)                                                           statements_of_work#update
+                                 PUT     /users/:user_id/statements_of_work/:id(.:format)                                                           statements_of_work#update
+                                 DELETE  /users/:user_id/statements_of_work/:id(.:format)                                                           statements_of_work#destroy
+             new_user_story_card GET     /users/:user_id/story_cards/new(.:format)                                                                  story_cards#new
+        user_project_story_cards GET     /users/:user_id/projects/:project_id/story_cards(.:format)                                                 story_cards#index
+                                 POST    /users/:user_id/projects/:project_id/story_cards(.:format)                                                 story_cards#create
+     new_user_project_story_card GET     /users/:user_id/projects/:project_id/story_cards/new(.:format)                                             story_cards#new
+    edit_user_project_story_card GET     /users/:user_id/projects/:project_id/story_cards/:id/edit(.:format)                                        story_cards#edit
+         user_project_story_card GET     /users/:user_id/projects/:project_id/story_cards/:id(.:format)                                             story_cards#show
+                                 PATCH   /users/:user_id/projects/:project_id/story_cards/:id(.:format)                                             story_cards#update
+                                 PUT     /users/:user_id/projects/:project_id/story_cards/:id(.:format)                                             story_cards#update
+                                 DELETE  /users/:user_id/projects/:project_id/story_cards/:id(.:format)                                             story_cards#destroy
+                   user_projects GET     /users/:user_id/projects(.:format)                                                                         projects#index
+                                 POST    /users/:user_id/projects(.:format)                                                                         projects#create
+                new_user_project GET     /users/:user_id/projects/new(.:format)                                                                     projects#new
+               edit_user_project GET     /users/:user_id/projects/:id/edit(.:format)                                                                projects#edit
+                    user_project GET     /users/:user_id/projects/:id(.:format)                                                                     projects#show
+                                 PATCH   /users/:user_id/projects/:id(.:format)                                                                     projects#update
+                                 PUT     /users/:user_id/projects/:id(.:format)                                                                     projects#update
+                                 DELETE  /users/:user_id/projects/:id(.:format)                                                                     projects#destroy
+       user_timesheet_activities GET     /users/:user_id/timesheets/:timesheet_id/activities(.:format)                                              activities#index
+                                 POST    /users/:user_id/timesheets/:timesheet_id/activities(.:format)                                              activities#create
+     new_user_timesheet_activity GET     /users/:user_id/timesheets/:timesheet_id/activities/new(.:format)                                          activities#new
+    edit_user_timesheet_activity GET     /users/:user_id/timesheets/:timesheet_id/activities/:id/edit(.:format)                                     activities#edit
+         user_timesheet_activity GET     /users/:user_id/timesheets/:timesheet_id/activities/:id(.:format)                                          activities#show
+                                 PATCH   /users/:user_id/timesheets/:timesheet_id/activities/:id(.:format)                                          activities#update
+                                 PUT     /users/:user_id/timesheets/:timesheet_id/activities/:id(.:format)                                          activities#update
+                                 DELETE  /users/:user_id/timesheets/:timesheet_id/activities/:id(.:format)                                          activities#destroy
+                 user_timesheets GET     /users/:user_id/timesheets(.:format)                                                                       timesheets#index
+                                 POST    /users/:user_id/timesheets(.:format)                                                                       timesheets#create
+              new_user_timesheet GET     /users/:user_id/timesheets/new(.:format)                                                                   timesheets#new
+             edit_user_timesheet GET     /users/:user_id/timesheets/:id/edit(.:format)                                                              timesheets#edit
+                  user_timesheet GET     /users/:user_id/timesheets/:id(.:format)                                                                   timesheets#show
+                                 PATCH   /users/:user_id/timesheets/:id(.:format)                                                                   timesheets#update
+                                 PUT     /users/:user_id/timesheets/:id(.:format)                                                                   timesheets#update
+                                 DELETE  /users/:user_id/timesheets/:id(.:format)                                                                   timesheets#destroy
+                           users GET     /users(.:format)                                                                                           users#index
+                                 POST    /users(.:format)                                                                                           users#create
+                        new_user GET     /users/new(.:format)                                                                                       users#new
+                       edit_user GET     /users/:id/edit(.:format)                                                                                  users#edit
+                            user GET     /users/:id(.:format)                                                                                       users#show
+                                 PATCH   /users/:id(.:format)                                                                                       users#update
+                                 PUT     /users/:id(.:format)                                                                                       users#update
+                                 DELETE  /users/:id(.:format)                                                                                       users#destroy
+                 show_user_login GET     /user_login(.:format)                                                                                      users#show_login
+                      user_login POST    /users/login(.:format)                                                                                     users#login
+  user_project_story_card_select GET     /users/:user_id/projects/:project_id/story_cards/select(.:format)                                          story_cards#select
+      new_activity_for_timesheet GET     /users/:user_id/timesheet/:timesheet_id/project/:project_id/add_activity(.:format)                         activities#new_for_timesheet
+   create_activity_for_timesheet POST    /users/:user_id/timesheet/:timesheet_id/story_cards/:story_card_id/create_activity_for_timesheet(.:format) activities#create_for_timesheet
+     new_story_card_for_activity GET     /users/:user_id/timesheet/:timesheet_id/add_story_card_with_activity(.:format)                             story_cards#new_with_activity
+  create_story_card_for_activity POST    /users/:user_id/timesheet/:timesheet_id/create_story_card_with_activity(.:format)                          story_cards#create_with_activity
+                     user_logout GET     /users/:user_id/logout(.:format)                                                                           users#logout
+                   timesheet_csv GET     /users/:user_id/timesheets/:id/download_csv(.:format)                                                      timesheets#download_csv
 
 Process finished with exit code 0

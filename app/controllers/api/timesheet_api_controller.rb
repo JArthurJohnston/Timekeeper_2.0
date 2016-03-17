@@ -1,5 +1,5 @@
 module Api
-  class TimesheetController < ApiController
+  class TimesheetApiController < ApiController
 
     def show
       timesheet = find_timesheet

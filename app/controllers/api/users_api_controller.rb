@@ -1,6 +1,6 @@
 module Api
 
-  class UserController < ApiController
+  class UsersApiController < ApiController
 
     @@user_not_found = User.new
 

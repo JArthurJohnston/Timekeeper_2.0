@@ -1,6 +1,6 @@
 require_relative 'api_controller_test_case'
 
-class Api::TimesheetControllerTest < ApiControllerTestCase
+class Api::TimesheetApiControllerTest < ApiControllerTestCase
 
   test 'adds cors header to response' do
     get :show, id: 1

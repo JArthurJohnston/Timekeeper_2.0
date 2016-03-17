@@ -1,9 +1,5 @@
 module RestApiActions
 
-  def show
-    check_model_and_perform {|model| render json: model}
-  end
-
   def create
     new_model = model_class.new(model_params)
     if new_model.accessable_by?(@user)
@@ -15,6 +11,10 @@ module RestApiActions
     else
       head :forbidden
     end
+  end
+
+  def show
+    check_model_and_perform {|model| render json: model}
   end
 
   def update

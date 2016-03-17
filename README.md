@@ -37,3 +37,13 @@ Upon a successful login, you will recieve a Json Web Token (JWT).
     xhttp.send(JSON.stringify(creds));
 ```
 
+Note: Its recommended that you send any date information using the UTC timezone.
+You can do this by calling the toUTCString function on any date object, before you serialize it.
+
+For example:
+
+```javascript
+    var utcDate = todaysDate.toUTCString();
+
+    xhttp.send(JSON.stringify(utcDate));
+```
