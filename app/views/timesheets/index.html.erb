@@ -1,10 +1,10 @@
 <ul>
-  <% @timesheets.each do |each_timesheet| %>
+  <% @timesheets.reverse.each do |each_timesheet| %>
       <%= list_item_to_path_named user_timesheet_path(@user.id, each_timesheet.id),
                                   each_timesheet.display_string %>
   <% end %>
 </ul>
 
 <%= link_to user_timesheets_path(@user.id), method: :post do %>
-    <div class="add-button">New Timesheet</div>
+    <div class="new-button">New Timesheet</div>
 <% end %>

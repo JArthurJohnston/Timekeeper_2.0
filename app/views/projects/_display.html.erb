@@ -18,9 +18,3 @@
       <% end %>
     </ul>
   </div>
-
-<%= content_for :buttons_bar do %>
-    <%= link_to edit_user_project_path(@user.id, @project.id) do %>
-        <div class="add-button">Edit</div>
-    <% end %>
-<% end %>

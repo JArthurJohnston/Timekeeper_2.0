@@ -3,9 +3,6 @@
       <%= list_item_to_path_named user_statement_of_work_path(@user.id, each_sow.id), each_sow.display_string %>
   <% end %>
 </ul>
-
-<% content_for :buttons_bar do %>
-    <%= link_to new_user_statement_of_work_path(@user.id) do %>
-        <div class="add-button">+</div>
-    <% end %>
+<%= link_to new_user_statement_of_work_path(@user.id) do %>
+    <div class="new-button">+</div>
 <% end %>
