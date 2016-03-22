@@ -12,6 +12,10 @@ class ActivityTest < ModelTestCase
   #   assert_equal act, Activity.find(act.id)
   # end
 
+  test 'story card MUST have an acitivity' do
+    fail('this caused a 500 internal server error. FIX IT!')
+  end
+
   test 'activity initializes with start and end' do
     expectedStart = DateTime.new(2015, 1, 1, 2, 2, 2)
     expectedEnd = DateTime.new(2015, 1, 1, 3, 3, 3)
