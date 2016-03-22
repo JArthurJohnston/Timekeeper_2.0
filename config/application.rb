@@ -25,6 +25,12 @@ module Timekeeper20
     # Redirect any http requests to https
     # config.force_ssl = true
 
+    # Get the production application to include CORS headers, but only for the api
+    # config.action_dispatch.default_headers = {
+    #     'Access-Control-Allow-Origin' => '*',
+    #     'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+    # }
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
