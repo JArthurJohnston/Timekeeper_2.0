@@ -82,4 +82,16 @@ class StoryCardTest < ModelTestCase
     card2 = StoryCard.create()
     assert_nil card2.id
   end
+
+  test 'story card json' do
+    project = Project.create()
+    card = StoryCard.create(number: '123', title: 'Hi', description: 'World',
+                            estimate: 16, project_id: project.id)
+    expected_json = '{"id":' +
+        card.id.to_s +
+        ',"project_id":' +
+        project.id.to_s +
+        ',"number":"123","title":"Hi","description":"World","estimate":16}'
+    assert_equal expected_json, card.to_json
+  end
 end

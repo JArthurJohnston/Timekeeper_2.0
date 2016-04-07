@@ -30,4 +30,9 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def as_json(options={})
+    options[:except] = [:statement_of_work_id, :is_deleted, :user_id]
+    super(options)
+  end
+
 end

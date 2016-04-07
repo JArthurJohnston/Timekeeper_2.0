@@ -35,4 +35,9 @@ class StoryCard < ActiveRecord::Base
     super
   end
 
+  def as_json(options = {})
+    options[:except] = [:is_deleted, :status_id]
+    super(options)
+  end
+
 end

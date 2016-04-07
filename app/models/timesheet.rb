@@ -95,4 +95,8 @@ class Timesheet < ActiveRecord::Base
     end
     story_projects.uniq
   end
+
+  def as_json(options = {})
+    super(only: [:id, :user_id], include: :activities)
+  end
 end

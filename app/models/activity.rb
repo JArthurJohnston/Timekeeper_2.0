@@ -77,6 +77,11 @@ class Activity < ActiveRecord::Base
     return self.timesheet.user
   end
 
+  def as_json(options = {})
+    options[:except] = [:is_deleted]
+    super(options)
+  end
+
   private
 
     def if_not_nil_round attributes_passed_in, time_method_symbol

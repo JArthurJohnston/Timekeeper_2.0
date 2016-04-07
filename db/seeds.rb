@@ -8,7 +8,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 update_statuses = false
-update_passwords = true
 
 if update_statuses
   statuses = [
@@ -26,12 +25,11 @@ if update_statuses
   end
 end
 
-if update_passwords
-  User.all.each do
-    |e|
-    temp_user = User.new(password: e.password, password_confirmation: e.password)
-    e.update(password_digest: e.password_digest)
-  end
-end
+# UTC to ETC
+# 13 = 9
+# 14 = 10
+# 15 = 11
+# 16 = 12
+
 
 

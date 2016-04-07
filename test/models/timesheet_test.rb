@@ -299,4 +299,31 @@ class TimesheetTest < ModelTestCase
 
     assert_equal [project1, project2], timesheet.projects
   end
+
+  test 'timesheet json' do
+    user = create_user
+    timesheet = Timesheet.create(user_id: user.id)
+    expected_json = '{"id":' +
+        timesheet.id.to_s +
+        ',"user_id":' +
+        user.id.to_s +
+        ',"activities":[]}'
+
+    assert_equal expected_json, timesheet.to_json
+  end
+
+  test 'timesheet json with activities' do
+    user = create_user
+    timesheet = Timesheet.create(user_id: user.id)
+    act1 = Activity.create(timesheet_id: timesheet.id)
+    act2 = Activity.create(timesheet_id: timesheet.id)
+    expected_json = '{"id":' +
+        timesheet.id.to_s +
+        ',"user_id":' +
+        user.id.to_s +
+        ',"activities":['+ act1.to_json + ',' + act2.to_json + ']}'
+
+    assert_equal expected_json, timesheet.to_json
+  end
+
 end

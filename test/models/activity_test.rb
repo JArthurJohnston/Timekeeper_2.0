@@ -2,17 +2,7 @@ require_relative 'model_test_case'
 
 class ActivityTest < ModelTestCase
 
-  # test 'activity can be deleted' do
-  #   act = Activity.create
-  #   deny act.is_deleted
-  #   assert_equal act, Activity.find(act.id)
-  #
-  #   act.destroy
-  #   assert act.is_deleted
-  #   assert_equal act, Activity.find(act.id)
-  # end
-
-  test 'story card MUST have an acitivity' do
+  test 'activity MUST have a story card' do
     fail('this caused a 500 internal server error. FIX IT!')
   end
 
@@ -184,6 +174,17 @@ class ActivityTest < ModelTestCase
     act = Activity.create(timesheet_id: timesheet.id)
 
     assert_equal user, act.user
+  end
+
+  test 'activity json' do
+    sheet = Timesheet.create
+    card = create_story_card
+    act = Activity.create(start_time: time_on(5, 30), end_time: time_on(7, 45), story_card_id: card.id, timesheet_id: sheet.id)
+    expected_json = '{"id":' +
+        act.id.to_s + ',"start_time":"2015-01-01T05:30:00.000Z","end_time":"2015-01-01T07:45:00.000Z","timesheet_id":' +
+        sheet.id.to_s + ',"story_card_id":' +
+        card.id.to_s + '}'
+    assert_equal expected_json, act.to_json
   end
 
 end

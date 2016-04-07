@@ -40,4 +40,10 @@ class ModelTestCase < ActiveSupport::TestCase
     return User.create(password: password, password_confirmation: password)
   end
 
+  def create_story_card
+    project = Project.create
+    number = rand(100).to_s
+    StoryCard.create(project_id: project.id, number: number)
+  end
+
 end

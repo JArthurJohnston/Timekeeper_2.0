@@ -87,4 +87,12 @@ class ProjectTest < ModelTestCase
     assert_equal 7, basic_story_cards.size
   end
 
+  test 'project json' do
+    team = Team.create
+    project = Project.create(name:'Mouse', client:'Mickey', code:'SOW123', team_id: team.id)
+    expected_json = '{"id":' + project.id.to_s +
+        ',"name":"Mouse","team_id":' + team.id.to_s +
+        ',"code":"SOW123","client":"Mickey"}'
+    assert_equal expected_json, project.to_json
+  end
 end
