@@ -52,6 +52,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def as_json(options = {})
+    options[:except] = [:name, :is_deleted, :timezone, :password_digest, :rate]
+    super(options)
+  end
+
   private
 
   def create_private_team

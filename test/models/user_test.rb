@@ -160,4 +160,14 @@ class UserTest < ModelTestCase
     assert user.story_cards.include? card3
   end
 
+  test 'user json' do
+    user = create_user('BobLoblaw', 'bob.loblaw@loblawlaw.com')
+    timesheet = user.create_timesheet()
+    expected_json = '{"id":' + user.id.to_s +
+        ',"current_timesheet_id":' + timesheet.id.to_s +
+        ',"username":"BobLoblaw","email":"bob.loblaw@loblawlaw.com"}'
+
+    assert_equal expected_json, user.to_json
+  end
+
 end

@@ -183,7 +183,7 @@ class ActivityTest < ModelTestCase
     expected_json = '{"id":' +
         act.id.to_s + ',"start_time":"2015-01-01T05:30:00.000Z","end_time":"2015-01-01T07:45:00.000Z","timesheet_id":' +
         sheet.id.to_s + ',"story_card_id":' +
-        card.id.to_s + '}'
+        card.id.to_s + ' }'
     assert_equal expected_json, act.to_json
   end
 

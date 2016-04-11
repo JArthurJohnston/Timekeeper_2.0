@@ -1,7 +1,7 @@
 class UserToken < AuthenticationToken
 
   def self.for(user)
-    super({id: user.id})
+    super(user.as_json)
   end
 
   def self.from(token)
