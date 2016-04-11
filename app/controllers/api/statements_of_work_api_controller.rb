@@ -5,6 +5,10 @@ module Api
   class StatementsOfWorkApiController < ApiController
     include RestApiActions
 
+    def index
+      render json: @user.statements_of_work
+    end
+
     private
 
     def model_params

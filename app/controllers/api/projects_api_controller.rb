@@ -5,6 +5,10 @@ module Api
   class ProjectsApiController < ApiController
     include RestApiActions
 
+    def index
+      render json: @user.projects
+    end
+
     private
 
       def model_params

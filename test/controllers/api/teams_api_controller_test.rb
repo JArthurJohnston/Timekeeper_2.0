@@ -18,6 +18,20 @@ module Api
       assert_equal 2, TeamMember.all.size
     end
 
+    test 'index action' do
+      team1 = Team.create
+      TeamMember.create(user_id: @user.id, team_id: team1.id)
+      team2 = Team.create
+      TeamMember.create(user_id: @user.id, team_id: team2.id)
+
+      get :index
+
+      assert_response :success
+
+      users_personal_team = @user.teams[0]
+      assert_equal [users_personal_team, team1, team2].to_json, @response.body
+    end
+
     def newly_created_model
       Team.all[1]
     end

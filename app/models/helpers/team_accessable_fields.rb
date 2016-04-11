@@ -6,6 +6,7 @@ module TeamAccessableFields
   end
 
   def projects
+    # Re-do this in sql...
     teams.collect { |e| e.projects }.flatten
   end
 

@@ -5,13 +5,29 @@ Rails.application.routes.draw do
   namespace :api do
     match '*all' => 'api#cor_preflight', via: :options
     match 'user/login' => 'users_api#login', via: :post
-    resources :timesheet_api, only: [:create, :show, :destroy]
+    resources :timesheet_api, only: [:create, :show, :destroy, :index]
+
+    [:statements_of_work_api, :teams_api, :projects_api].each do
+      |each_resource|
+      resources each_resource, only: :index
+    end
 
     [:activities_api, :story_cards_api, :statements_of_work_api, :teams_api, :projects_api].each do
       |each_resource|
-      resources each_resource, only: [:create, :show, :update, :destroy]
+      resources each_resource, except: [:new, :edit, :index]
     end
+
+    match 'story_card_api/all_for/project/:project_id' => 'story_cards_api#index',
+          via: :get,
+          :as => 'project_story_cards_api'
+
+    match 'timesheets_api/:id/download_csv' => 'timesheet_api#download_csv',
+          via: :get,
+          :as => 'api_timesheet_csv'
+
   end
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

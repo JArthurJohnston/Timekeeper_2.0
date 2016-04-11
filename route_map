@@ -2,9 +2,13 @@
                           Prefix Verb    URI Pattern                                                                                                Controller#Action
                              api OPTIONS /api/*all(.:format)                                                                                        api/api#cor_preflight
                   api_user_login POST    /api/user/login(.:format)                                                                                  api/users_api#login
-         api_timesheet_api_index POST    /api/timesheet_api(.:format)                                                                               api/timesheet_api#create
+         api_timesheet_api_index GET     /api/timesheet_api(.:format)                                                                               api/timesheet_api#index
+                                 POST    /api/timesheet_api(.:format)                                                                               api/timesheet_api#create
                api_timesheet_api GET     /api/timesheet_api/:id(.:format)                                                                           api/timesheet_api#show
                                  DELETE  /api/timesheet_api/:id(.:format)                                                                           api/timesheet_api#destroy
+api_statements_of_work_api_index GET     /api/statements_of_work_api(.:format)                                                                      api/statements_of_work_api#index
+             api_teams_api_index GET     /api/teams_api(.:format)                                                                                   api/teams_api#index
+          api_projects_api_index GET     /api/projects_api(.:format)                                                                                api/projects_api#index
         api_activities_api_index POST    /api/activities_api(.:format)                                                                              api/activities_api#create
               api_activities_api GET     /api/activities_api/:id(.:format)                                                                          api/activities_api#show
                                  PATCH   /api/activities_api/:id(.:format)                                                                          api/activities_api#update
@@ -15,21 +19,23 @@
                                  PATCH   /api/story_cards_api/:id(.:format)                                                                         api/story_cards_api#update
                                  PUT     /api/story_cards_api/:id(.:format)                                                                         api/story_cards_api#update
                                  DELETE  /api/story_cards_api/:id(.:format)                                                                         api/story_cards_api#destroy
-api_statements_of_work_api_index POST    /api/statements_of_work_api(.:format)                                                                      api/statements_of_work_api#create
+                                 POST    /api/statements_of_work_api(.:format)                                                                      api/statements_of_work_api#create
       api_statements_of_work_api GET     /api/statements_of_work_api/:id(.:format)                                                                  api/statements_of_work_api#show
                                  PATCH   /api/statements_of_work_api/:id(.:format)                                                                  api/statements_of_work_api#update
                                  PUT     /api/statements_of_work_api/:id(.:format)                                                                  api/statements_of_work_api#update
                                  DELETE  /api/statements_of_work_api/:id(.:format)                                                                  api/statements_of_work_api#destroy
-             api_teams_api_index POST    /api/teams_api(.:format)                                                                                   api/teams_api#create
+                                 POST    /api/teams_api(.:format)                                                                                   api/teams_api#create
                    api_teams_api GET     /api/teams_api/:id(.:format)                                                                               api/teams_api#show
                                  PATCH   /api/teams_api/:id(.:format)                                                                               api/teams_api#update
                                  PUT     /api/teams_api/:id(.:format)                                                                               api/teams_api#update
                                  DELETE  /api/teams_api/:id(.:format)                                                                               api/teams_api#destroy
-          api_projects_api_index POST    /api/projects_api(.:format)                                                                                api/projects_api#create
+                                 POST    /api/projects_api(.:format)                                                                                api/projects_api#create
                 api_projects_api GET     /api/projects_api/:id(.:format)                                                                            api/projects_api#show
                                  PATCH   /api/projects_api/:id(.:format)                                                                            api/projects_api#update
                                  PUT     /api/projects_api/:id(.:format)                                                                            api/projects_api#update
                                  DELETE  /api/projects_api/:id(.:format)                                                                            api/projects_api#destroy
+     api_project_story_cards_api GET     /api/story_card_api/all_for/project/:project_id(.:format)                                                  api/story_cards_api#index
+           api_api_timesheet_csv GET     /api/timesheets_api/:id/download_csv(.:format)                                                             api/timesheet_api#download_csv
                             root GET     /                                                                                                          users#show_login
          user_statements_of_work GET     /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#index
                                  POST    /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#create

@@ -73,6 +73,33 @@ module Api
       model_class.create(number: '123',project_id: @project.id)
     end
 
+    test 'index action' do
+      team = Team.create
+      TeamMember.create(team_id: team.id, user_id: @user.id)
+      project = Project.create(team_id: team.id)
+      card1 = StoryCard.create(project_id: project.id, number: '123')
+      card2 = StoryCard.create(project_id: project.id, number: '345')
+
+      get :index, project_id: project.id
+      assert_response :success
+
+      assert_equal [card1, card2].to_json, @response.body
+    end
+
+    test 'index action when user cant access story card' do
+      other_user = create_user
+      team = Team.create()
+      TeamMember.create(user_id: other_user.id, team_id: team.id)
+      project = Project.create(team_id: team.id)
+      StoryCard.create(project_id: project.id, number: '123')
+      StoryCard.create(project_id: project.id, number: '345')
+
+      get :index, project_id: project.id
+      assert_response :forbidden
+
+      assert_equal '', @response.body
+    end
+
   end
 
 end

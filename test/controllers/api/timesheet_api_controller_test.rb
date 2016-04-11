@@ -66,4 +66,14 @@ class Api::TimesheetApiControllerTest < ApiControllerTestCase
     assert_equal '', @response.body
   end
 
+  test 'index action' do
+    sheet1 = Timesheet.create(user_id: @user.id)
+    sheet2 = Timesheet.create(user_id: @user.id)
+
+    get :index
+    assert_response :success
+
+    assert_equal [sheet1, sheet2].to_json, @response.body
+  end
+
 end

@@ -5,6 +5,10 @@ module Api
   class TeamsApiController < ApiController
     include RestApiActions
 
+    def index
+      render json: @user.teams
+    end
+
     private
 
       def handle_create_for(new_team)

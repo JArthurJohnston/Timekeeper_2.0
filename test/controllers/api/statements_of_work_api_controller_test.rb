@@ -57,6 +57,18 @@ module Api
       model_class.create(valid_params)
     end
 
+    test 'index action' do
+      sow1 = StatementOfWork.create(user_id: @user.id)
+      sow2 = StatementOfWork.create(user_id: @user.id)
+      sow3 = StatementOfWork.create(user_id: @user.id)
+
+      get :index
+
+      assert_response :success
+      assert_equal [sow1, sow2, sow3].to_json, @response.body
+
+    end
+
   end
 
 end

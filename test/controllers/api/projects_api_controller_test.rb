@@ -66,6 +66,18 @@ module Api
       Project.create(valid_params)
     end
 
+    test 'index action' do
+      team = Team.create
+      TeamMember.create(user_id: @user.id, team_id: team.id)
+      project1 = Project.create(team_id: team.id)
+      project2 = Project.create(team_id: team.id)
+
+      get :index
+
+      assert_response :success
+      assert_equal [project1, project2].to_json, @response.body
+    end
+
   end
 
 end

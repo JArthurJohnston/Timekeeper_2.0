@@ -1,6 +1,10 @@
 module Api
   class TimesheetApiController < ApiController
 
+    def index
+      render json: @user.timesheets
+    end
+
     def show
       timesheet = find_timesheet
       unless timesheet.nil?
