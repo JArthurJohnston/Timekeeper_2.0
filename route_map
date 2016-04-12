@@ -35,6 +35,8 @@ api_statements_of_work_api_index GET     /api/statements_of_work_api(.:format)  
                                  PUT     /api/projects_api/:id(.:format)                                                                            api/projects_api#update
                                  DELETE  /api/projects_api/:id(.:format)                                                                            api/projects_api#destroy
      api_project_story_cards_api GET     /api/story_card_api/all_for/project/:project_id(.:format)                                                  api/story_cards_api#index
+   api_story_card_activities_api GET     /api/activities/all_for/story_card/:story_card_id(.:format)                                                api/activities_api#all_for_story_card
+    api_timesheet_activities_api GET     /api/activities/all_for/timesheet/:timesheet_id(.:format)                                                  api/activities_api#all_for_timesheet
            api_api_timesheet_csv GET     /api/timesheets_api/:id/download_csv(.:format)                                                             api/timesheet_api#download_csv
                             root GET     /                                                                                                          users#show_login
          user_statements_of_work GET     /users/:user_id/statements_of_work(.:format)                                                               statements_of_work#index

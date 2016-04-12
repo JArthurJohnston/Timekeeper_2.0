@@ -7,6 +7,37 @@ module Api
       @timesheet = Timesheet.create(user_id: @user.id)
     end
 
+    def create_user_accessable_project
+      team = Team.create
+      TeamMember.create(team_id: team.id, user_id: @user.id)
+      return Project.create(team_id: team.id)
+    end
+
+    test 'all for story card' do
+      project = create_user_accessable_project
+      card = StoryCard.create(project_id: project.id, number: '123')
+      act1 = Activity.create(story_card_id: card.id)
+      act2 = Activity.create(story_card_id: card.id)
+      Activity.create()
+
+      get :all_for_story_card, story_card_id: card.id
+
+      assert_response :success
+      assert_equal [act1, act2].to_json, @response.body
+    end
+
+    test 'all for a story card the user cant access' do
+      project = Project.create
+      card = StoryCard.create(project_id: project.id, number: '123')
+      Activity.create(story_card_id: card.id)
+      Activity.create(story_card_id: card.id)
+
+      get :all_for_story_card, story_card_id: card.id
+
+      assert_response :forbidden
+      assert_equal '', @response.body
+    end
+
     test 'get show is successful' do
       activity = Activity.create(timesheet_id: @timesheet.id)
 

@@ -95,4 +95,14 @@ class ProjectTest < ModelTestCase
         ',"code":"SOW123","client":"Mickey"}'
     assert_equal expected_json, project.to_json
   end
+
+  test 'returns null team when team_id is nil' do
+    project = Project.create
+    assert_same Team::NULL, project.team
+
+    team = Team.create
+    project.update(team_id: team.id)
+
+    assert_equal team, project.team
+  end
 end

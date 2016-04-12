@@ -3,6 +3,19 @@ module Api
 
     @@not_found_act = Activity.new
 
+    def all_for_story_card
+      card = StoryCard.find(params[:story_card_id])
+      if card.accessable_by?(@user)
+        render json: card.activities
+      else
+        head :forbidden
+      end
+    end
+
+    def all_for_timesheet
+      head :bad_request
+    end
+
     def create
       new_activity = Activity.new(activity_params)
       unless new_activity.user == @user

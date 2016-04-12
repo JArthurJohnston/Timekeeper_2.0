@@ -30,6 +30,13 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def team
+    if team_id.nil?
+      return Team::NULL
+    end
+    super
+  end
+
   def as_json(options={})
     options[:except] = [:statement_of_work_id, :is_deleted, :user_id]
     super(options)

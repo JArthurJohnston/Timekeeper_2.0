@@ -21,6 +21,14 @@ Rails.application.routes.draw do
           via: :get,
           :as => 'project_story_cards_api'
 
+    match 'activities/all_for/story_card/:story_card_id' => 'activities_api#all_for_story_card',
+          via: :get,
+          :as => 'story_card_activities_api'
+
+    match 'activities/all_for/timesheet/:timesheet_id' => 'activities_api#all_for_timesheet',
+          via: :get,
+          :as => 'timesheet_activities_api'
+
     match 'timesheets_api/:id/download_csv' => 'timesheet_api#download_csv',
           via: :get,
           :as => 'api_timesheet_csv'
